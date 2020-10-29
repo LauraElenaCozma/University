@@ -1,0 +1,53 @@
+﻿@model Books.Models.Book
+@{
+    ViewBag.Title = "Details";
+    var emptySummaryMsg = "The book has no summary";
+}
+
+<h2>@Model.Title</h2>
+
+@Html.Label("Author", "Author:")
+<p>@Model.Author</p>
+<br />
+@Html.Label("Publisher", "Publisher:")
+
+@if (Model.Publisher is null)
+{
+    <p>This book doesn't have a publisher</p>
+}
+else
+{
+    <p>Publisher id:   @Model.Publisher.PublisherId</p>
+    <p>Publisher name: @Model.Publisher.Name</p>
+
+    @Html.Label("Contact Info", "Contact Info:")
+    <p>Phone number: @Model.Publisher.ContactInfo.PhoneNumber</p>
+
+}
+<br />
+@Html.Label("Summary", "Summary:")
+@if (Model.Summary.IsEmpty())
+{
+    <p>@emptySummaryMsg</p>
+}
+else
+{
+    @Html.Display("Summary")
+    @*sau <p> @Model.Summary</p> sau @Html.DisplayFor(b => b.Summary)*@
+}
+<br />
+<br />
+@Html.Label("Genres", "Genres:")
+@if (Model.Genres.Count == 0)
+{
+    <p>This book has no genres!</p>
+}
+else
+{
+    <ul>
+        @foreach (var genre in Model.Genres)
+        {
+            <li>@genre.Name</li>
+        }
+    </ul>
+}
