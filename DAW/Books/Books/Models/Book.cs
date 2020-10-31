@@ -39,7 +39,7 @@ namespace Books.Models
         public DbSet<ContactInfo> ContactInfos { get; set; }
     }
 
-    public class Initp : DropCreateDatabaseAlways<DbCtx>
+    public class Initp : DropCreateDatabaseIfModelChanges<DbCtx>
     { // custom initializer
         protected override void Seed(DbCtx ctx)
         {

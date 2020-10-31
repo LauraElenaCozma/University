@@ -1,0 +1,22 @@
+﻿
+@{
+    ViewBag.Title = "New";
+}
+
+<h2>Add new Book</h2>
+
+<form method="post" action="/Books/Create">
+    @Html.Label("Title", "Title:")
+    <br />
+    <input type="text" name="Title" class="input"/>
+    <br />
+    @Html.Label("Author", "Author:")
+    <br />
+    <input type="text" name="Author" class="input"/>
+    <br />
+
+    <button type="submit" class="btn btn-primary">Add</button>
+</form>
+
+
+

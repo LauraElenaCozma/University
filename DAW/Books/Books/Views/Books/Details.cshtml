@@ -51,3 +51,10 @@ else
         }
     </ul>
 }
+
+<br />
+@Html.ActionLink("Edit book", "Edit", new { id = Model.BookId })
+<br />
+<form method="post" action="/Books/Delete/@Model.BookId">
+    <button type="submit">Delete this book</button>
+</form>

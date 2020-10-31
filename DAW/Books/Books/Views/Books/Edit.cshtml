@@ -1,0 +1,21 @@
+﻿@model Books.Models.Book
+@{
+    ViewBag.Title = "Edit";
+}
+
+<h2>Edit</h2>
+
+<form method="post" action="/Books/Update">
+    @Html.Label("Title", "Title:")
+    <br />
+    <input type="text" name="Title" class="input" value="@Model.Title" />
+    <br />
+    @Html.Label("Author", "Author:")
+    <br />
+    <input type="text" name="Author" class="input" value="@Model.Author" />
+    <br />
+    <input type="hidden" name="BookId" value="@Model.BookId" />
+
+    <button type="submit" class="btn btn-primary">Add</button>
+</form>
+
