@@ -9,6 +9,13 @@
 @Html.Label("Author", "Author:")
 <p>@Model.Author</p>
 <br />
+@if (Model.BookTypeId != null)
+{
+    @Html.Label("Book type", "Book type:")
+    <p>@Model.BookType.Name</p>
+}
+
+<br />
 @Html.Label("Publisher", "Publisher:")
 
 @if (Model.Publisher is null)
@@ -53,8 +60,21 @@ else
 }
 
 <br />
-@Html.ActionLink("Edit book", "Edit", new { id = Model.BookId })
-<br />
-<form method="post" action="/Books/Delete/@Model.BookId">
-    <button type="submit">Delete this book</button>
-</form>
+
+@*
+    @Html.ActionLink("Edit book", "Edit", new { id = Model.BookId })
+    <br />
+    <form method="post" action="/Books/Delete/@Model.BookId">
+        <button type="submit">Delete this book</button>
+    </form>
+*@
+
+@using (Html.BeginForm(actionName: "Edit", controllerName: "Books", method: FormMethod.Get, routeValues: new { id = Model.BookId }))
+{
+    <button class="btn btn-p col-lg-1" style="margin-right:5px" type="submit">Update</button>
+}
+
+@using (Html.BeginForm(actionName: "Delete", controllerName: "Books", method: FormMethod.Post, routeValues: new { id = Model.BookId }))
+{
+    <button class="btn btn-primary col-lg-1" style="margin-right:5px" type="submit">Delete</button>
+}

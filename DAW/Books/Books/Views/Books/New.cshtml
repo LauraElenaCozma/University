@@ -1,22 +1,43 @@
-﻿
+﻿@model Books.ViewModels.BookAndBookTypesViewModel
 @{
     ViewBag.Title = "New";
 }
 
 <h2>Add new Book</h2>
+@*
+    <form method="post" action="/Books/Create">
+        @Html.Label("Title", "Title:")
+        <br />
+        <input type="text" name="Title" class="input"/>
+        <br />
+        @Html.Label("Author", "Author:")
+        <br />
+        <input type="text" name="Author" class="input"/>
+        <br />
 
-<form method="post" action="/Books/Create">
+        <button type="submit" class="btn btn-primary">Add</button>
+    </form>*@
+
+@using (Html.BeginForm(actionName: "New", controllerName: "Books", method: (FormMethod.Post)))
+{
     @Html.Label("Title", "Title:")
     <br />
-    <input type="text" name="Title" class="input"/>
+    @Html.TextBoxFor(b => b.Book.Title, null, new { placeholder = "Type in the book's title", @class = "form-control" })
+    @Html.ValidationMessageFor(b => b.Book.Title, "", new { @class = "text-danger" })
     <br />
     @Html.Label("Author", "Author:")
     <br />
-    <input type="text" name="Author" class="input"/>
+    @Html.TextBoxFor(b => b.Book.Author, null, new { placeholder = "Type in the book's author", @class = "form-control" })
+    @Html.ValidationMessageFor(b => b.Book.Author, "", new { @class = "text-danger" })
     <br />
-
-    <button type="submit" class="btn btn-primary">Add</button>
-</form>
-
-
+    @Html.Label("Summary", "Summary:")
+    <br />
+    @Html.TextAreaFor(b => b.Book.Summary, new { placeholder = "Type in the book's summary", @class = "form-control", @rows = "10" })
+    @Html.ValidationMessageFor(b => b.Book.Summary, "", new { @class = "text-danger" })
+    <br />
+    @Html.DropDownListFor(b => b.Book.BookType, new SelectList(Model.BookTypes, "BookTypeId", "Name"), "Choose a book type", new { @class = "form-control"})
+    @Html.ValidationMessageFor(b => b.Book.BookType, "", new { @class = "text-danger" })
+    <br />
+    <button class="btn btn-primary" type="submit">Create</button>
+}
 
