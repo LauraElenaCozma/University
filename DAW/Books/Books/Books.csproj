@@ -128,6 +128,7 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\BooksController.cs" />
+    <Compile Include="Controllers\BookTypesController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -137,6 +138,7 @@
     <Compile Include="Models\ContactInfo.cs" />
     <Compile Include="Models\Genre.cs" />
     <Compile Include="Models\Publisher.cs" />
+    <Compile Include="MyValidator\PrimeNumberValidator.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ViewModels\BookAndBookTypesViewModel.cs" />
   </ItemGroup>
@@ -184,6 +186,9 @@
     <Content Include="Views\Books\Details.cshtml" />
     <Content Include="Views\Books\New.cshtml" />
     <Content Include="Views\Books\Edit.cshtml" />
+    <Content Include="Views\BookTypes\Index.cshtml" />
+    <Content Include="Views\BookTypes\New.cshtml" />
+    <Content Include="Views\BookTypes\Edit.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

@@ -6,6 +6,7 @@ using System.Data.Entity;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using Books.MyValidator;
 
 namespace Books.Models
 {
@@ -21,6 +22,9 @@ namespace Books.Models
         [MinLength(2, ErrorMessage = "Summary cannot be less than 2"),
             MaxLength(2000, ErrorMessage = "Summary cannot be longer than 2000")]
         public string Summary { get; set; }
+
+        [PrimeNumberValidator] 
+        public int NoOfPages { get; set; }
         //one-to-many
         public int PublisherId { get; set; }   //relatia face ca cheia straina publisherId sa fie not null. int? si poate sa fie null
         public virtual Publisher Publisher { get; set; }
@@ -81,6 +85,7 @@ namespace Books.Models
                 "  But mostly, Redwing just messed with guys’ heads.",
                 Publisher = new Publisher { Name = "Macmillan Publishers", ContactInfo = new ContactInfo { PhoneNumber = "0787294919" } },
                 BookTypeId = cover1.BookTypeId,
+                NoOfPages = 79,
                 Genres = new List<Genre>
                 {
                     new Genre {Name = "Satire"},
@@ -96,6 +101,7 @@ namespace Books.Models
                 " and a hilarious call to arms for the elite.",
                 Publisher = new Publisher { Name = "HarperCollins", ContactInfo = new ContactInfo { PhoneNumber = "0787294919" } },
                 BookTypeId = cover1.BookTypeId,
+                NoOfPages = 13,
                 Genres = new List<Genre>
                 {
                     new Genre {Name = "Fabilau"},
@@ -107,7 +113,8 @@ namespace Books.Models
                 Title = "Data curenta", 
                 Author = DateTime.Now.ToString(),
                 Publisher = new Publisher { Name = "Scholastic", ContactInfo = new ContactInfo { PhoneNumber = "0713201002" } },
-                BookTypeId = cover2.BookTypeId
+                BookTypeId = cover2.BookTypeId,
+                NoOfPages = 11
             });
             ctx.SaveChanges();
             base.Seed(ctx);

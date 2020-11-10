@@ -119,7 +119,8 @@ namespace Books.Controllers
                          book.Author = bookRequest.Book.Author;
                          book.Summary = bookRequest.Book.Summary;
                          book.BookTypeId = bookRequest.Book.BookTypeId;
-                         db.SaveChanges();
+                         book.NoOfPages = bookRequest.Book.NoOfPages;
+                        db.SaveChanges();
                      }
                      return RedirectToAction("Index");
                  }
@@ -135,7 +136,7 @@ namespace Books.Controllers
          }
 
         //Delete
-        [HttpPut]
+        [HttpDelete]
         public ActionResult Delete(int? id)
         {
             if(id.HasValue)

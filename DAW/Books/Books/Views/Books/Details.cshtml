@@ -16,6 +16,9 @@
 }
 
 <br />
+@Html.Label("NoOfPages", "Number Of Pages:")
+<p>@Model.NoOfPages</p>
+<br />
 @Html.Label("Publisher", "Publisher:")
 
 @if (Model.Publisher is null)
@@ -71,10 +74,11 @@ else
 
 @using (Html.BeginForm(actionName: "Edit", controllerName: "Books", method: FormMethod.Get, routeValues: new { id = Model.BookId }))
 {
-    <button class="btn btn-p col-lg-1" style="margin-right:5px" type="submit">Update</button>
+    <button class="btn btn-primary col-lg-1" style="margin-right:5px" type="submit">Update</button>
 }
 
 @using (Html.BeginForm(actionName: "Delete", controllerName: "Books", method: FormMethod.Post, routeValues: new { id = Model.BookId }))
 {
+    @Html.HttpMethodOverride(HttpVerbs.Delete)
     <button class="btn btn-primary col-lg-1" style="margin-right:5px" type="submit">Delete</button>
 }

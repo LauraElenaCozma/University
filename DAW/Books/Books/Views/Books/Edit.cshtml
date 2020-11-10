@@ -41,6 +41,12 @@
     @Html.TextAreaFor(b => b.Book.Summary, new { @class = "form-control", @rows = "10" })
     @Html.ValidationMessageFor(b => b.Book.Summary, "", new { @class = "text-danger" })
     <br />
+    @Html.Label("NoOfPages", "Number of pages:")
+    <br />
+    @*@type ii va adauga sageti pentru a selecta numarul dorit*@
+    @Html.EditorFor(b => b.Book.NoOfPages, new { htmlAttributes = new { @class = "form-control", @type = "number" } })
+    @Html.ValidationMessageFor(b => b.Book.NoOfPages, "", new { @class = "text-danger" })
+    <br />
 
     @Html.Label("Book type", "Book type:")
     <br />

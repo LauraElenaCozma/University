@@ -30,6 +30,11 @@
     @Html.TextBoxFor(b => b.Book.Author, null, new { placeholder = "Type in the book's author", @class = "form-control" })
     @Html.ValidationMessageFor(b => b.Book.Author, "", new { @class = "text-danger" })
     <br />
+    @Html.Label("NoOfPages", "Number of Pages:")
+    <br />
+    @Html.TextBoxFor(b => b.Book.NoOfPages, null, new { placeholder = "Type in the book's no of pages", @class = "form-control" })
+    @Html.ValidationMessageFor(b => b.Book.NoOfPages, "", new { @class = "text-danger" })
+    <br />
     @Html.Label("Summary", "Summary:")
     <br />
     @Html.TextAreaFor(b => b.Book.Summary, new { placeholder = "Type in the book's summary", @class = "form-control", @rows = "10" })

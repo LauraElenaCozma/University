@@ -1,0 +1,18 @@
+﻿@model Books.Models.BookType
+@{
+    ViewBag.Title = "Update book type info";
+}
+
+<h2>@ViewBag.Title</h2>
+
+@using (Html.BeginForm(actionName: "Edit", controllerName: "BookTypes", method: (FormMethod.Post)))
+{
+    @Html.HttpMethodOverride(HttpVerbs.Put);
+    @Html.HiddenFor(b => b.BookTypeId)
+    @Html.LabelFor(b => b.Name)
+    <br />
+    @Html.EditorFor(b => b.Name, new { htmlAttributes = new{ @class="form-control"} })
+    @Html.ValidationMessageFor(b => b.Name, "", new { @class="text-danger"})
+    <br />
+    <button class="btn btn-primary" type="submit">Update</button>
+}
