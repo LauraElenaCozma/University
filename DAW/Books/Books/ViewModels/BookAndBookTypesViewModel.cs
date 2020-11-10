@@ -14,5 +14,6 @@ namespace Books.ViewModels
         public Book Book { get; set; }
         //[Required]
         public IEnumerable<BookType> BookTypes { get; set; }
+        public IEnumerable<Publisher> Publishers { get; set; }
     }
 }

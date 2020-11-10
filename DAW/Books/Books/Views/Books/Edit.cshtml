@@ -45,9 +45,10 @@
     @Html.Label("Book type", "Book type:")
     <br />
     @Html.DropDownListFor(b => b.Book.BookTypeId, new SelectList(Model.BookTypes, "BookTypeId", "Name"), "Choose a book type", new { @class = "form-control" })
-    
     @Html.ValidationMessageFor(b => b.Book.BookTypeId, "", new { @class = "text-danger" })
     <br />
-
+    @Html.DropDownListFor(b => b.Book.PublisherId, new SelectList(Model.Publishers, "PublisherId", "Name"), "Choose a publisher", new { @class = "form-control" })
+    @Html.ValidationMessageFor(b => b.Book.PublisherId, "", new { @class = "text-danger" })
+    <br />
     <button class="btn btn-primary" type="submit">Update</button>
 }

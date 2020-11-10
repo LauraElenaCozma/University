@@ -29,7 +29,7 @@ namespace Books.Models
         public virtual ICollection<Genre> Genres { get; set; }
 
         //one-to-many
-        public int? BookTypeId { get; set; }
+        public int BookTypeId { get; set; }
 
         [ForeignKey("BookTypeId")]
         public virtual BookType BookType { get; set; }

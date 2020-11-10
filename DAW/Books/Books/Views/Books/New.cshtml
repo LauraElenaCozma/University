@@ -35,8 +35,14 @@
     @Html.TextAreaFor(b => b.Book.Summary, new { placeholder = "Type in the book's summary", @class = "form-control", @rows = "10" })
     @Html.ValidationMessageFor(b => b.Book.Summary, "", new { @class = "text-danger" })
     <br />
-    @Html.DropDownListFor(b => b.Book.BookType, new SelectList(Model.BookTypes, "BookTypeId", "Name"), "Choose a book type", new { @class = "form-control"})
-    @Html.ValidationMessageFor(b => b.Book.BookType, "", new { @class = "text-danger" })
+    @Html.Label("BookType", "BookType:")
+    <br />
+    @Html.DropDownListFor(b => b.Book.BookTypeId, new SelectList(Model.BookTypes, "BookTypeId", "Name"), "Choose a book type", new { @class = "form-control" })
+    @Html.ValidationMessageFor(b => b.Book.BookTypeId, "", new { @class = "text-danger" })
+    <br />
+    @Html.DropDownListFor(b => b.Book.PublisherId, new SelectList(Model.Publishers, "PublisherId", "Name"), "Choose a publisher", new { @class = "form-control" })
+    @Html.ValidationMessageFor(b => b.Book.PublisherId, "", new { @class = "text-danger" })
+    <br />
     <br />
     <button class="btn btn-primary" type="submit">Create</button>
 }

@@ -50,6 +50,7 @@ namespace Books.Controllers
             BookAndBookTypesViewModel b = new BookAndBookTypesViewModel();
             b.Book = new Book();
             b.BookTypes = GetAllBookTypes();
+            b.Publishers = GetAllPublishers();
             return View(b);
         }
 
@@ -71,6 +72,7 @@ namespace Books.Controllers
                 }
                 //daca nu se respecta validarile vrem sa vedem mesaj de eroare, deci ramanem pe aceeasi pagina
                 bookRequest.BookTypes = GetAllBookTypes();
+                bookRequest.Publishers = GetAllPublishers();
                 return View(bookRequest);
             }
             catch(Exception e)
@@ -93,6 +95,7 @@ namespace Books.Controllers
                 BookAndBookTypesViewModel bookViewModel = new BookAndBookTypesViewModel();
                 bookViewModel.Book = b;
                 bookViewModel.BookTypes = GetAllBookTypes();
+                bookViewModel.Publishers = GetAllPublishers();
                 return View(bookViewModel);
             }
             return HttpNotFound("Missing id parameter");
@@ -122,6 +125,7 @@ namespace Books.Controllers
                  }
                 //daca esueaza, vrem sa vedem erorile pe aceeasi pagina
                 bookRequest.BookTypes = GetAllBookTypes();
+                bookRequest.Publishers = GetAllPublishers();
                 return View(bookRequest);
              }
              catch(Exception e)
@@ -166,6 +170,22 @@ namespace Books.Controllers
             return selectList;
         }
 
+        [NonAction]
+        public IEnumerable<Publisher> GetAllPublishers()
+        {
+            //formam o lista cu publishers extrase din baza de date
+            var selectList = new List<Publisher>();
 
+            foreach (var publisher in db.Publishers.ToList())
+            {
+                //adaugam in dropdown list
+                selectList.Add(new Publisher
+                {
+                    PublisherId = publisher.PublisherId,
+                    Name = publisher.Name
+                });
+            }
+            return selectList;
+        }
     }
 }
