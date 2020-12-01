@@ -1,5 +1,101 @@
---learnyouahaskell.com
+data Natural
+----------------- FUNCTIA FOLDR -----------------------
 
+---- Exercitiul 1
+--Scrieti o functie recursivă care calculează produsul numerelor dintr-o listă.
+produsRec :: [Integer] -> Integer
+produsRec [] = 1
+produsRec (h:lista) = h * (produsRec lista)
+--Apel: produsRec [1,2,5,3,4]
+
+--Foldr in locul recursiei
+produsFold :: [Integer] -> Integer
+produsFold lista = foldr (*) 1 lista
+
+--ATENTIE SE POATE SCRIE: 
+produsFold' :: [Integer] -> Integer  --trebuie neaparat
+produsFold' = foldr (*) 1
+
+
+---- Exercitiul 2
+--Scrieti o functie recursivă care verifică faptul că 
+--toate elementele dintr-o listă sunt True.
+andRec :: [Bool] -> Bool
+andRec [] = True
+andRec (h:lista) = 
+    if h == True 
+        then andRec lista
+        else h              --sau h && andRec lista
+
+--Cu foldr
+andFoldr :: [Bool] -> Bool
+andFoldr = foldr (&&) True
+
+--Cu foldl
+andFoldl :: [Bool] -> Bool
+andFoldl = foldl (&&) True
+
+
+---- Exercitiul 3
+--Scrieti o functie recursivă care concatenează o listă de liste.
+--FUNCTIA CONCAT: concateneaza mai multe liste consecutive
+--Dificultati
+concatRec :: [[a]] -> [a]
+concatRec [] = []
+concatRec (h:lista) = h ++ (concatRec lista)
+--Apel: concatRec [[1,2,3],[2,3,4]]
+
+--Cu foldr
+concatFoldr :: [[a]] -> [a]
+concatFoldr = foldr (++) [] 
+
+--Cu foldl
+concatFoldl :: [[a]] -> [a]
+concatFoldl = foldl (++) [] 
+
+
+---- Exercitiul 4
+--Scrieti o functie care elimină un caracter dintr-un sir de caractere.
+rmChar :: Char -> String -> String
+rmChar c [] = []
+rmChar c (h:lista) =
+    let rest = rmChar c lista in
+    if (c == h) 
+        then rest
+        else h : rest
+
+--o functie care elimina un caracter dintr-un sir de caractere
+rmCharRec _ [] = []
+rmCharRec c (h:t) = if c == h then rmCharRec c t
+                              else h:(rmCharRec c t)
+--rmCharRec 'u' "laura"
+
+rmCharComp c lista = [x | x <- lista, x /= c] --sau not(x==c)
+
+rmCharFold c lista = 
+    foldr (\x accum -> if x == c then accum else x:accum) [] lista
+
+--Scrieti o functie recursivă care elimină toate caracterele 
+--din al doilea argument care se găsesc în primul argument.
+-- "abac" "laura" -> iau cate un caracter din sirul 1 si apelez rmChar de caracter
+rmCharsRec :: String -> String -> String
+rmCharsRec [] s = s
+rmCharsRec (h1:s1) s2 = rmCharsRec s1 (rmChar h1 s2)
+
+--cu Foldr
+--pornim de la s2 pe care aplicam rmChar pe primul caracter din s1
+rmCharsFoldr :: String -> String -> String
+rmCharsFoldr s1 s2 = foldr rmChar s2 s1
+
+
+--stergem toate caracterele din primul care se gasesc in al doilea
+contains' c lista = length [x | x <- lista, x == c] > 0 --verifica daca c e in lista
+rmCharsFold rele lista = 
+    foldr (\x accum -> if contains' x rele then accum else x:accum) [] lista
+
+------------------------------------------- Recapitulare Laborator ----------------------------------------------------
+
+--learnyouahaskell.com
 
 --functie care din [1,2,3,4,5,6] returneaza 1 * 2 + 3 * 4 + 5 * 6
 f1 [] = 0
@@ -52,14 +148,6 @@ op' elem accum = if odd elem then 2 * elem + accum
                              else elem `div` 2 + accum
 h lista = foldr op' 0 lista
 
---FUNCTIA CONCAT: concateneaza mai multe liste consecutive
---concat recursiv
-
-concatRec [] = []
-concatRec (lista:tail) = lista ++ (concatRec tail)
---concatRec [[1,2,3],[2,3,4]]
-concatFold lista = foldr (++) [] lista
-
 
 --suma lungimilor listelor din liste
 sumaLengthRec [] = 0
@@ -76,7 +164,6 @@ sumaLengthFold' lista =
 
 
 --foldr (:) [] [1,2,3,4] => [1,2,3,4] 1:2:3:4:[]
---------------------NU FUNCTIONEAZA
 reverse' lista = 
     let op elem accum = elem:accum in
     foldr op [] lista
@@ -85,23 +172,6 @@ reverse'' lista =
     let op elem accum = accum:elem in
     foldl op [] lista
 
-
---o functie care elimina un caracter dintr-un sir de caractere
-rmCharRec _ [] = []
-rmCharRec c (h:t) = if c == h then rmCharRec c t
-                              else h:(rmCharRec c t)
---rmCharRec 'u' "laura"
-
-rmCharComp c lista = [x | x <- lista, x /= c] --sau not(x==c)
-
-rmCharFold c lista = 
-    foldr (\x accum -> if x == c then accum else x:accum) [] lista
-
-
---stergem toate caracterele din primul care se gasesc in al doilea
-contains' c lista = length [x | x <- lista, x == c] > 0 --verifica daca c e in lista
-rmCharsFold rele lista = 
-    foldr (\x accum -> if contains' x rele then accum else x:accum) [] lista
 
 --simulam map cu foldr
 map' functie lista = 
