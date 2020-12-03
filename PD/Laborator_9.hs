@@ -212,3 +212,28 @@ exMatrice = do
     m <- readLn :: (IO Int)
     matrice <- citeste_matrice n m
     print matrice
+
+
+--citim de pe un singur rand
+citeste_rand = do
+    linie <- getLine
+    let elems = words linie
+    return ((map read elems) :: [Int])
+
+citeste_matrice' 0 = return []
+citeste_matrice' n = do
+    rand <- citeste_rand
+    restul <- citeste_matrice' (n - 1)
+    return (rand:restul)
+
+exMatrice' = do
+    [n,m] <- citeste_rand
+    matrice <- citeste_matrice' n
+    print matrice
+
+{-
+exMatrice'
+3 3
+1 2 3
+4 5 6
+7 8 9-}
