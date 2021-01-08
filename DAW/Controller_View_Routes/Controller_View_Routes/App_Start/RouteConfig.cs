@@ -13,10 +13,12 @@ namespace Controller_View_Routes
         {
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
 
-            routes.MapRoute(
+            routes.MapMvcAttributeRoutes();
+            /*routes.MapRoute(
                 name: "MyCustomRoute",
                 url: "RouteCustom/{page}/{nr}",
-                defaults: new { controller = "Home", action = "ViewContent" });
+                defaults: new { controller = "Home", action = "ViewContent" });*/
+
             routes.MapRoute(
                 name: "Default",
                 url: "{controller}/{action}/{id}",

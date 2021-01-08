@@ -34,5 +34,14 @@ namespace Controller_View_Routes.Controllers
             //returns a blank page with the html content <h1>Hello</h1>
             return Content("<h1>Hello</h1><p>page</p><p>nr</p>");
         }
+
+        [Route("AttributeRoute/{age:regex(^\\d{1,3}$):range(0, 120)}/{val?}")]
+        public ActionResult AtributeRoutes(int age, int? val)
+        {
+            if (!val.HasValue)
+                val = 0;
+            return Content(String.Format("Age {0}, value {1}", age, val));
+        }
+
     }
 }
