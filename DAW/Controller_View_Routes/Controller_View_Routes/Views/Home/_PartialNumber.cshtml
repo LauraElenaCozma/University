@@ -1,0 +1,13 @@
+﻿@model Nullable<int>
+
+@if (@Model != null)
+{
+    if (@Model % 7 == 0)
+    {
+        <h5>Divizibil cu 7</h5>
+    }
+}
+else
+{
+    <h4>The number is null</h4>
+}
