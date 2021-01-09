@@ -36,8 +36,88 @@ namespace Books_CRUD.Controllers
             return HttpNotFound("Missing id parameter!");
         }
 
-        /*Creati o clasa noua numita Publisher. Implementati, pe rand, relatii one-to-one, many-to-many, one-tomany intre ea si Book. 
-         * Examinati structura bazei de date in Server Explorer.*/
+        [HttpGet]
+        public ActionResult New()
+        {
+            Book book = new Book();
+            return View(book);
+        }
 
+        [HttpPost]
+        public ActionResult New(Book bookReq)
+        {
+            try
+            {
+                if(ModelState.IsValid)
+                {
+                    db.Books.Add(bookReq);
+                    db.SaveChanges();
+                    return RedirectToAction("Index");
+                }
+                return View(bookReq);
+            }
+            catch(Exception e)
+            {
+                return View(bookReq);
+            }
+        }
+        
+
+        [HttpGet]
+        public ActionResult Edit(int? id)
+        {
+            if(id.HasValue)
+            {
+                Book book = db.Books.Find(id);
+                if(book != null)
+                {
+                    return View(book);
+                }
+                return HttpNotFound("Not found book with id " + id.ToString());
+            }
+            return HttpNotFound("Missing id parameter!");
+        }
+
+        [HttpPut]
+        public ActionResult Edit(int id, Book bookReq)
+        {
+            try
+            {
+                if(ModelState.IsValid)
+                {
+                    Book book = db.Books.Find(id);
+                    if(TryUpdateModel(book))
+                    {
+                        book.Title = bookReq.Title;
+                        book.Author = bookReq.Author;
+                        book.Summary = bookReq.Summary;
+                        db.SaveChanges();
+                        return RedirectToAction("Index");
+                    }
+                }
+                return View(bookReq);
+            }
+            catch(Exception e)
+            {
+                return View(bookReq);
+            }
+        }
+
+        [HttpDelete]
+        public ActionResult Delete(int? id)
+        {
+            if (id.HasValue)
+            {
+                Book book = db.Books.Find(id);
+                if (book != null)
+                {
+                    db.Books.Remove(book);
+                    db.SaveChanges();
+                    return RedirectToAction("Index");
+                }
+                return HttpNotFound("Not found book with id " + id.ToString());
+            }
+            return HttpNotFound("Missing id parameter!");
+        }
     }
 }

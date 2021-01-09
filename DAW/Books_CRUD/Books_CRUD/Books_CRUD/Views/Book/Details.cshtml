@@ -19,3 +19,9 @@ else
 {
     <p>The summary does not exist!</p>
 }
+
+@using (Html.BeginForm(actionName: "Edit", controllerName: "Book", method: FormMethod.Get, routeValues: new { id = Model.BookId }))
+{
+    <button class="btn btn-primary col-lg-1" type="submit" style="margin-right:5px">Edit</button>
+}
+

@@ -81,3 +81,9 @@ C:\Users\cozma\Desktop\uni\DAW\Books_CRUD\Books_CRUD\Books_CRUD\obj\Debug\Books_
 C:\Users\cozma\Desktop\uni\DAW\Books_CRUD\Books_CRUD\Books_CRUD\obj\Debug\Books_CRUD.csproj.CopyComplete
 C:\Users\cozma\Desktop\uni\DAW\Books_CRUD\Books_CRUD\Books_CRUD\obj\Debug\Books_CRUD.dll
 C:\Users\cozma\Desktop\uni\DAW\Books_CRUD\Books_CRUD\Books_CRUD\obj\Debug\Books_CRUD.pdb
+C:\Users\cozma\Desktop\uni\DAW\Books_CRUD\Books_CRUD\Books_CRUD\bin\System.Net.Http.Formatting.dll
+C:\Users\cozma\Desktop\uni\DAW\Books_CRUD\Books_CRUD\Books_CRUD\bin\System.Web.Http.dll
+C:\Users\cozma\Desktop\uni\DAW\Books_CRUD\Books_CRUD\Books_CRUD\bin\System.Web.Http.WebHost.dll
+C:\Users\cozma\Desktop\uni\DAW\Books_CRUD\Books_CRUD\Books_CRUD\bin\System.Net.Http.Formatting.xml
+C:\Users\cozma\Desktop\uni\DAW\Books_CRUD\Books_CRUD\Books_CRUD\bin\System.Web.Http.xml
+C:\Users\cozma\Desktop\uni\DAW\Books_CRUD\Books_CRUD\Books_CRUD\bin\System.Web.Http.WebHost.xml

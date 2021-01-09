@@ -13,14 +13,6 @@ namespace Books_CRUD.Controllers
         private DbCtx db = new DbCtx();
         public ActionResult Index()
         {
-            Book book = new Book
-            {
-                Title = "Gone with the wind",
-                Author = "Margaret Mitchell",
-                Date = DateTime.Now
-            };
-            db.Books.Add(book);
-            db.SaveChanges();
             return View();
         }
 
