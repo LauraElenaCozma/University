@@ -1,0 +1,20 @@
+﻿@model List<Books_CRUD.Models.Book>
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+@foreach (var book in Model)
+{
+    <div class="panel-body">
+        @Html.Label("BookId", "Book Id:")
+        <p>@book.BookId</p>
+        @Html.Label("Title", "Title:")
+        <p>@book.Title</p>
+        @Html.Label("Author", "Author:")
+        <p>@book.Author</p>
+        @Html.ActionLink("See details", "Details", new { id = book.BookId } )
+    </div>
+    
+}
+

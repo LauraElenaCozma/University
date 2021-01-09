@@ -1,0 +1,21 @@
+﻿@model Books_CRUD.Models.Book
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+@Html.Label("BookId", "Book Id:")
+<p>@Model.BookId</p>
+@Html.Label("Title", "Title:")
+<p>@Model.Title</p>
+@Html.Label("Author", "Author:")
+<p>@Model.Author</p>
+@if (Model.Summary != null)
+{
+    @Html.Label("Summary", "Summary:")
+    <p>@Model.Summary</p>
+}
+else
+{
+    <p>The summary does not exist!</p>
+}
