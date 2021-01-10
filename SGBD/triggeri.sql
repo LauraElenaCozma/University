@@ -98,3 +98,38 @@ DELETE FROM info_emp_lco
 WHERE id = 500;
 
 ROLLBACK;
+
+
+/*4. Defini?i un declan?ator cu ajutorul c?ruia s? se implementeze restric?ia conform c?reia într-un
+departament nu pot lucra mai mult de 45 persoane (se vor utiliza doar tabelele emp_*** ?i
+dept_*** f?r? a modifica structura acestora).*/
+SELECT * FROM emp_lco;
+
+SET SERVEROUTPUT ON;
+--mutating table, trebuie sa folosim 2 triggeri
+--unul la nivel de comanda
+--unul la nicel de linie care foloseste o colectie dintr-un pachet
+CREATE OR REPLACE TRIGGER trig4
+AFTER INSERT ON emp_lco
+FOR EACH ROW
+DECLARE
+v_nr NUMBER;
+BEGIN
+SELECT COUNT(employee_id)
+INTO v_nr
+FROM emp_lco;
+IF v_nr > 45 THEN
+    RAISE_APPLICATION_ERROR(-20001, 'NU PUTETI INSERA MAI MULT DE 45 DE PERSOANE');
+END IF;
+END;
+/
+
+SELECT COUNT(employee_id), department_id
+FROM emp_lco
+GROUP BY department_id;
+--45 de ang sunt in dep 50
+
+
+INSERT INTO emp_lco
+VALUES (employees_seq.NEXTVAL, 'Prenume', 'Nume', 'a', 't', SYSDATE,'IT_PROG', 10000, 0.1, 100, 50, 100);
+
