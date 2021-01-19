@@ -1,0 +1,30 @@
+﻿@model List<Examen.Models.Poezie>
+
+@{
+    ViewBag.Title = "ListaPoezii";
+}
+
+<h2>Lista Poezii</h2>
+
+
+@foreach (var poezie in @Model)
+{
+    <div class="panel panel-default">
+        <div class="panel-body">
+            @Html.Label("Titlu", "Titlu:")
+            <br />
+            <p>@poezie.Titlu</p>
+
+            @Html.Label("Autor", "Autor:")
+            <br />
+            <p>@poezie.Autor</p>
+            @Html.Label("NrStrofe", "Nr strofe:")
+            <br />
+            <p>@poezie.NrStrofe</p>
+            @Html.Label("Volum", "Volum:")
+            <br />
+            <p>@poezie.Volum.Denumire</p>
+
+        </div>
+    </div>
+}
