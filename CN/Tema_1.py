@@ -196,7 +196,7 @@ def pozitie_falsa(f, a, b, eps):
         N += 1                   #actualizam numarul de iteratii
         if f(x0) == 0:           #solutia a fost gasita, o returnam prin x1
             x1 = x0
-            break;
+            break
         elif f(a0) * f(x0) < 0:  #am micsorat intervalul de cautare spre stanga
             a1 = a0
             b1 = x0

@@ -17,6 +17,12 @@ eps = 10 ** (-5)
 
 #b
 def metoda_NR(f, df, a, b, epsilon, x_0):
+    """
+    Conditii:
+    f de clasa C2
+    f', f'' nu se anuleaza pe [a,b]
+    f(x0) * f"(x0) > 0 -- ca sa convearga la x*
+    """
     assert epsilon > 0, 'Mesaj eroare'
     assert a < b, 'Mesaj eroare'
     assert np.sign(f(a)) * np.sign(f(b)) < 0, 'Mesaj eroare'
