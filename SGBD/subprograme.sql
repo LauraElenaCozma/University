@@ -904,4 +904,209 @@ BEGIN
 END;
 
 
+/*1. Subprogram care populeaz? tabelul info cu informa?ii (pentru fiecare cod de angajat se re?in codurile utilajelor 
+pe care le-a folosit ?i num?rul total de ore de munc? pe aceste utilaje).*/
+CREATE OR REPLACE PROCEDURE pop_info
+IS
+t utilaje := utilaje();
+BEGIN
+    FOR i IN (SELECT cod_ang FROM angajat) LOOP
+        DBMS_OUTPUT.PUT_LINE(i.cod_ang);
+        SELECT pereche2(id_utilaj, SUM(nr_ore)) BULK COLLECT INTO t
+        FROM lucreaza
+        WHERE cod_angajat = i.cod_ang
+        GROUP BY id_utilaj;
+        --INSERT INTO info VALUES (i.cod_ang, t);
+    END LOOP;
+    
+    FOR i IN (SELECT * FROM info) LOOP
+        DBMS_OUTPUT.PUT_LINE('Angajatul ' || i.cod);
+        IF i.fisa.COUNT != 0 THEN
+        FOR j IN i.fisa.FIRST..i.fisa.LAST LOOP
+            DBMS_OUTPUT.PUT_LINE(i.fisa(j).id_u || ' ' || i.fisa(j).ore);    
+        END LOOP;
+        DBMS_OUTPUT.NEW_LINE;
+        END IF;
+    END LOOP;
+END;
+/
 
+SELECT * FROM INFO;
+SET SERVEROUTPUT ON
+
+BEGIN
+pop_info;
+END;
+/
+
+
+SELECT * FROM note;
+SELECT * FROM curs;
+SELECT * FROM student;
+SELECT * FROM profesor;
+
+/*2. Crea?i un subprogram care prime?te ca parametru un num?r natural n. 
+Pentru studen?ii care au acumulat mai mult de n credite se vor returna num?rul matricol, 
+CNP-ul ?i cel mai mare num?r de credite pe care l-au acumulat la un singur examen.*/
+CREATE OR REPLACE TYPE obj_stud IS OBJECT
+    (nr_mat NUMBER(20),
+    cnp VARCHAR2(20),
+    max_credite NUMBER(20));
+/
+CREATE OR REPLACE TYPE tab_stud IS TABLE OF obj_stud;
+/
+CREATE OR REPLACE PROCEDURE credite_studenti(n IN NUMBER, 
+                            t OUT tab_stud)
+
+IS
+nr_credite NUMBER := 0;
+max_nr NUMBER := 0;
+BEGIN
+    t := tab_stud();
+    FOR i IN (SELECT * FROM student) LOOP
+        SELECT SUM(nr_credite * DECODE(nota, 4, 0, nota)) INTO nr_credite
+        FROM note 
+        JOIN curs USING(cod_curs)
+        WHERE cod_student = i.cod_student;
+        
+        --DBMS_OUTPUT.PUT_LINE(i.nr_matricol || ' nr credite ' || nr_credite);
+        
+        IF nr_credite IS NOT NULL AND nr_credite > n THEN
+        --DBMS_OUTPUT.PUT_LINE(nr_credite);
+            SELECT MAX(nr_credite * DECODE(nota, 4, 0, nota)) INTO max_nr
+            FROM note 
+            JOIN curs USING(cod_curs)
+            WHERE cod_student = i.cod_student;
+            
+            t.extend;
+            t(t.last) := obj_stud(i.nr_matricol, i.cnp, max_nr);
+        END IF;
+    END LOOP;
+END;
+/
+
+DECLARE
+t tab_stud;
+BEGIN
+    credite_studenti(69, t);
+    FOR i IN t.FIRST..t.LAST LOOP
+    DBMS_OUTPUT.PUT_LINE(t(i).nr_mat || ' ' || t(i).cnp || ' ' || t(i).max_credite);
+    END LOOP;
+END;
+/
+
+
+/*3. Subprogram care prime?te ca parametru un cod de angajat ?i 
+returneaz? lista pacien?ilor de  care  acesta  a  avut grij?,  
+împreun?  cu  num?rul  de  zile  de  internare  pentru  fiecare pacient (indiferent de angajat).*/
+
+SELECT * FROM trateaza order by 1, 2;
+SELECT * FROM pacienti;
+SELECT * FROM personal;
+SELECT * FROM specializare;
+SELECT * FROM functii;
+
+CREATE OR REPLACE TYPE date_pacient IS OBJECT
+    (pacient NUMBER,
+    nr_zile NUMBER);
+/
+CREATE OR REPLACE TYPE tab_pacient IS TABLE OF date_pacient;
+/
+CREATE OR REPLACE PROCEDURE medici(cod_ang IN NUMBER, t OUT tab_pacient)
+IS
+BEGIN
+    t := tab_pacient();
+    SELECT date_pacient(id_pacient, SUM(data_externare-data_internare)) BULK COLLECT INTO t
+    FROM trateaza
+    WHERE id_salariat = cod_ang
+    GROUP BY id_pacient;
+END;
+/
+
+DECLARE
+t tab_pacient;
+BEGIN
+    medici(22, t);
+    IF t.COUNT != 0 THEN
+        FOR i IN t.FIRST..t.LAST LOOP
+            DBMS_OUTPUT.PUT_LINE(t(i).pacient || ' ' || t(i).nr_zile);
+        END LOOP;
+    END IF;
+END;
+/
+
+/*Adauga o coloana in tabelul turist care sa contina pt fiecare turist nr de zile pentru fiecare excursie achizitionata.*/
+CREATE OR REPLACE TYPE date_excur IS OBJECT
+    (cod_ex NUMBER,
+    nr_zile NUMBER);
+    /
+    
+CREATE OR REPLACE TYPE tab_excur IS TABLE OF date_excur;
+/
+
+ALTER TABLE turist
+ADD (date_ex tab_excur)
+NESTED TABLE date_ex STORE AS turist_excursii;
+
+DECLARE
+t tab_excur;
+BEGIN
+    FOR i IN (SELECT * FROM turist) LOOP
+    SELECT date_excur(ac.cod_excursie, SUM(durata)) BULK COLLECT INTO t
+    FROM achizitioneaza ac
+    JOIN excursie ex ON(ex.id_excursie = ac.cod_excursie)
+    WHERE cod_turist = i.id_turist
+    GROUP BY ac.cod_excursie;
+    UPDATE turist
+    SET date_ex = t
+    WHERE id_turist = i.id_turist;
+    END LOOP;
+    
+END;
+/
+
+
+SELECT * FROM cazare;
+SELECT * FROM rezervare;
+SELECT * FROM camera;
+SELECT * FROM hotel;
+
+
+/*. Functie care primeste drept parametri un id de camera, o data de sosire, respectiv o data de plecare si 
+returneaza daca se poate efectua sau nu o cazare cu datele transmise 
+(pentru înregistr?rile în care data_plecare este null, considera?i ocupat? camera doar în ziua sosirii). 
+Se poate folosi aceasta functie in cadrul unui trigger care sa valideze operatiile pe tabelul cazare?*/
+
+CREATE OR REPLACE FUNCTION valid_camera(camera NUMBER,
+                                        sosire DATE,
+                                        plecare DATE)
+RETURN NUMBER
+IS
+
+BEGIN
+    FOR i IN (SELECT data_sosire sos, data_plecare plec, id_camera
+            FROM cazare
+            WHERE id_camera = camera) LOOP
+
+        IF plecare IS NOT NULL THEN
+            IF i.plec IS NOT NULL AND sosire <= i.plec AND plecare >= i.sos 
+                THEN return 0;
+            ELSIF i.plec IS NULL AND sosire <= i.sos AND plecare >= i.sos 
+                THEN return 0;
+            END IF;
+        ELSE
+            IF i.plec IS NOT NULL AND sosire >= i.sos AND sosire <= i.plec THEN return 0;
+            ELSIF i.plec IS NULL AND sosire = i.sos  
+                THEN return 0;
+            END IF;
+        END IF;
+        
+    END LOOP;
+    return 1;
+END;
+/
+
+BEGIN
+DBMS_OUTPUT.PUT_LINE(valid_camera(2,TO_DATE('20-JAN-12','DD-MON-YY'),null));
+END;
+/

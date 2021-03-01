@@ -56,31 +56,44 @@ END;
 
 /* Rezolva?i problema folosind cursorul ?i o singur? colec?ie.*/
 ---------CURSOR CU RECORD------------
-/* !!!!!!!!!!!!!!!!! CUM FOLOSIM RECORD SI CURSOARE?
+
 DECLARE
-TYPE dep_pair IS RECORD
-    (dep_name departments.department_name%TYPE,
-     nr_ang NUMBER(4));
-TYPE tablou IS TABLE OF dep_pair;
-t tablou;
-CURSOR c IS
-    SELECT department_name nume, COUNT(*) nr_ang
-    FROM departments 
-    JOIN employees USING(department_id)
+CURSOR c IS SELECT department_name, COUNT(employee_id)
+    FROM employees 
+    JOIN departments USING(department_id)
     GROUP BY department_name;
+TYPE rec IS RECORD 
+    (t_nume departments.department_name%TYPE,
+    t_nr NUMBER);
+TYPE tab_index IS TABLE OF rec INDEX BY BINARY_INTEGER;
+t tab_index;
 BEGIN
-    OPEN c;
-    FETCH c BULK COLLECT INTO t;
-    CLOSE c;
-    FOR i IN t.FIRST..t.LAST LOOP
-        IF t.nr_ang(i) = 0 THEN DBMS_OUTPUT.PUT_LINE('In departmentul ' || t.dep_name(i) || ' nu lucreaza angajati.');
-        ELSIF t.nr_ang(i) = 1 THEN DBMS_OUTPUT.PUT_LINE('In departmentul ' || t.dep_name(i) || ' lucreaza un angajat.');
-        ELSE DBMS_OUTPUT.PUT_LINE('In departmentul ' || t.dep_name(i) || ' lucreaza ' || t.nr_ang(i) || ' angajati.');
-    END IF;
-    END LOOP;
+OPEN c;
+FETCH c BULK COLLECT INTO t;
+FOR i IN t.FIRST..t.LAST LOOP
+    DBMS_OUTPUT.PUT_LINE(t(i).t_nume || ' ' || t(i).t_nr); 
+END LOOP;
+CLOSE c;
 END;
 /
-*/
+
+-- Rezolvati problema folosind numai colectii
+DECLARE
+TYPE rec IS RECORD 
+    (t_nume departments.department_name%TYPE,
+    t_nr NUMBER);
+TYPE tab_index IS TABLE OF rec;
+t tab_index;
+BEGIN
+SELECT department_name, COUNT(employee_id) BULK COLLECT INTO t
+    FROM employees 
+    JOIN departments USING(department_id)
+    GROUP BY department_name;
+FOR i IN t.FIRST..t.LAST LOOP
+    DBMS_OUTPUT.PUT_LINE(t(i).t_nume || ' ' || t(i).t_nr); 
+END LOOP;
+END;
+/
 
 /*Rezolva?i exerci?iul 1 folosind un ciclu cursor.*/
 ----CICLU CURSOR-------
