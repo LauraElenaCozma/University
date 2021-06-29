@@ -1,0 +1,46 @@
+1. Un sistem de intrare la un concert (in care fiecare participant trebuie sa isi prezinte biletul), in care distingem:
+- Entitati: participantii care sosesc in sistem si formeaza cozi de asteptare pentru prezentarea biletului
+- Resurse: punctele de intrare cu personal autorizat pentru a verifica existenta biletelor
+
+2. Tipurile de simulare sunt:
+1. Simularea folosind metoda Monte Carlo (este o simulare statica care foloseste numere aleatoare care nu isi schimba caracteristicile in timp)
+2.  Simulare bazata pe traiectorie: inregistrare ordonata in timp, evenimentele au loc intr-un sistem real
+
+8. Variabila exponentiala Exp1(1) folosind variabile uniforme U0, U1,... ~ U(0, 1), iar exponentiala rezultata este X = N + Z0, unde N este numarul de siruri descendente respinse.
+
+3. 
+Metoda compunerii discrete se poate aplica variabilelor discrete a căror functie de repartitie este o compunere de functii de repartitie
+4. Metoda compunerii discrete se poate aplica variabilelor discrete a căror functie de repartitie este o compunere de functii de repartitie Fi, cu i din {1..m} dupa o repartitie discreta J.
+
+5. Exista doua variabile ajutatoare,  Y o variabila aleatoare pentru care este cunoscuta metoda de generare si U(0, 1) o variabila aleatoare uniforma. 
+
+6. Variabila Gama(0, 1, n) (sau Gama standard) cu 0 < n < 1 se poate genera cu prima teorema de respingere, folosind drept variabile ajutatoare o variabila Weibull(0, 1, n) si o uniforma U(0, 1).
+
+7. K reprezinta numarul de elemente al sirului descendent de variabile aleatoare generat.
+
+9. 12 variabile uniforme se pot folosi pentru a genera o variabila N(0, 1) folosind Teorema limita centrala.
+
+10. O variabila Gama(alpha, lambda, n) poate fi generata cu o variabila Gama standard. 
+Generarea variabilei Gama standard Gama(0, 1, n) se imparte in functie de parametrul n:
+- daca este subunitar, se poate folosi:
+1. Prima metoda a respingerii folosind o variabila Weibull
+2. O metoda de compunere-respingere
+- daca n > 1
+1. Prima metoda de respingere cu Exp(1/n)
+2. Prima metoda de respingere cu o densitate Cauchy nestandard trunchiata pe [0, inf)
+
+11. Cazurile particulare pentru o variabila Beta(a, b) sunt:
+1. a, b sunt numere intregi pozitive si se vor folosi n = a + b - 1 variabile uniforme U(0, 1)
+2. 0 < a < 1, 0 < b < 1 si se vor folosi doua variabile V = U1^(1/a) T = U2(1/b), unde U1, U2 sunt uniforme
+3.  0 < a < 1 si b > 1 si se vor folosi V = U1^(1/a) si T = U2 ^ (1/(b - 1))
+
+12. Metoda se numeste de compunere-respingere deoarece pentru scrierea densitatii normale se folosesc doua variabile X1 si X2 = - X1, cu densitatile f1, respectiv f2. 
+Densitatea normalei devine f(x) = 1/2f1(x) + 1/2f2(x), deci se va aplica metoda compunerii.
+Pentru a genera X1, respectiv X2=-X1 se aplica prima metoda a respingerii cu o variabila infasuratoare Exp(1).
+Astfel, metoda este de compunere-respingere.
+
+13. Conditia in metoda polara ca Z1 si Z2 sa fie acceptate este S=V1^2 + V2^2 < 1, adica ca vectorul aleator uniform (V1, V2) din patratul [-1,1]x[-1, 1] sa se afle in cercul unitate.
+
+14. Variabila binomiala reprezinta numarul de succese obtinute in n probe Bernoulli independente, unde daca experimentul Bernoulli s-a realizat semnifica succesul (se realizeaza cu probabilitatea p), altfel esecul. Variabila geometrica numara cate esecuri s-au realizat pana la aparitia primului succes dintr-un sir oarecare de probe Bernoulli independente.
+
+15. Pentru validare se folosesc: 1. teste statistice de concordanta prin care calculam histograma si verificam rezultatul cu testul Hi patrat. 2. Validam folosind media si dispersia (calculam media empirica, cea folosind formulele si le comparam)
