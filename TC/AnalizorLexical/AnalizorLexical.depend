@@ -1,0 +1,8 @@
+# depslib dependency file v1.0
+1616593735 source:c:\users\cozma\documents\laura\anul iii\tc dragulici\analizorlexical\main.cpp
+	<iostream>
+	<vector>
+	<fstream>
+	<algorithm>
+	<map>
+
