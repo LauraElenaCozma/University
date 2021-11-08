@@ -1,0 +1,32 @@
+<html>
+<head>
+    <script>
+        window.onload = function() {
+            let par = document.getElementById("par");
+            let tasta = document.getElementById("tasta");
+            document.body.onkeypress = function(event)
+            {
+                switch(event.key)
+                {
+                    case "a":
+                        par.style.color = "red";
+                        break;
+                    case "b":
+                        par.style.color = "yellow";
+                        break;
+                    default:
+                        par.style.color = "blue";
+                        alert("Nu ati apasat a sau b, ati apasat " + event.key);
+                }
+                tasta.innerHTML = event.key;
+            }
+        }
+    </script>
+</head>
+
+    <body>
+    <p id="par">Ati apasat tasta:</p>
+    <p id="tasta"><p>
+    </div>
+    </body>
+</html>

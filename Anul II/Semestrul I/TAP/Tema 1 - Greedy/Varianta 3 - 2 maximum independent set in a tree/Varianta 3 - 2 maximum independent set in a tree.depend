@@ -1,0 +1,7 @@
+# depslib dependency file v1.0
+1571574036 source:d:\total salvari\anul ii\semestrul i\tap\tema 1 - greedy\varianta 3 - 2 maximum independent set in a tree\main.cpp
+	<iostream>
+	<fstream>
+	<vector>
+	<list>
+

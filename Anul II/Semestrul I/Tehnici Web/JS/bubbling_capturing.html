@@ -1,0 +1,21 @@
+<html>
+    <head>
+    <script>
+        window.onload=function()
+        {
+        var bunic=document.body;
+        var parinte=document.getElementById("parinte");
+        var copil=document.getElementById("copil");
+        
+        bunic.addEventListener("click",function(){alert("BODY");bunic.className="rosu";},false);
+        parinte.addEventListener("click",function(){alert("DIV");parinte.className="galben";},false);
+        copil.addEventListener("click",function(){alert("P");copil.className="verde";});
+        }
+    </script>
+    </head>
+    <body id="bunic">
+        <div id="parinte">Div
+        <p id="copil">Paragraf</p>
+        </div>
+    </body>
+</html>

@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<title>Stelute</title>
+
+	<meta charset="utf-8">
+	<meta name="author" content="Ionel"/>
+	<link type="text/css" rel="stylesheet" href="../css/stil.css"/>
+
+</head>
+<body class="container">
+
+<header>
+    <% include ../fragmente/header %>
+</header>
+
+<main>
+    <div class="afisaj">
+        <h1>Profesori</h1>
+
+		<table id="profesori">
+		  <tr>
+			<th>id</th><th>Nume</th><th>Prenume</th><th>Data</th><th>Materii</th>
+		  </tr>
+
+		  <% for (var i = 0; i < useri.length; i++) { 
+				if(useri[i].rol=="prof"){
+				%>
+				<tr>
+				  <td><%= useri[i].id %></td>
+				  <td><%= useri[i].nume %></td>
+				  <td><%= useri[i].email %></td>
+				  <%  
+					d=new Date(useri[i].dataInreg)
+					sir_data=`${d.getDate()}/${d.getMonth()}/${d.getFullYear()} ${d.getHours()}:${d.getMinutes()}:${d.getSeconds()}`
+				  %>
+				  <td><%=  sir_data %></td>
+				   <td><%=  useri[i].materii %></td>
+				</tr> 
+   
+				<% } %>			
+		  <% } %>
+		</table>
+	</div>
+</main>
+
+<footer>
+    <% include ../fragmente/footer %>
+</footer>
+
+</body>
+</html>

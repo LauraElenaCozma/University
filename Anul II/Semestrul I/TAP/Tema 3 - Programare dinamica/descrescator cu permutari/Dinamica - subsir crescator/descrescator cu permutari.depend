@@ -1,0 +1,6 @@
+# depslib dependency file v1.0
+1578436860 source:c:\users\cozma\documents\descrescator cu permutari\dinamica - subsir crescator\main.cpp
+	<iostream>
+	<fstream>
+	<vector>
+

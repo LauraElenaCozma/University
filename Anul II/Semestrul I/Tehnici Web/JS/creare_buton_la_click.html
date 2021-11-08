@@ -1,0 +1,31 @@
+<html>
+    <head>
+    <script>
+        nr_ord = 0;
+        window.onclick = function(event)
+        {
+            var btn = document.createElement("button");
+            document.body.appendChild(btn);
+            nr_ord++;
+            btn.innerHTML = nr_ord;
+            btn.style.backgroundColor =  "rgb(" + Math.floor(Math.random() * 256)         + "," + Math.floor(Math.random() * 256)         + "," + Math.floor(Math.random() * 256)         + ")";  
+            btn.style.position = "absolute";
+            btn.style.top = event.clientY + "px";
+            btn.style.left = event.clientX + "px";
+            setTimeout(sterge , 5000 , btn);
+
+            function sterge(b)
+            {
+                document.body.removeChild(b);
+            }
+
+            btn.onclick = function(event) { event.stopPropagation();}
+        }
+
+
+    </script>
+    </head>
+    <body>
+
+    </body>
+</html>

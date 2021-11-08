@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<title>Stelute</title>
+
+	<meta charset="utf-8">
+	<meta name="author" content="Ionel"/>
+	<link type="text/css" rel="stylesheet" href="../css/stil.css"/>
+	<style>
+	table td, table th{
+		border:1px solid black;
+	}
+	</style>
+</head>
+<body class="container">
+
+<header>
+    <% include ../fragmente/header %>
+</header>
+
+<main>
+    <div class="afisaj">
+        <h1>Studenti</h1>
+    </div>
+	<table>
+	  <tr>
+		<th>id</th><th>Nume</th><th>Prenume</th><th>Grupa</th><th>Imagine</th>
+	  </tr>
+	  <% for (var i = 0; i < studenti.length; i++) { %>
+		<tr>
+		  <td><%= studenti[i].id %></td>
+		  <td><%= studenti[i].nume %></td>
+		  <td><%= studenti[i].prenume %></td>
+		  <td><%= studenti[i].grupa %></td>
+		  
+		  <td><img src="/uploads/<%= studenti[i].poza %>" alt="nu are poza"/></td>
+		</tr>    
+	  <% } %>
+	</table>
+	<% for (var i = 0; i < studenti.length; i++) { 
+		console.log("====")
+		console.log(note);
+		note_st=Array.prototype.filter.call(note, function(el){ return el.id_student==studenti[i].id} );
+		console.log("note_st")
+		console.log(studenti[i].id);
+		console.log(note[0].id_student);		
+		console.log(note_st);
+		%>
+		<%- include('../fragmente/template_student', {student: studenti[i], note: note_st}); %>
+	<% } %>
+	
+</main>
+
+<footer>
+    <% include ../fragmente/footer %>
+</footer>
+
+</body>
+</html>

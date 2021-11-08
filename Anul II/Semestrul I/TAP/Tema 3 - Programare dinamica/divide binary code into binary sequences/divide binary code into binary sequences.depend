@@ -1,0 +1,7 @@
+# depslib dependency file v1.0
+1578510856 source:c:\users\cozma\documents\semestrul i\tap\tema 3 - programare dinamica\divide binary code into binary sequences\main.cpp
+	<iostream>
+	<fstream>
+	<string>
+	<vector>
+

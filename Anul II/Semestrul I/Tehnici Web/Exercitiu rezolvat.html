@@ -1,0 +1,168 @@
+<html>
+    <head>
+        <style>
+            @media screen and (min-width:800px){
+                #parinte{
+                    margin-left: auto;
+                    margin-right: auto;
+                    width: 600px;
+                    height: 600px;
+                    background-color: green;
+                    border: 2px solid black;
+                }
+
+                .patrat{
+                    border: 1px solid blue;
+                }
+
+                .patrat:nth-child(odd){
+                    background-color: yellow;
+                }
+                .patrat:nth-child(even){
+                    background-color: orange;
+                }
+
+                .selectat{
+                    outline-style: solid;
+                    outline-color: red;
+                }
+            }
+
+            @media screen and (max-width:800px){
+                #parinte{
+                    width: 50vw;
+                }
+
+                .patrat{
+                    display:block;
+                    width:100%;
+                }
+
+                body{
+                    animation-name: culoare;
+                    /* Din cate inteleg eu intr-o secunda trebuie sa se faca ciclul complet alb-rosu-alb. Alternativ ar fi ca ciclul alb-rosu sa se faca intr-o secunda ceea ce ar insemna ca animation-duration: 2s; */
+                    animation-duration: 1s;
+                    animation-iteration-count: infinite;
+                }
+            }
+
+            @keyframes culoare{
+                0%{
+                    background-color: white;
+                }
+                50%{
+                    background-color: pink;
+                }
+                100%{
+                    background-color: white;
+                }
+            }
+        </style>
+
+        <script>
+            let theBody;
+            window.onload = function () {
+                theBody = document.getElementsByTagName('body')[0];
+                let myselect = document.createElement('SELECT');
+                myselect.setAttribute('id','myselect');
+                for (let i = 4; i <= 10; i++ ){
+                    let someOption = document.createElement('OPTION');
+                    someOption.setAttribute('value',i);
+                    someOption.innerText = i;
+
+                    let storedValue = localStorage.getItem('N');
+                    if(storedValue !== null && parseInt(storedValue) === i){
+                        someOption.selected = true;
+                    } else {
+                        if(i === 10){
+                            someOption.selected = true;
+                        }
+                    }
+                    myselect.appendChild(someOption);
+                }
+                myselect.addEventListener('change', subpct1);
+                theBody.appendChild(myselect);
+
+                let letterArea = document.createElement('DIV');
+                letterArea.setAttribute('id', 'letterArea');
+                let firstPress = true;
+                document.getElementsByTagName('body')[0].onkeypress = function (event) {
+                    if(event.keyCode >= 48 && event.keyCode <= 57 && firstPress === true) {
+                        firstPress = false;
+                        setInterval(deleteAKey, 1000);
+                    }
+                    if(event.keyCode >= 97 && event.keyCode <= 122 && firstPress === true) {
+                        console.log(event.keyCode, event.key);
+                        letterArea.innerText = letterArea.innerText + event.key;
+                    }
+                }
+                theBody.appendChild(letterArea);
+            }
+
+            function subpct1(event,t){
+                let myselect = document.getElementById('myselect');
+                let selectedValue = myselect.options[myselect.selectedIndex].value;
+                let newParinte = document.createElement('DIV')
+                newParinte.setAttribute('id', 'parinte');
+                theBody.appendChild(newParinte);
+                setTimeout(subpct2, 1500);
+                theBody.removeChild(document.getElementById('myselect'))
+                localStorage.setItem('N', selectedValue);
+            }
+
+            function subpct2(){
+                let parinte = document.getElementById('parinte');
+                let storedValue = parseInt(localStorage.getItem('N'));
+                let index = 0;
+                for (let i = 0; i < storedValue; i++){
+                    someDiv = document.createElement('DIV');
+                    someDiv.setAttribute('class', 'patrat');
+                    someDiv.setAttribute('id', 'patrat' + i)
+                    someDiv.style.width = '100px';
+                    someDiv.style.height = '100px';
+                    someDiv.style.marginLeft = i*100 + 'px';
+                    someDiv.addEventListener('mouseover',() => {
+                        subpct31(i);
+                    })
+                    someDiv.addEventListener('mouseout', () => {
+                        subpct32(i);
+                    })
+                    someDiv.innerText = index;
+                    index = index + 1;
+                    parinte.appendChild(someDiv);
+                }
+            }
+
+            function subpct31(index){
+                let patrat = document.getElementById('patrat' + index);
+                patrat.style.backgroundColor = getRandomColor();
+                patrat.classList.add('selectat');
+            }
+
+            function subpct32(index){
+                let patrat = document.getElementById('patrat' + index);
+                patrat.style.backgroundColor = '';
+                patrat.classList.remove('selectat');
+            }
+
+            function getRandomColor() {
+                var letters = '0123456789ABCDEF';
+                var color = '#';
+                for (var i = 0; i < 6; i++) {
+                    color += letters[Math.floor(Math.random() * 16)];
+                }
+                return color;
+            }
+
+            function deleteAKey(){
+                let letterArea = document.getElementById('letterArea');
+                letterArea.innerText = letterArea.innerText.substring(0, letterArea.innerText.length - 1);
+            }
+
+        </script>
+    </head>
+
+    <body>
+
+    </body>
+</html>

@@ -1,0 +1,22 @@
+# depslib dependency file v1.0
+1571906689 source:e:\244\laborator 2 - gc\main.cpp
+	<iostream>
+	<fstream>
+	<vector>
+	<algorithm>
+	<stack>
+
+1571911390 source:g:\laborator 2 - gc\main.cpp
+	<iostream>
+	<fstream>
+	<vector>
+	<algorithm>
+	<stack>
+
+1571914990 source:d:\total salvari\anul ii\semestrul i\geometrie computationala\laborator 2 - graham scan\main.cpp
+	<iostream>
+	<fstream>
+	<vector>
+	<algorithm>
+	<stack>
+

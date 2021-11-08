@@ -1,0 +1,30 @@
+<html>
+    <head>
+        <script>
+            window.onload = function()
+            {
+                let divDemo = document.getElementById("demo");
+                let c = document;
+                var txt = "";
+                txt = c.nodeName + "<br>";
+                c = document.children[0];
+                txt += c.nodeName + "<br>";
+                c = document.body.childNodes;
+                for(i = 0 ; i < c.length ; i++)
+                    txt += c[i].nodeName + "<br>";
+                divDemo.innerHTML = txt;
+            }
+            
+        </script>
+
+    </head>
+    <body>
+        <p>Un paragraf</p>
+        <div>Un div</div>
+        <p>O imagine</p><br>
+        <img src="toamna.jpg" alt="fsf">
+        <p id="demo"><strong>document.body.childNodes:</strong><br>
+        </p>
+    </body>
+</html>
+

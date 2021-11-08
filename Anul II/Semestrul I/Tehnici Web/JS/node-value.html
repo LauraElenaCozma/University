@@ -1,0 +1,22 @@
+<html>
+    <head>
+    <script>
+    window.onload = function(){
+    var p = document.getElementById("par").childNodes[0];
+    alert("nodeValue: " + p.nodeValue + '\n' + "nodeName: " + p.nodeName
+    + '\n' + "nodeType: "+ p.nodeType);
+    }
+
+    function myFunction() {
+        var p = document.getElementById("par");
+    var x = p.nodeValue;  
+    document.getElementById("demo").innerHTML = x;
+    }
+    </script>
+    </head>
+    <body>
+    <p id="par">Continutul paragrafului</p>
+    <button onclick="myFunction()">Try it</button>
+    <p id="demo"></p>
+    </body>
+</html>

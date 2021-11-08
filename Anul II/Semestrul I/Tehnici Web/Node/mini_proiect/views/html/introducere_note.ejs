@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<title>Pagina principala</title>
+
+	<meta charset="utf-8">
+	<meta name="author" content="Ionel"/>
+	<link type="text/css" rel="stylesheet" href="../css/stil.css"/>
+</head>
+<body class="container">
+
+<header>
+    <% include ../fragmente/header %>
+</header>
+
+<main>
+    <div class="afisaj">
+        <h1>Introduce note</h1>
+        
+		<img src="http://irinaciocan.ro/imagini/nenea_html.png" alt="Ionel"/>
+		</p>
+		<% if(locals.mesaj){ %>
+			<p>Date introduse</p>
+		<% } %>
+		<form method="post" >
+			<label>
+				Materie: 
+				<select name="materie">
+					<% for (mat of materii) { %>
+						<option value="<%= mat %>"><%= mat %></option>
+					<% } %>
+				</select>
+			</label>
+			<label>
+				Student: 
+				<select name="id_student">
+					<% for (st of studenti) { %>
+						<option value="<%= st.id %>"><%= st.nume+" "+ st.prenume %></option>
+					<% } %>
+				</select>
+			</label>
+			<label>
+				Nota: <input type="text" name="nota" value="">
+			</label>
+			
+			<input type="submit" value="Submit">
+		</form>
+    </div>
+</main>
+
+<footer>
+    <% include ../fragmente/footer %>
+</footer>
+
+</body>
+</html>

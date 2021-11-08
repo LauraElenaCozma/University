@@ -1,0 +1,34 @@
+<html>
+    <head>
+        <script>
+            window.onload = function()
+            {
+                let div = document.getElementsByTagName("div")[0];
+                
+                div.ondblclick = function(event){
+                    alert("event.type: " + event.type + '\n' +
+                    "event.target: " + event.target.nodeName + '\n' +
+                    "event.currentTarget: " + event.currentTarget.nodeName + '\n' +
+                    "event.timeStamp: " + event.timeStamp);
+                }
+
+                document.body.onclick=Poz;
+                function Poz(event) {
+                alert("event.clientX-Y " + event.clientX + ' ' + event.clientY + '\n' +
+                "event.pageX-Y: " + event.pageX + ' ' + event.pageY + '\n' +
+                "event.screenX-Y " + event.screenX + ' ' + event.screenY);
+                }
+
+            }
+        </script>
+
+    </head>
+    <body>
+        <div>
+            <p>Paragraf 1</p>
+            <p>Paragraf 2</p>
+            <img src="toamna.jpg" alt="vara">
+            <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br>
+        </div>
+    </body>
+</html>

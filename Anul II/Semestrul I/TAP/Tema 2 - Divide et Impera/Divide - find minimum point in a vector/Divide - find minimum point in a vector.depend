@@ -1,0 +1,7 @@
+# depslib dependency file v1.0
+1578430610 source:c:\users\cozma\documents\divide - find minimum point in a vector\main.cpp
+	<iostream>
+	<vector>
+	<climits>
+	<fstream>
+

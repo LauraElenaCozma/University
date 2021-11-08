@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<title>Inregistrare studenti</title>
+
+	<meta charset="utf-8">
+	<meta name="author" content="Ionel"/>
+	<link type="text/css" rel="stylesheet" href="../css/stil.css"/>
+</head>
+<body class="container">
+
+<header>
+    <% include ../fragmente/header %>
+</header>
+
+<main>
+    <div class="afisaj">
+        <h1>Inregistrare studenti</h1>
+		<% if(!locals.rsstatus) { %><!-- verific daca status e definit-->
+		<form class="date" method="post" enctype="multipart/form-data">
+			<p>
+			<label>
+				Nume: <input type="text" name="nume" value="Zumzulesteanu">
+			</label>
+			</p>
+			<p>
+			<label>
+				Prenume: <input type="text" name="prenume" value="George">
+			</label>
+			</p>
+			<p>
+			<label>
+				Grupa: <input type="text" name="grupa" value="100">
+			</label>
+			</p>
+			<p>
+			<label>
+				Poza: <input type="file" id="poza" name="poza">
+			</label>
+			</p>
+			<p>			
+			<input type="submit" value="Submit">
+			</p>
+		</form>
+		<% } else if(rsstatus=="ok"){ %>
+			<p>Date introduse</p>
+		<% } else {%>
+			<p>Eroare</p>
+		<% } %>
+    </div>
+</main>
+
+<footer>
+    <% include ../fragmente/footer %>
+</footer>
+
+</body>
+</html>

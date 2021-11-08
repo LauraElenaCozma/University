@@ -1,0 +1,151 @@
+
+
+<html>
+    <head>
+        <style>
+            .patrat {
+                        background-color:red;
+
+                    }
+        </style>
+    </head>
+    <body>
+        <script>
+            window.onload = function()
+            {
+                //localStorage.clear();
+                let myBody = document.getElementsByTagName("body")[0];
+                let sel = document.createElement("select");
+                myBody.appendChild(sel);
+                var opt;
+                for(var i = 4 ; i <= 10 ; i+=2)
+                {
+                    opt = document.createElement("option"); 
+                    opt.textContent = i;
+                    sel.appendChild(opt);
+                }
+
+                if (localStorage.N === undefined)
+                        opt.setAttribute("selected" , true);
+                else
+                {
+                    let N = localStorage.getItem("N");
+                    opt = sel.getElementsByTagName("option")[parseInt(N)];
+                    opt.setAttribute("selected" , true);
+                }
+               
+                sel.addEventListener("change" , removeSelect);
+                
+
+                function mouseOverDiv(indexDivOver)
+                {
+                  let patrat = document.getElementById("patrat" + indexDivOver);
+                  patrat.style.backgroundColor = getRandomColor();
+                  patrat.classList.add("selectat");
+                }
+
+                function mouseOutDiv(indexDivOver)
+                {
+                    let patrat = document.getElementById("patrat" + indexDivOver);
+                    patrat.style.backgroundColor = ''; //go back to the initial color
+                    patrat.classList.remove("selectat");
+                }
+
+
+                function subpunct2()
+                {
+                    let N = parseInt(localStorage.getItem('N'));
+                    N = 2 * N + 4;
+                    
+                    let parinte = document.getElementById("parinte");
+
+                    for(let i = 0 ; i < N ; i++)
+                    {
+                        let newDiv = document.createElement("div");
+                        newDiv.setAttribute("class" , "patrat");
+                        newDiv.setAttribute("id" , "patrat" + i);
+                        newDiv.style.width = '50px';
+                        newDiv.style.height = newDiv.style.width;
+                        newDiv.innerHTML = i;
+                        newDiv.style.marginLeft = i * parseInt(newDiv.style.width) + 'px';
+                        parinte.appendChild(newDiv);
+                        newDiv.addEventListener("mouseover" , () => {mouseOverDiv(i);});
+                        newDiv.addEventListener("mouseout" , () => {mouseOutDiv(i);});
+                    }
+                }
+                function getRandomColor() {
+                var letters = '0123456789ABCDEF';
+                var color = '#';
+                for (var i = 0; i < 6; i++) {
+                    color += letters[Math.floor(Math.random() * 16)];
+                }
+                return color;
+            }
+
+
+                function removeSelect()
+                {
+                    let newDiv = document.createElement("div");
+                    newDiv.setAttribute("id" , "parinte");
+                    let N = sel.selectedIndex;
+                    localStorage.setItem("N" , N);
+                    myBody.appendChild(newDiv);
+                    myBody.removeChild(sel);
+
+                    timer = setTimeout(subpunct2 , 1500);
+                }
+
+                function seeIfItIsNumber(value)
+                {
+                    if(value >= 48 && value <= 57) 
+                        return 1;
+                    else if((value >= 65 && value <= 90) || (value >= 97 && value <= 122))
+                        return 0;
+                }
+
+                
+                lastDiv = document.createElement("div");
+                myBody.appendChild(lastDiv);
+                lastDiv.textContent = "";
+                var noOfLetters = 0;
+
+                function appendLetter(letter)
+                {
+                    lastDiv.textContent += letter;
+                    noOfLetters ++;
+                }
+                var pressedDigit = 0;
+                function removeLetter()
+                {
+                    lastDiv.textContent = lastDiv.textContent.substring(1);
+                    
+                }
+
+                function seeWhatToDo(event)
+                {
+                    console.log(event.key);
+                    if(!seeIfItIsNumber(parseInt(event.keyCode)))
+                        {appendLetter(event.key); console.log(event.key);}
+                    else
+                    {
+                        if(pressedDigit === 0)
+                        {
+                            pressedDigit = 1;
+                            while(noOfLetters > 0)
+                            {
+                                removeLetter();
+                                noOfLetters --;
+                            }
+                        }
+                        
+                    }
+                }
+
+                myBody.addEventListener("keypress" , seeWhatToDo);
+
+                
+                    
+            }
+            </script>
+    </body>
+</html>

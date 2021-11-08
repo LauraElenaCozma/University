@@ -1,0 +1,15 @@
+# depslib dependency file v1.0
+1578335489 source:c:\users\cozma\documents\sat problem\main.cpp
+	<iostream>
+	<fstream>
+	<vector>
+	<list>
+	<cstdlib>
+
+1578335719 source:c:\users\cozma\documents\semestrul i\tap\tema 4 - sat branch and bound si genetici\sat problem\main.cpp
+	<iostream>
+	<fstream>
+	<vector>
+	<list>
+	<cstdlib>
+

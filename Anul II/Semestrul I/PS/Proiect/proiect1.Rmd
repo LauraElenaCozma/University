@@ -1,0 +1,605 @@
+---
+title: "Exercitiul 1"
+author: "Cozma Laura - Elena / Manolache Andrei 244"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+<br/>
+<br/>
+<br/>
+
+#### 1. Generati N = 1000 de realizari independente din fiecare repartitie
+
+<br/>
+
+```{r}
+
+N <- 1000
+
+binomiala <- rbinom(N , 10 , 0.1) # binomiala B(n,p) n = 10 p = 0.1
+poisson <- rpois(N , 1000) # poisson pois(lambda) lambda = 1000
+exponentiala <- rexp(N , 20) # exponentiala exp(lambda) lambda = 20
+normala <- rnorm(N , 100) # normala norm(E,var^2) E = 100, var = 1
+
+```
+
+<br/>
+
+#### Calculati media si varianta fiecarui esantion
+
+<br/>
+
+##### Afisam valori binomiala
+```{r}
+
+print(mean(binomiala))
+print(var(binomiala))
+
+```
+
+<br/>
+
+##### Afisam valori Poisson
+```{r}
+
+print(mean(poisson))
+print(var(poisson))
+
+```
+
+
+<br/>
+
+##### Afisam valori Exponentiala
+
+```{r}
+
+print(mean(exponentiala))
+print(var(exponentiala))
+
+```
+
+<br/>
+
+##### Afisam valori Normala
+
+```{r}
+
+print(mean(normala))
+print(var(normala))
+
+```
+
+<br/>
+<br/>
+
+
+
+#### 2. Ilustrati grafic functiile de masa, respectiv functiile de densitate pentru fiecare din repartitiile din enuntul problemei.
+
+<br/>
+
+#### Considerati cate 5 seturi de parametrii diferiti pentru fiecare repartitie si suprapuneti graficele pe aceeasi figura pentru fiecare repartitie.
+
+<br/>
+
+##### Ilustrare a graficului functiei de masa a repartitiei binomiale
+```{r}
+sizeBin1 <- 8
+pBin1 <- 0.9
+
+sizeBin2 <- 4
+pBin2 <- 0.5
+
+sizeBin3 <- 10
+pBin3 <- 0.3
+
+sizeBin4 <- 8
+pBin4 <- 0.7
+
+sizeBin5 <- 5
+pBin5 <- 0.2
+
+g1 <- seq(1 , 10 , 1) # de la 0 la 10 cu pasul 1
+plot(g1 , dbinom(g1 , sizeBin1 , pBin1) , type = "l" , col = "green" , main = "Grafic Binomiala" , ylab = "Probabilitate" , xlab = "Numar de reusite" , ylim = c(0 , 1))
+lines(g1 , dbinom(g1 , sizeBin2 , pBin2) , col = "goldenrod2")
+lines(g1 , dbinom(g1 , sizeBin3 , pBin3) , col = "salmon")
+lines(g1 , dbinom(g1 , sizeBin4 , pBin4) , col = "darkcyan")
+lines(g1 , dbinom(g1 , sizeBin5 , pBin5) , col = "orchid")
+legend("topright" , c("n=8 p = 0.9" , "n=4 p=0.5" , "n=10 p=0.3" , "n=8 p=0.7" , "n=5 p=0.2") , col = c("green" , "goldenrod2" , "salmon" , "darkcyan" , "orchid") , pch=16)
+```
+
+<br/>
+
+##### Ilustrare a graficului functiei de masa a repartitiei Poisson
+```{r}
+lambda1 <- 0.5
+lambda2 <- 3
+lambda3 <- 8
+lambda4 <- 12
+lambda5 <- 20
+g2 <- seq(0 , 30 , 2) #de la 0 la 30 cu pasul 2
+
+plot(g2 , dpois(g2 , lambda1) , col = "green" , main = "Grafic Poisson" , ylab = "Probabilitate" , xlab = "Numar de aparitii" , ylim = c(0 ,0.6) , type = "b" , pch = 16)
+lines(g2 , dpois(g2 , lambda2) , col = "goldenrod2" , type = "b" , pch = 16)
+lines(g2 , dpois(g2 , lambda3) , col = "salmon" , type = "b" , pch = 16)
+lines(g2 , dpois(g2 , lambda4) , col = "darkcyan" , type = "b" , pch = 16)
+lines(g2 , dpois(g2 , lambda5) , col = "orchid" , type = "b" , pch = 16)
+legend("topright" , c(expression(lambda~"=0.5") ,expression(lambda~"=1") ,expression(lambda~"=8") ,expression(lambda~"=5") ,  expression(lambda~"=18")), col=c("green","goldenrod2","salmon","darkcyan","orchid"),pch=16)
+```
+
+<br/>
+
+##### Ilustrare a graficului functiei de masa a repartitiei Normala 
+```{r}
+
+mean1 <- 17
+sd1 <- 2
+
+mean2 <- 5 
+sd2 <- 1
+
+mean3 <- 5 
+sd3 <- 4
+
+mean4 <- 12
+sd4 <- 4
+
+mean5 <- 23 
+sd5 <- 1
+
+g3 <- seq(0 , 35 , 1) # de la 0 la 50 cu pasul 1
+plot(g3 , bty='L',dnorm(g3 , mean1 , sd1) , col = "green" , main = "Grafic Normala" , ylab = "Probabilitate" , xlab = "Numar de aparitii" , ylim = c(0 , 0.5) , type = "b" , pch = 16)
+lines(g3 , dnorm(g3 , mean2 , sd2) , col = "goldenrod2" , type = "b" , pch = 16)
+lines(g3 , dnorm(g3 , mean3 , sd3) , col = "salmon" , type = "b" , pch = 16)
+lines(g3 , dnorm(g3 , mean4 , sd4) , col = "darkcyan" , type = "b" , pch = 16)
+lines(g3 , dnorm(g3 , mean5 , sd5) , col = "orchid" , type = "b" , pch = 16)
+legend("topright",c(expression("µ=30"~sigma~"=1"),expression("µ=5"~sigma~"=2"),expression("µ=5"~sigma~"=4"),expression("µ=45"~sigma~"=2"),expression("µ=23"~sigma~"=3")), col=c("green","goldenrod2","salmon","darkcyan","orchid"),pch=16)
+
+```
+
+<br/>
+
+##### Ilustrare a graficului densitatii repartitiei exponentiale
+```{r}
+lambda1exp <- 0.25
+lambda2exp <- 0.5
+lambda3exp <- 1.2
+lambda4exp <- 1.5
+lambda5exp <- 2
+
+g4 <- seq(1,8,1) # de la 1 la 8 cu pasul 1
+plot(g4 , dexp(g4, lambda1exp) , col = "green" , main = "Grafic Exponentiala" , ylab = "Probabilitate" , xlab = "Numar de aparitii" , ylim = c(0,0.4) , type = "b" , pch = 16)
+lines(g4 , dexp(g4, lambda2exp) , col = "goldenrod2" , type = "b" , pch = 16)
+lines(g4 , dexp(g4, lambda3exp) , col = "salmon" , type = "b" , pch = 16)
+lines(g4 , dexp(g4, lambda4exp) , col = "darkcyan" , type = "b" , pch = 16)
+lines(g4 , dexp(g4, lambda5exp) , col = "orchid" , type = "b" , pch = 16)
+legend("topright" , c(expression(lambda~"=0.25"), expression(lambda~"=0.5") , expression(lambda~"=1.2") , expression(lambda~"=1.5") ,  expression(lambda~"=1.8") ), col=c("green","goldenrod2","salmon","darkcyan","orchid"),pch=16)
+
+```
+
+
+<br/>
+
+#### 3. Pentru seturile de parametri de la punctul anterior, trasati functiile de repartitie
+
+<br/>
+
+##### Functia de repartitie pentru binomiala
+```{r}
+
+plot(g1 , pbinom(g1 , sizeBin1 , pBin1) , type = "b" , pch = 16 , col = "green" , main = "Grafic Binomiala Functia de Repartitie" , ylab = "Probabilitate" , xlab = "Numar de reusite" , ylim = c(0 , 1))
+lines(g1 , pbinom(g1 , sizeBin2 , pBin2) , col = "goldenrod2" , type = "b" , pch = 16)
+lines(g1 , pbinom(g1 , sizeBin3 , pBin3) , col = "salmon" , type = "b" , pch = 16)
+lines(g1 , pbinom(g1 , sizeBin4 , pBin4) , col = "darkcyan" ,  type = "b" , pch = 16)
+lines(g1 , pbinom(g1 , sizeBin5 , pBin5) , col = "orchid"  , type = "b" , pch = 16)
+legend(cex = 0.8,7.5,0.55,c("n=8 p = 0.9","n=4 p=0.5","n=10 p=0.3","n=8 p=0.7", "n=5 p=0.2"), col=c("green","goldenrod2","salmon","darkcyan","orchid"),pch=16)
+
+```
+
+
+<br/>
+
+##### Functia de repartitie pentru Poisson
+
+```{r}
+plot(g2 , ppois(g2 , lambda1) , col = "green" , main = "Grafic Poisson Functia de Reparitie" , ylab = "Probabilitate" , xlab = "Numar de aparitii" , ylim = c(0 , 1) , type = "b" , pch = 16)
+lines(g2 , ppois(g2 , lambda2) , col = "goldenrod2" , type = "b" , pch = 16)
+lines(g2 , ppois(g2 , lambda3) , col = "salmon" , type = "b" , pch = 16)
+lines(g2 , ppois(g2 , lambda4) , col = "darkcyan" , type = "b" , pch = 16)
+lines(g2 , ppois(g2 , lambda5) , col = "orchid" , type = "b" , pch = 16)
+legend(23,0.7,c(expression(lambda~"=0.5"),expression(lambda~"=1"),expression(lambda~"=8"),expression(lambda~"=5"), expression(lambda~"=18")), col=c("green","goldenrod2","salmon","darkcyan","orchid"),pch=16)
+```
+
+
+<br/>
+
+##### Functia de repartitie pentru Normala
+```{r}
+plot(g3 , bty='L', pnorm(g3 , mean1 , sd1) , col = "green" , main = "Grafic Normala Functia de Reparitie" , ylab = "Probabilitate" , xlab = "Numar de aparitii" , ylim = c(0 , 1) , type = "b" , pch = 16)
+lines(g3 , pnorm(g3 , mean2 , sd2) , col = "goldenrod2" , type = "b" , pch = 16)
+lines(g3 , pnorm(g3 , mean3 , sd3) , col = "salmon" , type = "b" , pch = 16)
+lines(g3 , pnorm(g3 , mean4 , sd4) , col = "darkcyan" , type = "b" , pch = 16)
+lines(g3 , pnorm(g3 , mean5 , sd5) , col = "orchid" , type = "b" , pch = 16)
+legend("bottomright" , cex = 0.9 , c(expression("µ=30"~sigma~"=1"),expression("µ=5"~sigma~"=2"),expression("µ=5"~sigma~"=4"),expression("µ=45"~sigma~"=2"),expression("µ=23"~sigma~"=3")) , col = c("green" , "goldenrod2" , "salmon" , "darkcyan" , "orchid") , pch=16)
+```
+
+<br/>
+
+##### Functia de reparitie pentru Exponentiala
+```{r}
+plot(g4 , pexp(g4, lambda1exp) , col = "green" , main = "Grafic Exponentiala Functia de Repartitie" , ylab = "Probabilitate" , xlab = "Numar de aparitii" , ylim = c(0,1) , type = "b" , pch = 16)
+lines(g4 , pexp(g4, lambda2exp) , col = "goldenrod2" , type = "b" , pch = 16)
+lines(g4 , pexp(g4, lambda3exp) , col = "salmon" , type = "b" , pch = 16)
+lines(g4 , pexp(g4, lambda4exp) , col = "darkcyan" , type = "b" , pch = 16)
+lines(g4 , pexp(g4, lambda5exp) , col = "orchid" , type = "b" , pch = 16)
+legend(6.4 , 0.75 , c(expression(lambda~"=0.25") , expression(lambda~"=0.5") , expression(lambda~"=1.2") , expression(lambda~"=1.5") , expression(lambda~"=1.8")) , col = c("green" , "goldenrod2" , "salmon" , "darkcyan" , "orchid") , pch = 16)
+```
+
+
+<br/>
+<br/>
+
+#### 4. Aproximarea functiei de repartitie a binomialei
+```{r}
+
+calculBinomiala <- function(n , p , k) # Functia care calculeaza Binomiala
+{
+  return (pbinom(k , n , p))
+}
+
+aproximarePoisson <- function(n , p , k) # Functia care calculeaza aproximarea Poisson
+{
+  lambda <- n*p
+  return (ppois(k , lambda))
+}
+
+aproximareNormala <- function(n , p , k) # Functia care calculeaza aproximarea Normala
+{
+  numarator <- k - n*p
+  numitor <- sqrt(n*p*(1-p))
+  z <- numarator / numitor
+  return (pnorm(z))
+}
+
+aproximareNormalaCorectie <- function(n , p , k) # Functia care calculeaza aproximarea Normala cu Corectie
+{
+  mean <- n * p
+  sd <- sqrt(mean * (1 - p))
+  coef <- k + .5 - mean
+  coef <- coef/sd
+  return (pnorm(coef))
+}
+
+aproximareCampPaulson <- function(n , p , k) # Functia care calculeaza aproximarea Camp-Paulson
+{
+  a <- 1 / (9 * (n - k))
+  b <- 1 / (9 * (k + 1))
+  medie <- 1 - a
+  r <- ((k + 1) * (1 - p)) / (p * (n - k))
+  var <- a + b * (r ^ (2 / 3))
+  c <- (1 - b) * (r ^ (1 / 3))
+ return (pnorm((c - medie) / sqrt(var)))
+}  
+```
+
+  <br/>
+  
+##### Afisam Tabelul cu aproximarile
+```{r}
+
+tabel <- function(n , p)
+{
+  k <- 1:10
+  binom <- vector()
+  pois <- vector()
+  norm <- vector()
+  normCor <- vector()
+  campPaul <- vector()
+  for(i in 1:10)
+  {
+    binom[i] <- calculBinomiala(n , p , i)
+    pois[i] <- aproximarePoisson(n , p , i)
+    norm[i] <- aproximareNormala(n , p , i)
+    normCor[i] <- aproximareNormalaCorectie(n , p , i)
+    campPaul[i] <- aproximareCampPaulson(n , p , i)
+  }
+  
+  df <- data.frame("K" = k , "Binomiala" = binom , "Poisson" = pois , "Normala" = norm ,  "NormalaCorectie" = normCor , "Camp-Paulson" = campPaul)
+  return(df)
+}
+
+creareTabele <- function() # Functia care creeaza cele 6 tabele, pentru n ={25,50,100} si p = {0.05, 0,01}
+{
+  n <- c(25 , 50 , 100)
+  p <- c(0.05 , 0.1)
+  for(i in 1:3)
+  {
+    for(j in 1:2)
+    {
+      cat("n = " , n[i] , "p = " , p[j])
+      print(tabel(n[i] , p[j]))
+    }
+  }
+}
+
+creareTabele() #Construirea tabelelor
+
+```
+
+<br/>
+<br/>
+
+#### 5. Pentru fiecare n in {25, 50, 100} ilustrati pe acelasi grafic erorile maximale absolute dintre functia de repartitie binomiala si cele patru aproximari, considerand 0.01 <= p <= 0.5.
+
+<br/>
+```{r}
+
+kolmogorov <- function(n)
+{
+    difPoisson <- vector()
+    difNormala <- vector()
+    difNormalaCorectie <- vector()
+    difCampPaulson <- vector()
+    
+    for(p in seq(0.01 , 0.5 , 0.01))
+    {
+      bin <- vector()
+      pois <- vector()
+      norm <- vector()
+      normCor <- vector()
+      campPaul <- vector()
+        
+      #cautam eroarea maxima
+      for(k in 0:n)
+      {
+        bin <- c (bin , calculBinomiala (n , p , k))
+        pois <- c (pois , aproximarePoisson (n, p , k))
+        norm = c (norm , aproximareNormala (n, p , k))
+        normCor <- c (normCor, aproximareNormalaCorectie(n, p , k))
+        campPaul <- c (campPaul, aproximareCampPaulson (n, p , k))
+        
+      }
+      
+      maxPoisson <- max (abs (bin - pois))
+      maxNormala <- max (abs (bin - norm))
+      maxNormalaCorectie <- max (abs (bin - normCor))
+      maxCampPaulson <- max (abs (bin - campPaul) , na.rm = TRUE)
+      difPoisson <- c (difPoisson, maxPoisson)
+      difNormala <- c (difNormala, maxNormala)
+      difNormalaCorectie <- c (difNormalaCorectie, maxNormalaCorectie)
+      difCampPaulson <- c (difCampPaulson, maxCampPaulson)
+    }
+  
+  v <- seq (0.01, 0.5, by = 0.01)
+  plot (v, difPoisson, xlim = c(0.01, 0.5) , ylim = c(0 , 0.2) , main = paste0("Eroare absoluta pentru n=" , n) , xlab = "p", ylab = "Eroare absoluta" , col = "green", type = "p", pch = 1)
+  lines (v, difNormala, col = "violet", type = "p", pch = 2)
+  lines (v, difNormalaCorectie, col = "salmon", type = "p", pch = 8)
+  lines (v, difCampPaulson, col = "cyan", type = "p", pch = 9)
+  legend ("topright", c("Poisson", "Normala", "NormalaCorectie", "CampPaulson"), col=c("green", "violet", "salmon", "cyan") , pch=15)
+  }
+
+kolmogorov(25)
+kolmogorov(50)
+kolmogorov(100)
+
+```
+
+<br/>
+<br/>
+
+#### 6. Pentru 5 seturi de parametrii diferiti ilustrati grafic densitatile repartitiei normale-asimetrice, suprapunand graficele pe aceeasi figura.
+
+<br/>
+```{r}
+
+normalaAsimetrica <- function(u , s , lam , x)
+{
+  coef1 <- (x - u)/s
+  coef2 <- lam * coef1
+  rez <- (2/s) * dnorm(coef1) * pnorm(coef2)
+  return(rez)
+}
+
+graficNormalaAsimetrica <- function()
+{
+  #dam valori lui µ, sigma si lambda
+  u1 <- 25
+  s1 <- 6
+  lam1 <- 10
+  u2 <- 1
+  s2 <- 7
+  lam2 <- 53
+  u3 <- 32
+  s3 <- 8
+  lam3 <- 9
+  u4 <- 9
+  s4 <- 19
+  lam4 <- 5
+  u5 <- 32
+  s5 <- 14
+  lam5 <- 5
+  x <- seq(1 , 100 , 1)
+  #reprezentam graficul
+  plot(x , normalaAsimetrica(u1 , s1 , lam1 , x) , col = "green" , main = "Grafic Normala Asimetrica" , ylab = "Probabilitate" , xlab = "Numar de aparitii" , type = "l" , ylim = c(0 , 0.4))
+  lines(x , normalaAsimetrica(u2 , s2, lam2, x) , col = "goldenrod2")
+  lines(x , normalaAsimetrica(u3 , s3 , lam3 , x) , col = "salmon")
+  lines(x , normalaAsimetrica(u4 , s4 , lam4 , x) , col = "darkcyan")
+  lines(x , normalaAsimetrica(u5 , s5 , lam5 , x) , col = "orchid")
+  legend("topright" , c(expression("µ=25"~sigma~"=6"~lambda~"=10 ") ,expression("µ=1"~sigma~"=7"~lambda~"=53 "),expression("µ=32"~sigma~"=8 "~lambda~"=9 "),expression("µ=9"~sigma~"=19"~lambda~"=5 "),expression("µ=32"~sigma~"=14"~lambda~"=5 ")), col = c("green" , "goldenrod2" , "salmon" , "darkcyan" , "orchid") , pch=16)
+}
+
+graficNormalaAsimetrica()
+
+
+```
+
+<br/>
+<br/>
+
+#### 7. Creati o functie care sa primeasca parametrii (n, p) ca valori de intrare si sa intoarca valorile parametrilor (µ, lambda , sigma)
+```{r}
+
+determinaSolutii <- function(n , p)
+{
+  f <- function(x)
+  {
+ 
+    numarator1 <- (1 - (2*x)/(pi + pi * x))^3
+    numitor1 <- 2/pi * ((4 / pi - 1) ^ 2) * (x / (1 + x)) ^ 3
+    
+    numarator2 <- n * p * (1 - p)
+    numitor2 <- (1 - 2 * p)^2
+    
+    return (numarator1 / numitor1 - numarator2 / numitor2)
+  }
+  
+  sol <- (uniroot(f , lower=0, upper=1 , extendInt= "yes")$root)
+  lambda <- sign(1 - 2 * p) * sqrt(sol)
+  
+  sigma <-  sqrt((n*p * (1-p)) / (1 - 2 * lambda * lambda / (pi + pi * lambda * lambda)))
+  
+  medie <- n * p - sigma * sqrt(( 2 * lambda * lambda) / (pi + pi * lambda * lambda))
+  
+  return (c(medie,sigma,lambda))
+}
+
+```
+
+<br/>
+
+##### Creeaza plotbar
+
+```{r}
+
+ilustreazaGraficCuBare <- function()
+{
+  n <- 25
+  p <- c(0.05 , 0.1)
+  x <- seq(1 , 20 , 1)
+  px1 <- table(x)/n
+  barplot(pbinom(x , n , p[1]), col = rgb(1,0,0,0.5) , ylim = c(0 , 2) , main = "Repartitia binomiala suprapusa cu densitatea normalei asimetrice")
+  barplot(pbinom(x , n , p[2]), col = rgb(0,1,1,0.5) , add = TRUE)
+  param1 <- determinaSolutii(n , p[1])
+  barplot(normalaAsimetrica(param1[1] , param1[2] , param1[3] , x) , col = rgb(0.54,0.3,0.23,1) , add = TRUE)
+  param2 <- determinaSolutii(n , p[2])
+  barplot(normalaAsimetrica(param2[1] , param2[2] , param2[3] , x ) , col = rgb(0.15,0,0.34,0.5) , add = TRUE)
+  legend("topright" , c(expression("Binomiala p = 0.05") ,expression("Binomiala p = 0.1"),expression("Normala Asimetrica p = 0.05"),expression("Normala Asimetrica p = 0.1")), col = c(rgb(1,0,0) , rgb(0,1,1) , rgb(0.54,0.3,0.23) ,  rgb(0.15,0,0.34) ) , pch=16)
+}
+
+ilustreazaGraficCuBare() # Functia care construieste histogramele
+
+```
+
+<br/>
+<br/>
+
+#### 8. Pentru fiecare n in {25, 50, 100} si fiecare p in {0.05, 0.1} sa se afiseze un tabel cu trei coloane (k,Binomiala, Normala Asimetrica) in care sa apara aproximarea de mai sus pentru functia de repartitie si de masa a binomialei. 
+#### Evaluati grafic acuratetea aproximarii conform punctului 5.
+
+<br/>
+
+##### Construim functie care calculeaza aproximarea la normala asimetrica
+
+```{r}
+
+normalaAsimetricaStandard <- function(x , lambda)
+{
+  g <- function(t)
+  {
+    return (2 * dnorm(t) * pnorm(lambda * t ))
+  }
+  
+  return(integrate(g , -Inf , x)$value)
+}
+
+aproximareNormalaAsimetrica <- function(n , p , x)
+{
+  v <- determinaSolutii(n , p)
+  #medie = v[1]
+  #sigma = v[2]
+  #lambda = v[3]
+  val <- (x + 0.5 - v[1])/v[2]
+  return(normalaAsimetricaStandard(val , v[3]))
+}
+```
+
+
+<br/>
+
+##### Construim tabelul:
+```{r}
+tabel8 <- function(n , p)
+{
+  k <- 1:10
+  binom <- vector()
+  normAsimetrica <- vector()
+  for(i in 1:10)
+  {
+    binom[i] <- calculBinomiala(n , p , i)
+    normAsimetrica[i] <- aproximareNormalaAsimetrica(n , p , i)
+    
+  }
+  
+  df <- data.frame("k" = k  , "Binomiala" = binom , "NormalaAsimetrica" = normAsimetrica)
+  return(df)
+}
+
+creareTabel8 <- function()
+{
+  nValues <- c(25 , 50 , 100)
+  pValues <- c(0.05 , 0.1)
+  for(n in 1:3)
+  {
+    for(p in 1:2)
+    {
+      cat("n = ", nValues[n] , " p = " , pValues[p] , "\n" )
+      print(tabel8(nValues[n] , pValues[p]))
+    }
+  }
+}
+
+creareTabel8()
+
+```
+
+<br/>
+
+#### Evaluati grafic acuratetea aproximarii
+
+<br/>
+
+##### Calculam aproximarea:
+```{r}
+kolmogorovAsimetrica <- function(n)
+{
+  difAsim <- vector()
+  
+  for(p in seq(0.01 , 0.5 , 0.0101))
+  {
+    bin <- vector()
+    asim <- vector()
+    #cautam eroarea maxima
+    for(k in 0:n)
+    {
+      bin <- c (bin , calculBinomiala (n , p , k))
+      asim <- c(asim , aproximareNormalaAsimetrica(n , p , k))
+    }
+    maxAsim <- max(abs(bin - asim))
+    difAsim <- c(difAsim , maxAsim)
+  }
+
+  v <- seq (0.01, 0.5, by = 0.0101)
+  plot (v, difAsim, xlim = c(0.01, 0.5) , ylim = c(0 , 0.2) , main = paste0("Eroare absoluta pentru normala asimetrica n = " , n) , xlab = "p", ylab = "Eroare absoluta" , col = "red", type = "p")
+}
+
+kolmogorovAsimetrica(25)
+kolmogorovAsimetrica(50)
+kolmogorovAsimetrica(100)
+```
+
+

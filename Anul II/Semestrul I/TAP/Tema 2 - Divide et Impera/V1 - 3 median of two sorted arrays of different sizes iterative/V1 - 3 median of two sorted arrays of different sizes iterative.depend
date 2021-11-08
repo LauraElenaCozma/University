@@ -1,0 +1,7 @@
+# depslib dependency file v1.0
+1574010143 source:d:\total salvari\anul ii\semestrul i\tap\tema 2 - divide et impera\v1 - 3 median of two sorted arrays of different sizes iterative\main.cpp
+	<iostream>
+	<fstream>
+	<vector>
+	<climits>
+

@@ -1,0 +1,38 @@
+#imagineCal
+{
+    max-width:200px;
+    width:80%;
+}
+
+
+
+@media ( min-width: 575px )
+{
+    #leftContent 
+    {
+        display:inline-block;
+    }
+
+    #rightContent 
+    {
+        display:inline-block;
+    }
+
+
+}
+
+#titleContainer
+{
+    text-align:center;
+    display:block;
+    margin:auto;
+    width:80%;
+    font-size: 100%;
+}
+
+#content
+{
+    text-align:center;
+    display:block;
+}
+

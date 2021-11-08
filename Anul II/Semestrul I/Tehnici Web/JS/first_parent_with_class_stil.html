@@ -1,0 +1,29 @@
+<html>
+    <head>
+        <script>
+            function returnParent(a , stil)
+            {
+                let par = a.parentElement;
+                while(par != document.documentElement)
+                {
+                alert(par.nodeName);
+                    if(par.classList.contains(stil))
+                        return par.nodeName;
+                    par = par.parentElement;
+                }
+            }
+
+            window.onload = function(){
+                let v = document.getElementsByTagName("ul")[0];
+                alert(returnParent(v , "cl"));
+            }
+        </script>
+
+    </head>
+    <body>
+        <div class ="cl">
+            <div></div>
+            <span class = "a cs"> <ul></ul></span>
+        </div>
+    </body>
+</html>

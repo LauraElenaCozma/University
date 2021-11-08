@@ -1,0 +1,24 @@
+<style>
+    .bright{background-color:yellow;}
+    </style>
+    <script>
+    window.onload=function()
+    {
+    var link=document.getElementById("pagina");
+    link.href="https://developer.mozilla.org/bm/docs/Web/JavaScript"; //modific atributul href
+    link.setAttribute("class", "bright");
+    alert(link.href);
+
+    var attrs = link.attributes;
+    var output="";
+    for (var i = 0; i< attrs.length ; i++)
+    { output += attrs[i].name + " -> " + attrs[i].value + " // ";
+    }
+    alert(output);
+
+    }
+    </script>
+    </head>
+    <body>
+    <a id="pagina" href="https://www.w3schools.com/js/default.asp">JavaScript</a>
+    </body>

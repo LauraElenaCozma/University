@@ -1,0 +1,65 @@
+<html>
+    <head>
+    <script type = "text/javascript">
+    /*function myFunction(v){
+            var odd , even;
+            odd = new Array();
+            even = new Array();
+            for(elem of v)
+                if(elem % 2 == 0)
+                    even.push(elem);
+                else odd.push(elem);
+            document.write("Numere impare:<br>");
+            for(elem of odd)
+                {
+                    document.write(elem);
+                    document.write(" "); 
+                }
+            document.write("<br>");
+            document.write("Numere pare:<br>");
+            for(elem in even)
+            {
+                document.write(even[elem]);
+                document.write(" "); 
+                }
+        }
+
+    var v = [2 , 5, 7 , 3 , 0 , 11 , 2 , 4 , 1 , 12 , 22 , 31];
+    myFunction(v);*/
+
+    //dictionary
+    var dictionary = {"this" : "acesta" ,
+                     "a" : "un" , 
+                     "dog" : "caine" , 
+                     "cat" : "pisica" , 
+                     "love" : "iubire" , 
+                     "star" : "stea" , 
+                     "sky" : "cer"};
+    function searchWord(wordSearched , dict)
+    {
+        var ok = 0;
+        for(word in dict)
+            if(wordSearched == word)
+                {alert(dict[word]);
+                ok = 1;
+                }
+        if(ok == 0)alert("Word not found");
+
+    }
+    var stop = 0;
+    do
+    {
+        var w = prompt("Introduceti un cuvant");
+        searchWord(w , dictionary);
+        stop = 1 - confirm("Do you want to continue?"); //returns 1 if we want to continue, so dont stop
+    }
+    while(!stop);
+    
+
+    </script>
+        
+    </head>
+    <body>
+
+    </body>
+</html>

@@ -1,0 +1,28 @@
+<html>
+    <head>
+        <script>
+            function createDiv()
+            {
+                let div = document.createElement("div");
+                theBody = document.getElementsByTagName("body")[0];
+                theBody.appendChild(div);
+                let aux = document.getElementsByClassName("nou");
+                div.innerHTML = aux.length;
+            }
+            function changeClass()
+            {
+                var collection = document.getElementsByClassName("vechi");
+                for(let i = 0 ; i < HTMLAllCollection.length ; i++)
+                    collection[i].className = "nou";
+                
+                setTimeout(createDiv , 3000);
+            }
+        </script>
+    </head>
+    <body>
+        <div class = "vechi">f</div>
+        <div class = "vechi">d</div>
+        <div class = "vechi">s</div>
+        <button onClick = "changeClass()">Click me</button>
+    </body>
+</html>

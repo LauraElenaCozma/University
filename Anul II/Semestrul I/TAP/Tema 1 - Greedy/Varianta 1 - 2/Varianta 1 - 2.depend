@@ -1,0 +1,7 @@
+# depslib dependency file v1.0
+1571475861 source:d:\total salvari\anul ii\semestrul i\tap\tema 1 - greedy\varianta 1 - 2\main.cpp
+	<iostream>
+	<vector>
+	<algorithm>
+	<fstream>
+

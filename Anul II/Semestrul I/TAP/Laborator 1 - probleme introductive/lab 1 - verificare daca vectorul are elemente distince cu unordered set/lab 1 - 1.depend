@@ -1,0 +1,7 @@
+# depslib dependency file v1.0
+1569929336 source:d:\lab 1 - 1\main.cpp
+	<iostream>
+	<fstream>
+	<unordered_set>
+	<algorithm>
+

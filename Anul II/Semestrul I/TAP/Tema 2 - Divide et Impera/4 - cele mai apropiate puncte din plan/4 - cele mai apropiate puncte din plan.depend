@@ -1,0 +1,9 @@
+# depslib dependency file v1.0
+1572285574 source:d:\total salvari\anul ii\semestrul i\tap\tema 2 - divide et impera\4 - cele mai apropiate puncte din plan\main.cpp
+	<iostream>
+	<fstream>
+	<vector>
+	<algorithm>
+	<iomanip>
+	<cmath>
+

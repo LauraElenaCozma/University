@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<title>Pagina principala</title>
+
+	<meta charset="utf-8">
+	<meta name="author" content="Ionel"/>
+	<link type="text/css" rel="stylesheet" href="../css/stil.css"/>
+	<script type="text/javascript" src="../../node_modules/socket.io-client/dist/socket.io.js"></script>  
+	<script>
+	socketUrl = "../../";  
+	if(document.location.href.indexOf("localhost") != -1) {  
+		socketUrl = "http://127.0.0.1:8080";
+	}
+	const socket = io(socketUrl,{reconnect: true});  
+	//var socket = io.connect('http://127.0.0.1:8080', {reconnect: true});
+	socket.on("buton", (data) => {  
+		alert("buton apasat")
+	});
+	</script>
+</head>
+<body class="container">
+
+<header>
+    <%- include("../fragmente/header") %>
+</header>
+
+<main>
+    <div class="afisaj">
+        <h1>Aplicatie didactica</h1>
+        <p>Va rugam sa va logati: <br/>
+
+		<form id="login" method="post" >
+			<label>
+				Username: <input type="text" name="username" value="Costica">
+			</label>
+			<label>
+				Parola: <input type="password" name="parola" value="">
+			</label>
+			
+			<input type="submit" value="Submit">
+		</form>
+		<hr class="despartitor"/>
+		<p>Aceasta aplicatie simuleaza un sistem de administrare a cataloagelor de examen.</p> <hr class="despartitor"/>
+		<p>Studentii/elevii se pot inregistra pentru a primi note. Apoi isi pot vizualiza notele pe o pagina speciala. Pentru simplitatea aplicatiei, s-a considerat ca studentii care se inregistreaza sunt studenti reali (nu li se verifica identitatea). Studentii nu se pot loga.</p>
+		<hr class="despartitor"/>
+		
+		<p>Utilizatorii cu drept de login ai site-ului sunt: administratorul si profesorii.</p>
+		<hr class="despartitor"/>
+		<p>Profesorii nu se inregistreaza singuri. Administratorul este cel care le introduce in sistem.</p>
+		<p>Profesorii apoi se pot loga folosind codul-parola oferit de administrator, pentru a pune note studentilor.</p>
+		<hr class="despartitor"/>
+    </div>
+</main>
+
+<footer>
+    <% include ../fragmente/footer %>
+</footer>
+
+</body>
+</html>

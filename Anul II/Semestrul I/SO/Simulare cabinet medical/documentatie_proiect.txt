@@ -1,0 +1,6 @@
+Simulare cabinet medical:
+
+într-un while(1), creez la un interval random de timp câte un thread ce va reprezenta un pacient. Acesta va apela functia need_a_doctor(). Vom adauga pacientul nou creat într-o lista de thread-uri. Pacientii vor astepta pâna când un doctor s-a eliberat(asteapta la un semafor).
+Când s-a eliberat un doctor, se asteapta un interval random de timp ce va reprezenta durata consultatiei. La iesirea din consultatie doctorTaken[i] = 0, cu semnificatia ca al i-lea doctor e liber si se sterge nodul din lista de thread-uri.
+La ctrl+c programul se opreste din a genera pacienti. La final se va face join pe thread-urile ramase.
+ 

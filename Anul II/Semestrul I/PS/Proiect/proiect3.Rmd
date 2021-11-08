@@ -1,0 +1,397 @@
+---
+title: "Exercitiul 3"
+author: "Cozma Laura - Elena / Manolache Andrei - 244"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r include=FALSE}
+library(pracma)
+```
+
+<br/>
+<br/>
+<br/>
+
+#### Fie două variabile aleatoare discrete X şi Y cu repartiţiile:
+
+$\small X : 
+  \begin{pmatrix}
+    x_1 & x_2 & x_3  & ... & x_n \\
+    p_1 & p_2 & p_3  & ... & p_n\\
+  \end{pmatrix}$
+  
+$\small Y : 
+  \begin{pmatrix}
+    y_1 & y_2 & y_3  & ... & y_m \\
+    q_1 & q_2 & q_3  & ... & q_m\\
+  \end{pmatrix}$
+
+<br/>
+
+#### a) Construiţi o funcţie frepcomgen care primeşte ca parametri m şi n si care generează un tabel cu repartiţia comună a v.a. X si Y incompletă, dar într-o formă în care poate fi completată ulterior.
+
+<br/>
+
+#### Am considerat ca $\small x_i = i \quad \forall i = 1 \ldots n$ si $\small y_i = i \quad \forall i = 1 \ldots m$
+
+```{r}
+
+frepcomgen <- function(m , n)
+{
+  # Am considerat ca xi = i si yi = i
+  
+  names1 <- vector() # variabila X
+  names2 <- vector() # variabila y
+
+  for(i in 1 : m)
+  {
+    names1 <- c(names1 , paste("x", i , sep = ""))
+  }
+  names1 <- c(names1 , "q" )
+
+  
+  for(i in 1 : n)
+  {
+    names2 <- c(names2 , paste("y" , i , sep = ""))
+  }
+  names2 <- c(names2 , "p")
+  
+  # construieste matricea
+  mat <- matrix(rep(0 ,(n + 1 ) * (m + 1)),nrow = m + 1 , ncol = n + 1 , dimnames = list(names1 , names2)) 
+  
+  #Generam numere random in matrice, iar la final impartim fiecare element la suma totala
+  S <- 0
+  for(i in 1 : m)
+    for(j in 1 : n)
+    {
+      elem <- sample(1 : 20 , 1)
+      S <- S + elem
+      mat[i , j] = elem
+    }
+  
+  for(i in 1 : m)
+    for(j in 1 : n)
+      mat[i , j] <- mat[i , j] / S
+  
+  #Calculam probabilitatile marginale
+  for(i in 1 :m)
+  {
+    S <- 0
+    for(j in 1 : n)
+      S <- S + mat[i , j]
+    mat[i , n + 1] <- S
+  }
+  
+  for(j in 1 : n)
+  {
+    S <- 0
+    for(i in 1 : m)
+      S <- S + mat[i , j]
+    mat[m + 1 ,j] <- S
+  }
+  
+  #Marcam cu -1 ca fiind o casuta nemarcata
+  
+  # punem -1 pe diagonala principala
+  min <- min(m , n)
+  for(i in 1 : min)
+    mat[i , i] <- -1
+  
+  # puntem -1 pe ultima linie / coloana (dupa caz)
+  if(m < n)
+  {
+    j <- m + 1
+    while(j <= n)
+    {
+      mat[m , j] <-  -1
+      j <-j + 1
+    }
+    
+  }
+  else if(m > n)
+  {
+    i <- n + 1
+    while(i <= m)
+    {
+      mat[i , n] <- -1
+      i <- i + 1
+    }
+     
+  }
+  
+  mat[m + 1 , n + 1] <- 1 # pune 1 pe coltul dreapta jos (suma tuturor probabilitatilor este 1)
+  return (mat)
+}
+```
+
+
+##### Generarea:
+
+```{r}
+mat <- frepcomgen(7 , 6)
+print(mat)
+
+```
+
+
+<br/>
+
+#### b) Construiţi o funcţie fcomplrepcom care completează repartiţia comună generată la punctul anterior
+
+```{r}
+
+fcomplrepcom <- function(mat)
+{
+ S <- 0
+ m <- nrow(mat) - 1 # numarul de linii
+ n <- ncol(mat) - 1 # numarul de coloane
+ 
+ # m < n,parcurg pe coloane cand completez
+ if(m < n)
+ {
+     
+   for(j in 1 : n ) 
+   {
+      S <- 0
+      poz <- 1 # pozitia unde se gasea acel element lipsa
+      
+       for(i in 1 : m)
+       {
+         if(mat[i , j] >= 0)
+            S = S + mat[i , j]
+         else poz <- i
+       }
+      mat[poz , j] <-  mat[m + 1 , j] - S # completeaza cu valoarea corecta
+   }
+ }
+ else
+ {
+   for(i in 1 : m ) 
+   {
+     S <- 0
+     poz <- 1 # pozitia unde se gasea acel element lipsa
+     
+     for(j in 1 : n)
+     {
+       if(mat[i , j] >= 0)
+         S = S + mat[i , j]
+       else poz <- j
+     }
+     mat[i , poz] <-  mat[i , n + 1] - S # completeaza cu valoarea corecta
+   }
+ }
+ 
+ return (mat)
+}
+
+```
+
+##### Completarea:
+
+```{r}
+
+mat  <- fcomplrepcom(mat)
+print(mat)
+
+```
+
+
+#### Având la dispoziţie repartiţia comună a v.a. X şi Y de la punctul b) calculaţi:
+
+
+##### **$Cov(3X , 4Y)$**
+
+<br/>
+
+```{r}
+
+cov <- function(mat)
+{
+  #Cov(3X,4Y) = 12COV(X,Y)
+  
+  m <- nrow(mat) - 1 # numarul de linii
+  n <- ncol(mat) - 1 # numarul de coloane
+  
+  medX <- 0 # E[x]
+  medY <- 0 # E[Y]
+  
+  for(i in 1 : m)
+   medX <- medX + i * mat[i , n + 1] 
+  
+  for(i in 1 : n)
+    medY <- medY + i * mat[m+ 1 , i]
+  
+  medXY <- 0
+  
+  for(i in 1 : m)
+    for(j in 1 : n)
+      medXY <- medXY + mat[i , j] * i * j # E[XY] = sum((PI(i,j) * i * j)) (am convenit ca xi = i, yj = j)
+  
+  return (12 * (medXY - medX * medY))
+}
+
+```
+
+<br/>
+
+##### Afisarea:
+```{r}
+
+print(cov(mat))
+
+```
+
+
+<br/>
+
+##### **$P(0 < X < 5 | Y > 4)$** 
+
+<br/>
+
+```{r}
+
+probab1 <- function(mat)
+{
+  m <- nrow(mat) - 1
+  n <- ncol(mat) -1
+  
+  S <- 0 # Suma in care calculam probabilitatea intersectiei
+  SY <- 0
+  
+  if(n > 4) 
+  {
+    for(i in 1 : min(4 , m))
+     for(j in 5 : n)
+       S <- S + mat[i , j]
+    
+    for(j in 5 : n)
+      SY <- SY + mat[m + 1 , j]
+  }
+  
+  if(SY > 0)
+    return (S / SY) # P(0 < X < 5 , Y > 4) / P(Y>4)
+  else return (S) # am considerat ca daca P(Y > 4) = 0, atunci probabilitatea este 0
+}
+
+```
+
+##### Afisarea:
+
+```{r}
+
+print(probab1(mat))
+
+```
+
+
+<br/>
+
+
+#### **$P(X > 3 , Y < 7)$**
+
+<br/>
+
+```{r}
+
+probab2 <- function(mat)
+{
+  m <- nrow(mat) - 1
+  n <- ncol(mat) -1
+  
+  S <- 0 # Suma in care calculam probabilitatea
+
+  if(m > 3) # Daca exista cel putin un X=x a.i x >= 4
+  {
+    for(i in 4 : m)
+      for(j in 1 : min( 7 , n))
+        S <- S + mat[i , j]
+  }
+  
+  return (S)
+}
+
+```
+
+##### Afisarea:
+```{r}
+print(probab2(mat))
+```
+
+<br/>
+
+
+
+
+#### d) Pentru exemplul obţinut la punctul b) construiţi două funcţii fverind şi respectiv fvernecor cu ajutorul cărora să verificaţi dacă variabilele X şi Y sunt:
+
+<br/>
+
+#### **independente**
+
+<br/>
+
+```{r}
+
+fverind <- function(mat)
+{
+  # Ca 2 variabile sa fie independente PI(i,j) = pi * qj 
+  
+  m <- nrow(mat) - 1
+  n <- ncol(mat) -1
+  
+  for(i in 1 : m)
+    for(j in 1 : n)
+      if(mat[i , j] != mat[i , n + 1 ] * mat[m + 1 , j])
+         return (0)
+  return (1)
+}
+
+```
+
+##### Verificarea daca sunt independente sau nu:
+```{r}
+
+ok <- fverind(mat)
+if(ok == 1){ print("Sunt independente")
+} else {print("Nu sunt independente")}
+
+```
+
+
+<br/>
+
+#### **necorelate**
+
+<br/>
+
+```{r}
+
+  fvernecor <- function(mat)
+{
+  # Pentru a calcula daca 2 variabile sunt necoreate, este suficient sa calculam cov(X , Y)
+  
+  cov <- cov(mat) / 12 # am impartit la 12 caci mai sus calculasem cov(3X,4Y)
+
+ if(cov == 0)
+ {
+   print("Sunt necorelate")
+   return (1) # sunt necorelate
+ }
+  print("Sunt corelate")
+  return (0)
+}
+
+```
+
+##### Verificare:
+```{r}
+
+print(fvernecor(mat))
+
+```
+
+

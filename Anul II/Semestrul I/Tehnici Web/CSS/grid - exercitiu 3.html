@@ -1,0 +1,45 @@
+<html>
+    <head>
+
+        <style>
+                    #container
+        {
+            display:grid;
+            grid-template-columns: auto auto auto;
+            grid-template-rows: auto auto auto auto auto;
+            width:70%;
+            height:50%;
+            row-gap:5px;
+            column-gap: 5px;
+
+        }
+
+        #d1{
+            background-color: black;
+            grid-area: 1/2/2/4;
+        }
+        #d2{
+            background-color:yellow;
+            grid-area:2/1/5/2;
+        }
+        #d3{
+            background-color: blue;
+            grid-area:2/2/5/5;
+        }
+        #d4{
+            background-color: purple;
+            grid-area:5/1/6/4;
+        }
+        </style>
+    </head>
+    <body>
+        <div id = "container">
+            <div id ="d1"> </div>
+            <div id ="d2"> </div>
+            <div id ="d3"> </div>
+            <div id ="d4"> </div>
+            <div id ="d5"> </div>
+            <div id ="d6"> </div>
+        </div>  
+    </body>
+</html>

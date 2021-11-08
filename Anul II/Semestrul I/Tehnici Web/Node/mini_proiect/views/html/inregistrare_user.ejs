@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<title>Inregistrare utilizator</title>
+
+	<meta charset="utf-8">
+	<meta name="author" content="Ionel"/>
+	<link type="text/css" rel="stylesheet" href="../css/stil.css"/>
+</head>
+<body class="container">
+
+<header>
+    <% include ../fragmente/header %>
+</header>
+
+<main>
+    <div class="afisaj">
+        <h1>Inregistrare utilizator</h1>
+        <p>Completati formularul pentru noul profesor:<br/>
+		<img src="http://irinaciocan.ro/imagini/nenea_html.png" alt="Ionel"/>
+		</p>
+		<% if(!locals.rsstatus) { %><!-- verific daca status e definit-->
+		<form method="post" class="date">
+			<p>
+			<label>
+				Username: <input type="text" name="username" value="prof123">
+			</label>
+			</p>
+			<p>
+			<label>
+				Nume: <input type="text" name="nume" value="Sever Examenescu">
+			</label>
+			</p>
+			<p>
+			<label>
+				Materii(separate cu virgula): <input type="text" name="materii" value="tehnici web, inteligenta artificiala" size="50">
+			</label>
+			</p>
+			<p>
+			<label>
+				Parola: <input type="password" name="parola" value="">
+			</label>
+			</p>
+			<p>
+			<label>
+				Reintroduceti parola: <input type="password" name="rparola" value="">
+			</label>
+			</p>
+			<p>
+			<label>
+				Email: <input type="text" name="email" value="profprofprof007@gmail.com"  size="50">
+			</label>
+			</p>
+			<p>		
+			<input type="submit" value="Submit">
+			</p>
+		</form>
+		<% } else if(rsstatus=="ok"){ %>
+			<p>Date introduse</p>
+		<% } else {%>
+			<p>Eroare</p>
+		<% } %>
+    </div>
+</main>
+
+<footer>
+    <% include ../fragmente/footer %>
+</footer>
+
+</body>
+</html>

@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<!--<html>
+<body>
+
+<p>This example uses the addEventListener() method to add two click events to the same button. However, the stopImmediatePropagation() method <b>stops</b> the second event handler from being executed.</p>
+
+<p><strong>Note:</strong> The stopImmediatePropagation() method is not supported in IE8 and earlier versions.</p>
+<div onclick = "myfunction()">
+<button id="myBtn">Try it</button>
+</div>
+
+<script>
+function myFunction(event) {
+  alert ("Hello World!");
+ // event.stopImmediatePropagation(); // Try to remove me
+}
+
+function someOtherFunction() {
+  alert ("I will not get to say Hello World");
+}
+
+function myfunction() {alert("Pressed on div");}
+
+var x = document.getElementById("myBtn");
+x.addEventListener("click", myFunction);
+x.addEventListener("click", someOtherFunction);
+</script>
+
+</body>
+</html> -->
+
+<html>
+    <head>
+        <script>
+            window.onload=function()
+            {
+            var bunic=document.body;
+            var parinte=document.getElementById("parinte");
+            var copil=document.getElementById("copil");
+            bunic.addEventListener("click",function(event){alert("BODY");bunic.className="rosu";},true);
+            parinte.addEventListener("click",function(event){event.stopPropagation();alert("DIV");parinte.className="galben";},true);
+            copil.addEventListener("click",function(event){alert("Prima functie");copil.className="verde";});
+            copil.addEventListener("click",function(event){
+            alert("A doua functie");});
+            copil.addEventListener("click",function(event){alert("A treia functie");});
+            }
+        </script>
+    </head>
+    <body>
+        <body id="bunic">
+            <div id="parinte">Div
+            <p id="copil">Paragraf</p>
+            </div>
+         </body>
+    </body>
+</html>

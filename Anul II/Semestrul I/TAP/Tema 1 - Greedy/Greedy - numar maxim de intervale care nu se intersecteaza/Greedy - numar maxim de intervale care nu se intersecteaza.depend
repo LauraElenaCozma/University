@@ -1,0 +1,6 @@
+# depslib dependency file v1.0
+1578419672 source:c:\users\cozma\documents\greedy - numar maxim de intervale care nu se intersecteaza\main.cpp
+	<iostream>
+	<fstream>
+	<vector>
+

@@ -1,0 +1,6 @@
+# depslib dependency file v1.0
+1574015731 source:d:\total salvari\anul ii\semestrul i\tap\tema 2 - divide et impera\v3 - 3 numarul inversiunilor cu ai mai mare ca 2aj\main.cpp
+	<iostream>
+	<fstream>
+	<vector>
+

@@ -1,0 +1,59 @@
+<html>
+    <head>
+        <style>
+            #container
+            {
+                display:grid;
+                border:1px solid black;
+                grid-template-columns: auto auto auto;
+
+            }
+            #d1
+            {
+                grid-area: 1 / 1 / 4 / 2;
+                border:1px solid blue;
+            }
+            #d2
+            {
+                grid-area: 1 / 2 / 4 / 3;
+                border:1px solid blue;
+            }
+            #container > *
+            {
+                border:1px solid blue;
+            }
+
+
+            #d1, #d2{
+                grid-row:1 / 4;
+            }
+
+            @media screen and (max-width:500px){
+                #container{
+                    display:block;
+                }
+                #container div{
+                    width:50vw;
+                }
+                #d3{
+                    display:none;
+                }
+                #container > *
+                {
+                    width: 50vw;
+                }
+            }
+        </style>
+    </head>
+    <body>
+        <div id="container">
+
+            <div id="d1">1</div>
+            <div id="d2">2</div>
+            <div id="d3">3</div>
+            <div id="d4">4</div>
+            <div id="d5">5</div>
+            
+        </div>
+    </body>
+</html>

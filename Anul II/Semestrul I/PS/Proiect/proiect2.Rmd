@@ -1,0 +1,584 @@
+---
+title: "Exercitiul 2"
+author: "Cozma Laura - Elena / Manolache Andrei - 244"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r include=FALSE}
+library(pracma)
+```
+
+<br />
+<br />
+  
+#### a) Construiţi funcţia fgam care implementează proprietăţile integralei gamma
+
+<br />
+
+```{r}
+
+fgam <- function(a)
+{
+  if(a == 1)
+    return (1)
+  
+  else if(a == 1/2)
+    return (sqrt(pi))
+  
+  else if (is.integer(a) && a > 0) # daca este natural 
+    return (factorial(a-1))
+  
+  else if (a > 1)
+    return (fgam(a - 1) * (a - 1))
+  
+  else 
+  {
+    # pentru a < 1
+    f <- function(x)
+    {
+      x^(a-1)*exp(-x)
+    }
+    
+    return(integrate(f , 0 , Inf)$value)
+  }
+}
+```
+  
+<br />
+   
+#### b)Construiţi funcţia fbet care implementează proprietăţile integralei beta ####
+
+<br />
+ 
+```{r}
+
+fbet <- function(a,b)
+{
+  if(a + b == 1 && a > 0 && b > 0)
+    return (pi / (sin(a * pi)))
+  else return ( ( fgam(a) * fgam(b) ) / (fgam(a+b)) )
+}
+
+```
+
+<br />
+
+#### c) Fie $X$ şi $Y$ două variabile aleatoare independente repartizate $X ∼ Gamma(a, b)$ şi $Y ∼ Beta(a, b)$ Construiţi funcţiile fprobgammanr, fprobbetanr şi respectiv fprobnr cu nr luând valori de la 1 la 9 care primesc ca parametri valorile lui a si i b asociate repartiţiilor Gamma şi respectiv Beta şi care calculează următoarele probabilităţi(folosind funcţiile fgam, fbet şi optimise):
+
+<br />
+
+##### Functie care integreaza dupa densitatea Gamma, pe intervalul (min,max), avand ca parametri a si b
+
+ <br />
+ 
+```{r}
+
+integreazaGamma <- function(min , max , a , b)
+{
+  
+  densGamma <- function(x)
+  {
+    numitor <- b^a * fgam(a)
+    numarator <- x ^ (a - 1) * exp(-x / b)
+    return (numarator / numitor)
+  }
+  
+  return(integrate(densGamma , min , max)$value)
+}
+
+```
+
+<br />
+
+##### Functie care integreaza dupa densitatea Beta, pe intervalul (min,max), avand ca parametri a si b 
+
+<br />
+
+```{r}
+
+integreazaBeta <- function(min , max , a , b)
+{
+  if(max< 0)
+    return (0)
+  
+  if(min > 1)
+    return (0)
+  
+  densBeta <- function(x)
+  {
+    
+    y <- ((1 - x) ^ (b - 1)) * (x ^ (a - 1))
+    return (y)
+  }
+  
+  numarator <- integrate(densBeta, min , max)$value
+  numitor <- fbet(a , b)
+  
+  return(numarator / numitor)
+}
+
+```
+
+<br />
+
+#### 1) Functia **fprobgamma1** care calculeaza $P(X < 3)$
+
+<br />
+
+```{r}
+
+fprobgamma1 <- function(a , b)
+{
+  x <- integreazaGamma(0 , 3 , a , b)
+  return (x)
+}
+
+```
+
+#### Teste
+
+```{r}
+fprobgamma1(4 , 1.1)
+fprobgamma1(4 , 2)
+fprobgamma1(0.3 , 1.2) 
+fprobgamma1(1 , 0.85)
+```
+
+
+<br />
+
+#### 2) Functia **fprobgamma2** care calculeaza $P(2 < X < 5)$
+
+<br />
+
+```{r}
+
+fprobgamma2 <- function(a , b)
+{
+  x <- integreazaGamma(0 , 5 , a , b) - integreazaGamma(0 , 2 , a , b)
+  return (x)
+}
+
+```
+
+#### Teste
+
+```{r}
+
+fprobgamma2(4 , 1.1)
+fprobgamma2(4 , 2)
+fprobgamma2(0.3 , 1.2) 
+fprobgamma2(1 , 0.85)
+
+```
+
+<br />
+
+#### 3) Functia **fprobgamma3** care calculeaza $P(3 < X < 4 | X > 2)$
+
+<br />
+
+```{r}
+
+fprobgamma3 <- function(a , b)
+{
+  x <- integreazaGamma(3 , 4 , a , b)
+  y <- integreazaGamma(2 , Inf , a , b)
+  
+  return ( x / y)
+}
+
+
+```
+
+#### Teste
+
+
+```{r}
+
+fprobgamma3(4 , 1.1)
+fprobgamma3(4 , 2)
+fprobgamma3(0.3 , 1.2) 
+fprobgamma3(1 , 0.85)
+
+```
+
+<br />
+
+#### 4) Functia **fprobbeta4** care calculeaza $P(Y > 2)$
+
+<br />
+
+```{r}
+
+fprobbeta4 <- function(a , b)
+{
+  x <- integreazaBeta(2 , Inf , a , b)
+  
+  return (x)
+}
+
+```
+
+##### Teste 
+```{r}
+
+fprobbeta4(4 , 1.1)
+fprobbeta4(4 , 2)
+fprobbeta4(0.3 , 1.2) 
+fprobbeta4(1 , 0.85)
+
+```
+
+<br />
+
+#### 5) Functia **fprobgamma5** care calculeaza $P(4 < X < 6)$
+
+<br />
+
+```{r}
+
+fprobgamma5 <- function(a , b)
+{
+  x <- integreazaGamma(4 , 6 , a , b)
+  return (x)
+}
+
+```
+
+##### Teste
+
+```{r}
+
+fprobgamma5(4 , 1.1)
+fprobgamma5(4 , 2)
+fprobgamma5(0.3 , 1.2) 
+fprobgamma5(1 , 0.85)
+
+```
+
+<br />
+
+#### 6) Functia **fprobgamma6** care calculeaza $P(0 < X < 1 | X < 7)$
+
+<br />
+
+```{r}
+
+fprobgamma6 <- function(a , b)
+{
+  x <- integreazaGamma(0 , 1 , a , b)
+  y <- integreazaGamma(0 , 7 , a , b)
+  return (x/y)
+}
+
+```
+
+##### Teste
+
+```{r}
+
+fprobgamma6(4 , 1.1)
+fprobgamma6(4 , 2)
+fprobgamma6(0.3 , 1.2) 
+fprobgamma6(1 , 0.85)
+
+```
+
+<br />
+
+#### 7) Functia **fprob7** care calculeaza $P(X + Y < 5)$
+
+<br />
+
+```{r}
+
+fprob7 <- function(a , b)
+{
+  f <- function(x , y)
+  {
+    densGamma <- function(x)
+    {
+      numitor <- b ^ a * fgam(a)
+      numarator <- x ^ (a - 1) * exp(-x / b)
+      return (numarator / numitor)
+    }
+    
+    densBeta <- function(x)
+    {
+      numitor <- fbet(a , b)
+      numarator <- (1 - x) ^ (b - 1) * x ^ (a - 1)
+      return (numarator/numitor)
+    }
+    
+    return (densGamma(x) * densBeta(y)) # densitatea comuna
+  }
+  
+  ymax <- function(x) # limita superioara pentru cea de-a doua integrala
+  {
+    min <- min(1 , 5 - x) # definirea lui Y este pe (0,1)
+  }
+  
+  I <- integral2(f, 0 , 5 , 0 , ymax)
+  return(I$Q)
+}
+
+```
+
+fprob7(4,5)
+#### Teste 
+
+```{r}
+
+fprob7(4 , 1.1)
+fprob7(4 , 2)
+fprob7(0.3 , 1.2) 
+fprob7(1 , 0.85)
+
+```
+
+
+<br />
+
+#### 8) Functia **fprob8** care calculeaza $P(X - Y > 0.5)$
+
+<br />
+
+```{r}
+
+fprob8 <- function(a , b)
+{
+  #Functia densitate gamma 
+  densGamma <- function(x)
+  {
+    numitor <- b ^ a * fgam(a)
+    numarator <- x ^ (a - 1) * exp(-x / b)
+    return (numarator / numitor)
+  }
+  
+  #Functia densitate Beta
+  densBeta <- function(x)
+  {
+    numitor <- fbet(a , b)
+    numarator <- (1 - x) ^ (b - 1) * x ^ (a - 1)
+    return (numarator/numitor)
+  }
+  
+  # functia care calculeaza densitatea comuna, inversand X si Y ( X si Y independente)
+  densInvers <- function(x , y) 
+  {
+    return (densGamma(y) * densBeta(x))
+  }
+  
+  # Integram initial dupa y, ca sa nu am probleme cu domeniul la infinit, si scadem din 1
+  
+  #limita inferioara
+  ymin <- function(x)
+  {
+    return (x)
+  }
+  
+  #limita superioara
+  ymax<-function(x)
+  {
+    return( x + 0.5)
+  }
+  
+  I<-integral2(densInvers , 0 , 1 , ymin , ymax);
+  
+  return (1 - I$Q)
+}
+
+```
+
+##### Teste 
+
+```{r}
+
+fprob8(4 , 1.1)
+fprob8(4 , 2)
+fprob8(0.3 , 1.2) 
+fprob8(1 , 0.85)
+
+```
+
+<br />
+
+#### Functia **fprob9** care calculeaza $P(X + Y > 3 | X- Y > 0.5)$
+
+<br />
+
+```{r}
+
+fprob9 <- function(a , b)
+{
+  #Functia densitate Gamma 
+  densGamma <- function(x)
+  {
+    numitor <- b ^ a * fgam(a)
+    numarator <- x ^ (a - 1) * exp(-x / b)
+    return (numarator / numitor)
+  }
+  #Functia densitate Beta
+  densBeta <- function(x)
+  {
+    numitor <- fbet(a , b)
+    numarator <- (1 - x) ^ (b - 1) * x ^ (a - 1)
+    return (numarator/numitor)
+  }
+  
+  #Densitatea comuna este produsul densitatilor (datorita independentei)
+  dens <- function(x , y )
+  {
+    return (densGamma(x) * densBeta(y)) 
+  } 
+  
+  
+  ymax <- function(x) # limita superioara pentru cea de-a doua integrala
+  {
+    return (min(3 - x , 1))
+  }
+  
+  I <- integral2(dens , 0 , 3 , 0 , ymax)$Q
+  numarator <- 1 - I 
+  numitor <- fprob8(a , b);
+  
+  return (numarator / numitor)
+}
+
+```
+
+##### Teste 
+
+```{r}
+
+fprob9(4 , 1.1)
+fprob9(4 , 2)
+fprob9(0.3 , 1.2) 
+fprob9(1 , 0.85)
+
+```
+
+<br />
+
+#### d) Calculaţi aceleaşi probabilităţi ca la punctul c) folosind funcţiile de sistem din R
+
+<br />
+
+```{r}
+
+tabel <- function(val1  , val2)
+{
+  
+  options(digits=20)
+  rezultateC <- vector()
+  rezultateD <- vector()
+  
+  #1) P(X < 3)
+  rezultateC <- c(rezultateC , fprobgamma1(val1, val2))
+  rezultateD <- c( rezultateD , pgamma(3 , shape = val1 , scale = val2))
+  
+  
+  #2) P(2 < X < 5)
+  rezultateC <- c(rezultateC , fprobgamma2(val1 , val2))
+  rezultateD <- c( rezultateD , pgamma(5 , shape = val1 , scale = val2) - pgamma(2 , shape = val1 , scale = val2))
+  
+  #3)  P(3 < X < 4 | X > 2)
+  rezultateC <- c(rezultateC , fprobgamma3(val1 ,val2))
+  numarator <- pgamma(4 , shape = val1 , scale = val2) - pgamma(3 , shape = val1, scale = val2)
+  numitor <- pgamma(Inf, shape = val1 , scale = val2) - pgamma(2 , shape = val1 , scale = val2)
+  rezultateD <- c( rezultateD , numarator / numitor)
+  
+  #4) P(Y > 2)
+  rezultateC <- c(rezultateC , fprobbeta4(val1, val2))
+  rezultateD <- c(rezultateD , pbeta(Inf , shape1 = val1 , shape2 = val2) - pbeta(2, shape1 = val1 , shape2 = val2))
+  
+  #5) P(4 < X < 6)
+  rezultateC <- c(rezultateC , fprobgamma5(val1, val2))
+  rezultateD <- c( rezultateD , pgamma(6 , shape = val1 , scale = val2) - pgamma(4 , shape = val1 , scale = val2))
+  
+  #6) P(0 < X < 1 | X < 7)
+  rezultateC <- c(rezultateC , fprobgamma6(val1, val2))
+  numarator <- pgamma(1 ,shape = val1 , scale = val2)
+  numitor <- pgamma(7 , shape = val1 , scale = val2)
+  rezultateD <- c( rezultateD , numarator / numitor)
+  
+  #7) P(X + Y < 5)
+  rezultateC <- c(rezultateC , fprob7(val1 , val2))
+  
+  #determina densitatea comuna
+  f7 <- function(x , y)
+  {
+    return (dgamma(x , shape = val1 , scale = val2) * dbeta(y , shape1 = val1 , shape2 = val2)) 
+  }
+  
+  ymax7 <- function(x) # limita superioara pentru cea de-a doua integrala
+  {
+    min <- min(1 , 5 - x) # definirea lui Y este pe (0,1)
+  }
+  
+  I7 <- integral2(f7, 0 , 5 , 0 , ymax7)
+  rezultateD <- c(rezultateD , I7$Q)
+  
+  #8) P(X − Y > 0.5)
+  rezultateC <- c(rezultateC , fprob8(val1 , val2))
+ 
+   # functia care calculeaza densitatea comuna, inversand x si y
+  densInvers8 <- function(x , y) 
+  {
+    return (dgamma(y , shape = val1 , scale = val2) * dbeta(x , shape1 = val1 , shape2 = val2)) 
+  }
+  
+  # Integram initial dupa y, ca sa nu am probleme cu domeniul la infinit, si scadem din 1
+  
+  #limita inferioara
+  ymin8 <- function(x)
+  {
+    return (x)
+  }
+  
+  #limita superioara
+  ymax8 <- function(x)
+  {
+    return( x + 0.5)
+  }
+  
+  I8<-integral2(densInvers8 , 0 , 1 , ymin8 , ymax8);
+  rezultateD <- c(rezultateD , 1 - I8$Q)
+  
+  #9) P(X + Y > 3 | X − Y > 0.5)
+  rezultateC <- c(rezultateC , fprob9(val1 , val2))
+  
+  ymax9 <- function(x) # limita superioara pentru cea de-a doua integrala
+  {
+    return (min(3 - x , 1))
+  }
+  
+  I9 <- integral2(f7 , 0 , 3 , 0 , ymax9)$Q
+  numarator <- 1 - I9 
+  numitor <- 1 - I8$Q
+  rezultateD <- c(rezultateD , (numarator) / numitor)
+  
+  
+  df <- data.frame("C" = rezultateC , "D" = rezultateD)
+  return(df)
+}
+
+```
+
+
+##### Teste
+
+```{r}
+
+tabel(4 , 1.1)
+tabel(4 , 2)
+tabel(0.3 , 1.2) 
+tabel(1 , 0.85)
+
+```
+
