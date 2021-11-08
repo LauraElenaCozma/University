@@ -1,0 +1,56 @@
+listintermnr([],[]).
+listintermnr([H],[H]) :- number(H).
+listintermnr([H],[[H]]) :- not(number(H)).
+% daca H e constanta numerica, adaugam la rezultat H
+listintermnr([H|T],[H|Lrez]) :- number(H),
+                             listintermnr(T, Lrez).  %luam rezultatul de dupa H
+
+
+listintermnr([H|T], Rez) :- not(number(H)),
+                          listintermnr(T, [Hrez | Lrez]),
+                          not(is_list(Hrez)),  %daca ultimul element nu e lista
+                          append([[H]], [Hrez | Lrez], Rez).%formam o noua lista din H
+listintermnr([H|T], Rez) :- not(number(H)),
+                          listintermnr(T, [Hrez | Lrez]),
+                          is_list(Hrez), %daca e deja o lista dupa el
+                          append([[H|Hrez]], Lrez, Rez). %il adaugam la lista existenta
+
+
+
+
+
+
+barbat(alex). barbat(andrei).
+femeie(ana). femeie(carmen). femeie(elena). femeie(maria).
+ochi(alex, negri).
+ochi(ana, caprui).
+ochi(andrei, albastri).
+ochi(carmen, violeti).
+ochi(elena, verzi).
+ochi(maria, caprui).
+place(B, F) :- barbat(B), femeie(F), ochi(F, violeti).
+place(B, F) :- barbat(B), femeie(F), ochi(F, verzi).
+place(F, B) :- femeie(F), barbat(B), ochi(B, albastri).
+logoditi(B, F) :- place(B, F), place(F, B).
+rivali(P, Q) :- femeie(P), femeie(Q), place(B, P), place(B, Q).
+rivali(P, Q) :- barbat(P), barbat(Q), place(F, P), place(F, Q).
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,94 @@
+Euristica 1
+
+Initial: [inc(i,3),inc(i,1),inc(i,1),inc(i,2)]
+
+1) Incuietori: [inc(i,3),inc(i,1),inc(i,1),inc(i,2)]
+
+Folosim cheia: [d,d,g,g] pentru a ajunge la [inc(i,2),inc(d,0),inc(i,1),inc(i,2)]
+
+2) Incuietori: [inc(i,2),inc(d,0),inc(i,1),inc(i,2)]
+
+Folosim cheia: [g,i,d,d] pentru a ajunge la [inc(i,2),inc(i,1),inc(d,0),inc(i,1)]
+
+3) Incuietori: [inc(i,2),inc(i,1),inc(d,0),inc(i,1)]
+
+Folosim cheia: [d,d,g,g] pentru a ajunge la [inc(i,1),inc(d,0),inc(d,0),inc(i,1)]
+
+4) Incuietori: [inc(i,1),inc(d,0),inc(d,0),inc(i,1)]
+
+Folosim cheia: [g,i,d,d] pentru a ajunge la [inc(i,1),inc(i,1),inc(d,0),inc(d,0)]
+
+5) Incuietori: [inc(i,1),inc(i,1),inc(d,0),inc(d,0)]
+
+Folosim cheia: [d,d,g,g] pentru a ajunge la [inc(d,0),inc(d,0),inc(d,0),inc(d,0)]
+
+Incuietori(stare scop): [inc(d,0),inc(d,0),inc(d,0),inc(d,0)]
+
+S-au realizat 5 operatii.
+--- Timpul total de rulare este de 0.0010323524475097656 secunde ---
+
+
+Euristica 2
+
+Initial: [inc(i,3),inc(i,1),inc(i,1),inc(i,2)]
+
+1) Incuietori: [inc(i,3),inc(i,1),inc(i,1),inc(i,2)]
+
+Folosim cheia: [d,d,g,g] pentru a ajunge la [inc(i,2),inc(d,0),inc(i,1),inc(i,2)]
+
+2) Incuietori: [inc(i,2),inc(d,0),inc(i,1),inc(i,2)]
+
+Folosim cheia: [g,i,d,d] pentru a ajunge la [inc(i,2),inc(i,1),inc(d,0),inc(i,1)]
+
+3) Incuietori: [inc(i,2),inc(i,1),inc(d,0),inc(i,1)]
+
+Folosim cheia: [d,d,g,g] pentru a ajunge la [inc(i,1),inc(d,0),inc(d,0),inc(i,1)]
+
+4) Incuietori: [inc(i,1),inc(d,0),inc(d,0),inc(i,1)]
+
+Folosim cheia: [g,i,d,d] pentru a ajunge la [inc(i,1),inc(i,1),inc(d,0),inc(d,0)]
+
+5) Incuietori: [inc(i,1),inc(i,1),inc(d,0),inc(d,0)]
+
+Folosim cheia: [d,d,g,g] pentru a ajunge la [inc(d,0),inc(d,0),inc(d,0),inc(d,0)]
+
+Incuietori(stare scop): [inc(d,0),inc(d,0),inc(d,0),inc(d,0)]
+
+S-au realizat 5 operatii.
+--- Timpul total de rulare este de 0.0 secunde ---
+
+
+Euristica 3
+
+Initial: [inc(i,3),inc(i,1),inc(i,1),inc(i,2)]
+
+1) Incuietori: [inc(i,3),inc(i,1),inc(i,1),inc(i,2)]
+
+Folosim cheia: [d,d,g,g] pentru a ajunge la [inc(i,2),inc(d,0),inc(i,1),inc(i,2)]
+
+2) Incuietori: [inc(i,2),inc(d,0),inc(i,1),inc(i,2)]
+
+Folosim cheia: [g,i,d,d] pentru a ajunge la [inc(i,2),inc(i,1),inc(d,0),inc(i,1)]
+
+3) Incuietori: [inc(i,2),inc(i,1),inc(d,0),inc(i,1)]
+
+Folosim cheia: [d,d,g,g] pentru a ajunge la [inc(i,1),inc(d,0),inc(d,0),inc(i,1)]
+
+4) Incuietori: [inc(i,1),inc(d,0),inc(d,0),inc(i,1)]
+
+Folosim cheia: [d,d,g,g] pentru a ajunge la [inc(d,0),inc(d,0),inc(d,0),inc(i,1)]
+
+5) Incuietori: [inc(d,0),inc(d,0),inc(d,0),inc(i,1)]
+
+Folosim cheia: [g,i,d,d] pentru a ajunge la [inc(d,0),inc(i,1),inc(d,0),inc(d,0)]
+
+6) Incuietori: [inc(d,0),inc(i,1),inc(d,0),inc(d,0)]
+
+Folosim cheia: [d,d,g,g] pentru a ajunge la [inc(d,0),inc(d,0),inc(d,0),inc(d,0)]
+
+Incuietori(stare scop): [inc(d,0),inc(d,0),inc(d,0),inc(d,0)]
+
+S-au realizat 6 operatii.
+--- Timpul total de rulare este de 0.0 secunde ---
+
+

@@ -1,0 +1,60 @@
+1. What is the label of the test example t = [2, 3, 5] if you apply the k-nearest neighbors classifier with k = 1 and metric = L1 (Manhattan distance) given the training data X = [[1, 4, 1], [2, 4, 7], [2, 30, 5], [0, 1, 0]], Y = [1, 3, 2, 2]?
+A. 2
+B. 3
+C. 0
+D. 1
+
+2. Given the following vocabulary {0 - dogs, 1 - cats, 2 - candies, 3 - likes, 4 - she, 5 - he}. What is the bag of words (BOW) representation of the sentence "she likes dogs and horses."?
+A. [1, 0, 0, 1, 1, 0, 1, 1]
+B. [1, 0, 1, 1, 1, 0]
+C. [1, 0, 0, 1, 1, 0]
+D. [2, 0, 0, 1, 1, 0]
+
+3. What is the resulting data after applying min-max scaling to this data [[0.1, 0.4], [0.2, 0.5], [0.3, 0.6]] (3 examples, 2 features)?
+A. [[0.0, 0.5], [0.25, 0.75], [0.5, 1.0]]
+B. [[0.1, 0.4], [0.2, 0.5], [0.3, 0.6]]
+C. [[0.0, 0.4], [0.25, 0.5], [0.5, 0.6]]
+D. [[0.0, 0.0], [0.5, 0.5], [1.0, 1.0]]
+
+4. How many neurons should the hidden layer of a network with a single hidden layer and an output layer have in the context of a classification problem with 25 classes have?
+A. 10
+B. 25
+C. 3
+D. Depends on the problem and should be determined by means of validation
+
+5. What is the dimension of the weights from the second layer of a neural network with the following configuration 4-6-2-1 (the first number is the input size, the other numbers represent the amount of neurons in each layer)?
+A. 6x1
+B. 2x1
+C. 4x6
+D. 6x2
+
+6. Which classifier can achieve the best performance on a e-mail spam classification task?
+A. A Neural Network with three layers
+B. Depends on problem details and should be determined by means of validation
+C. An SVM with RBF kernel
+D. An SVM with linear kernel
+
+7. Which of the following is a linear classifier?
+A. A neuron with no activation
+B. A 3-NN classifier
+C. An SVM with polynomial kernel
+D. A two layer neural network with ReLU activations
+
+8. What is the recall of the classifier if the ground-truth labels are y = [0, 1, 1, 0, 0, 0, 0, 1] and the predicted labels are y_hat = [1, 0, 0, 0, 0, 1, 1, 1]?
+A. 0.23
+B. 0.33
+C. 0.99
+D. 0.45
+
+9. Which of the following does not constitute a valid loss for a neural network trained with gradient descent?
+A. MSE
+B. L2 Loss
+C. Cross Entropy
+D. L1 Loss
+
+10. What will be the shape of the activation maps if we apply a 2x2 max pooling with stride=2 to a 32x32 activation map?
+A. 16x16
+B. 32x32
+C. 14x14
+D. 28x28
+

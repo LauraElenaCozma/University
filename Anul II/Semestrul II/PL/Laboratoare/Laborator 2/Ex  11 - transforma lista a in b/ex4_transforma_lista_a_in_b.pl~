@@ -1,0 +1,2 @@
+trans_a_b([] , []).
+trans_a_b([a | Tail1] , [b | Tail2]) :- trans_a_b(Tail1 , Tail2).

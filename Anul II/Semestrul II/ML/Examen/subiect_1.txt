@@ -1,0 +1,172 @@
+1. If the data is split into 9 classes, and we want to train a SVM for classification. How many binary classifiers will be trained in the one-vs-one approach?
+B. 36
+
+2. Which of the following neuron activation is the result of the tanh activation function?
+D. [0.99, 0.05, 0.99]
+
+3. Calculate the cost for the Ridge Regression having weights=[3, 2], alpha=0.1, y_true=[10, 1, 9, 4], y_pred=[9, 3, 6, 7].
+B. 23.36
+
+4. Which of the following is equivalent to a single artificial neuron without activation?
+C. A neural network with no activations
+
+5. After training for 5 epochs, we have the following training losses for each epoch [0.60, 0.48, 0.30, 0.28, 0.26], and the following validation losses for each epoch [0.55, 0.43, 0.27, 0.27, 0.25]. Is the model overfitted, underfitted, both, or neither?
+A. Neither
+
+6. What is the output of neural network with 3 hidden units and 1 output unit having ReLU activations for the input x = [1, -2], if the weights are W1 = [-0.5, 3, -2; 2, -1, 0], B1 = [0, 1, -1], W2 = [-1; -1; 2], B2 = [2]?
+C. 0
+
+7. What is the value of PReLU(x) - parametric ReLU, where alpha=0.1 and x=-0.2?
+D. -0.02
+
+8. If the current weights of a perceptron are [0.2, 0.4], their gradients are=[-2.4, -1.2], and the learning rate is 0.1. What are the weights after the weights update operation?
+B. [0.44, 0.52]
+
+
+9. Which of the following is a linear classifier?
+C. A neuron with no activation
+
+
+10. What is the output of SVM classifier for the input X = [0.1, -2, -5], if the weights are W = [-2, -1.2, -3] and the bias is b = 0.5?
+C. 1
+
+
+1. Which of the following is a technique for using an SVM as a multi-class classifier?
+B. One versus all
+
+2. What is the label of the test example t = [2, 3, 5] if you apply the k-nearest neighbors classifier with k = 1 and metric = L1 (Manhattan distance) given the training data X = [[1, 4, 1], [2, 4, 7], [2, 30, 5], [0, 1, 0]], Y = [1, 3, 2, 2]?
+D. 3
+
+3. If we have the following probabilities for events P(A)=0.5 P(B)=0.9 P(A|B)=0.3, what is the value of P(B|A)?
+D. 0.54
+
+
+5. How many learned parameters (weights + biases) will a network with input size = 2, hidden layer size = 5, output layer size = 1, have?
+D. 21
+
+
+7. In which scenario is measuring the accuracy of the model not enough to evaluate the model properly?
+A. When the dataset is imbalanced
+
+
+8. What is the recall of the classifier if the ground-truth labels are y = [0, 1, 1, 0, 0, 0, 0, 1] and the predicted labels are y_hat = [1, 0, 0, 0, 0, 1, 1, 1]?
+A. 0.33
+
+
+9. Given the following vocabulary {0 - dogs, 1 - cats, 2 - candies, 3 - likes, 4 - she, 5 - he}. What is the bag of words (BOW) representation of the sentence "she likes dogs and horses."?
+B. [1, 0, 0, 1, 1, 0]
+
+
+10. Which of the following does not constitute a valid loss for a neural network trained with gradient descent?
+A. L1 Loss
+
+
+1. What advantage does using a bias value bring in the context of the artificial neuron?
+B. It prevents the neuron hyperplanes from being forced to go through the origin
+
+
+3. The training data set contains the following examples [(3, PASS), (2, PASS), (2, PASS), (4, PASS), (0, FAIL), (1, FAIL), (3, FAIL), (1, FAIL)], the first component being the number of hours of study and the second denoting wether the student passed the exam. What is the probability of passing the exam with 2 hours of study - P(PASS|2)?
+D. 100%
+
+4. What is the dimension of the weights from the second layer of a neural network with the following configuration 4-6-2-1 (the first number is the input size, the other numbers represent the amount of neurons in each layer)?
+A. 6x2
+
+5. What is the output of the perceptron if input=[2.4, 3.0], weights=[-0.5, 0.2], bias=1.0 (activation function - sign)?
+A. 1
+
+
+6. What is the MSE for the following predicted labels y_pred = [0.1, 0.4, 0.7, 0.3] and truth labels=[1, 0, 1, 0]?
+D. 0.2875
+
+7. What is the difference between using an L1 loss and an L2 loss?
+B. The L2 loss generally favors having smaller errors instead of a having fewer but greater errors while the L1 loss does not differentiate between these cases.
+
+8. What is the resulting data after applying L1 normalization to this vector [10, 20, 30]?
+C. [0.16, 0.33, 0.5]
+
+9. What is the f1-score of the classifier if the ground-truth labels are y = [0, 1, 1, 0, 0, 0, 1, 1] and the predicted labels are y_hat = [1, 0, 0, 0, 0, 1, 1, 1]?
+B. 0.5
+
+10. Which machine learning model can achieve the best performance in the context of an audio classification problem?
+A. Depends on problem details and should be determined by means of validation
+
+
+2. Given the following vocabulary {0 - dogs, 1 - cats, 2 - candies, 3 - likes, 4 - she, 5 - he}. What is the bag of words (BOW) representation of the sentence "she likes dogs and horses."?
+C. [1, 0, 0, 1, 1, 0]
+
+
+3. What is the resulting data after applying min-max scaling to this data [[0.1, 0.4], [0.2, 0.5], [0.3, 0.6]] (3 examples, 2 features)?
+D. [[0.0, 0.0], [0.5, 0.5], [1.0, 1.0]]
+
+4. How many neurons should the hidden layer of a network with a single hidden layer and an output layer have in the context of a classification problem with 25 classes have?
+D. Depends on the problem and should be determined by means of validation
+
+
+
+6. Which classifier can achieve the best performance on a e-mail spam classification task?
+B. Depends on problem details and should be determined by means of validation
+
+
+
+8. What is the recall of the classifier if the ground-truth labels are y = [0, 1, 1, 0, 0, 0, 0, 1] and the predicted labels are y_hat = [1, 0, 0, 0, 0, 1, 1, 1]?
+B. 0.33
+
+
+
+10. What will be the shape of the activation maps if we apply a 2x2 max pooling with stride=2 to a 32x32 activation map?
+A. 16x16
+
+1. Which of the following neuron activation is the result of the softmax activation function?
+A. [0.6, 0.2, 0.2]
+
+
+3. How many neighbors should you consider in order to obtain the best result from a KNN
+classifier on the test set?
+C. It depends on the problem and should be determined by means of validation
+
+
+4. What is the label of the test example t = [1, 2, 6] if you apply the k-nearest neighbors
+regressor with k = 3 and metric = L1 (Manhattan distance) given the training data X = [[1, 4,
+2], [5, 4, 8], [2, 6, 5], [1, 1, 1], [2, 9, 6]], Y = [0.3, 0.6, 0.9, 0.6, 0.5]?
+A. 0.6
+
+
+5. What will be the shape of the activation maps if we apply a 5x5 convolutional filter with
+stride=1 and no padding to a 16x16 image?
+B. 12x12
+
+6. Suppose our model has the following metrics TP (true positives)=30, FP (false
+positives)=10, FN (false negatives)=30. What is the precision (P) and recall (R)?
+B. P=75%, R=50%
+
+
+8. What type of metric can achieve 100% training accuracy on the following 2D data set [([1,
+1], 1), ([5, 5], 1), ([10, 10], 1), ([5, 4], 0), ([6, 5], 0), ([6, 4], 0)] when considering a 1-NN
+classifier?
+A. Cosine
+B. None of the answers
+C. L2
+D. L1
+
+
+10. What is the value of the Mean Absolute Error function if the ground-truth labels are y =
+[6, 8, -9, 5] and the predicted labels are y_hat = [6.5, 7.2, 1, 7]?
+B. 3.325
+
+
+
+6. What is the value of the loss function of a Rigde regression model if the predicted values
+y_hat are [-2, -3, -1], the ground-truth values are [-2, -3, -2.5], the wights are W = [1, 0], bias
+= 5 and alpha = 0.1?
+A. 0.85
+
+
+8. What is the label of the test example t = [5, 3, 8] if you apply the k-nearest neighbors
+classifier with k = 3 and metric = L1 (Manhattan distance) given the training data X = [[1, 4,
+2], [5, 4, 8], [2, 6, 5], [1, 1, 1], [2, 9, 6]], Y = [2, 3, 3, 1, 2]?
+B. 3
+
+
+10. Can an SVM be used to achieve 100% training accuracy on the following 2D data set
+[([0, 1], 1), ([1, 0], 1), ([0, 0], 1), ([-2, 2], 0), ([2, 2], 0), ([-2, -2], 0), ([2, -2], 0)]?
+C. Yes, by using the kernel trick

@@ -1,0 +1,12 @@
+Weights shows the strength of the particular node.
+A bias value allows you to shift the activation function curve up or down.
+
+The weight shows the effectiveness of a particular input. More the weight of input, more it will have impact on network.
+
+On the other hand Bias is like the intercept added in a linear equation. It is an additional parameter in the Neural Network which is used to adjust the output along with the weighted sum of the inputs to the neuron. Therefore Bias is a constant which helps the model in a way that it can fit best for the given data.
+
+output  =  sum (weights * inputs) + bias
+
+Due to absence of bias, model will train over point passing through origin only, which is not in accordance with real-world scenario. Also with the introduction of bias, the model will become more flexible.
+
+bias helps in controlling the value at which activation function will trigger------------------------

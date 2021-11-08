@@ -1,0 +1,76 @@
+lab 2
+1. pentru concatenat mai multe siruri folosim concat in concat
+2. SUBSTR in loc de like substr(upper(..),1,1) = .... ca sa extragem prima litera
+3. TRIM merge simplu cu arument sirul
+4. pozitia pe care apare litera a cu INSTR
+5. un numar intreg de saptamani:!!! aflam zilele prin scadere si impartim la 7 si verificam cu MOD
+6. salariul nu e divizibil cu 1000: !!! MOD(..., 1000) <> 0
+
+8. afisare an: TO char cu spatiu dupa formatul datei si adaugam hh:mm:ss
+
+10. data de peste 12 ore!!!!!!
+SELECT TO_CHAR(sysdate + 1/2 , 'DD/MM/YYYY')
+FROM dual;
+
+b)de peste 5 min
+SELECT TO_CHAR(sysdate + INTERVAL '5' MINUTE , 'HH:MI')
+FROM dual;
+11. prima zi de luni dupa o data
+
+
+22. cum facem join ca sa ajungem si la angajat si la manager
+23. !! inclusiv cei care nu au sef
+26. cu join interesant
+
+lab 4
+5. numarul de manageri. Numaram manager id distincti
+9. mai dificila
+17. dificila
+19
+20. am facut-o mai complicat, se putea mai simplu
+22. dificil
+24. m-am complicat
+27,28,29,34 nefacute
+
+
+lab 3
+13. NU MA GANDEAM LA ASTA
+13. var 2 ATENTIE CAND FOLOSIM NVL
+17. vezi cum am rezolvat cu with
+19. interesant cu in
+31. subcerere in from/select
+32. subcerere in from/select
+
+
+lab 5 
+5.b atentie. Select in select
+7. atentie la tipurile de subcereri
+8
+9.cu exists
+10
+11. ciudat. de revazut
+12. cu exists
+de vazut temele de la 12 si 13
+
+lab 6
+5. greu
+6. ciudat
+7. atentie ce e un manager de proiect
+11. e corect?
+19. de reluat. nu merge
+
+lab 7 
+11. posibil la examen
+12-13 nefacute
+17. posibil
+18. posibi;
+21. nefacut, cu accept
+24. ATENTIE!!!!!!!! NU IMI IESEA!!!
+30, 31 nefacute
+
+lab 8
+4. cum se adauga o noua coloana
+6. adauga val default
+8. atentie e update
+18. atentie, foreign key nu mai apare la nivel de coloana
+24. constrangere not null

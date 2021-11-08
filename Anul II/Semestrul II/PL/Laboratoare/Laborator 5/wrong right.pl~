@@ -1,0 +1,5 @@
+
+formWrong(W,R,O,N,G,Val) :- Val is (G + N * 10 + O * 10 ** 2 + R * 10 ** 3 + W * 10 ** 4).
+formRight(R,I,G,H,T,Val) :- Val is (T + H * 10 + G * 10 ** 2 + I * 10 ** 3 + R * 10 ** 4).
+
+validate(W,R,O,N,G,I,H,T) :- formWrong(W,R,O,N,G,Vw), formRight(R,I,G,H,T,Vr),Vr is Vw+Vw.

@@ -1,0 +1,204 @@
+/*EXERCITIUL 1*/
+SELECT first_name || ' ' || last_name || ' castiga ' || salary || ' lunar, dar doreste ' || salary * 3 as "SALARIU_IDEAL"
+FROM employees;
+/*EXERCITIUL 2*/
+SELECT INITCAP(first_name) AS "prenume", UPPER(last_name) AS "nume", LENGTH(last_name) AS "lungime nume"
+FROM employees
+WHERE UPPER(last_name) LIKE 'J%' OR UPPER(last_name) LIKE 'M%' OR UPPER(last_name) LIKE '__A%' 
+ORDER BY 3 DESC; /*coloana a 3 a din lisra de la select*/
+
+/*varianta 2*/
+SELECT INITCAP(first_name) AS "prenume", UPPER(last_name) AS "nume", LENGTH(last_name) AS "lungime nume"
+FROM employees
+WHERE SUBSTR(UPPER(last_name) , 1 , 1) = 'J' OR SUBSTR(UPPER(last_name) , 1 , 1) = 'M' OR SUBSTR(UPPER(last_name) , 3 , 1) = 'A' 
+ORDER BY 3 DESC;
+/*EXERCITIUL 3*/
+SELECT * FROM EMPLOYEES;
+SELECT employee_id , last_name , department_id 
+FROM employees
+WHERE UPPER(TRIM(first_name)) LIKE 'STEVEN';
+/*EXERCITIUL 4*/
+
+SELECT employee_id,last_name,LENGTH(last_name) "lungime nume",INSTR(LOWER(last_name),'a',1) "prima aparite a"
+FROM employees
+WHERE UPPER(last_name) LIKE '%E';
+
+/*EXERCITIUL 5*/
+SELECT *
+FROM employees
+WHERE MOD(ROUND(sysdate-hire_date) , 7) = 0; /*impartim la 7 ca sa avem nr de saptamani*/
+
+/*EXERCITIUL 6*/
+SELECT employee_id , last_name , salary , ROUND(salary * 1.15 , 2) "Salariu nou", ROUND(salary * 0.0115 , 2) "Numar sute"
+FROM employees
+WHERE mod(salary , 1000) <> 0;
+/*EXERCITIUL 7*/
+SELECT last_name as "Nume angajat", RPAD(hire_date , 20 , '&')  as "Data angajarii"
+FROM employees
+WHERE commission_pct IS NOT NULL;
+
+/*EXERCITIUL 8*/
+SELECT TO_CHAR(SYSDATE , 'MONTH-DD-YYYY hh:mi:ss') "Data curenta", TO_CHAR(SYSDATE + 30 , 'MONTH-DD-YYYY hh:mi:ss') "Data + 30"
+FROM dual;
+/*EXERCITIUL 9*/
+SELECT TO_DATE('31/DEC/2020' , 'DD/MON/YYYY') - sysdate
+FROM dual;
+
+/*EXERCITIUL 10*/
+SELECT TO_CHAR(sysdate + 1/2 , 'HH:MI')
+FROM dual;
+
+SELECT TO_CHAR(sysdate + INTERVAL '5' MINUTE , 'HH:MI')
+FROM dual;
+
+SELECT TO_CHAR(sysdate + 5 / (60 * 24) , 'HH:MI')
+FROM dual;
+
+SELECT TO_CHAR(SYSDATE, 'dd-mm-yyyy "azi este cald" ') /*afiseaza si un sir de caractere in cadrul datei*/
+FROM DUAL;
+
+/*EXERCITIUL 11*/
+SELECT last_name || ' ' || first_name , hire_date , NEXT_DAY(ADD_MONTHS(hire_date , 6) , 'MONDAY') "Negociere"
+FROM employees;
+
+/*exrcitiul 12*/
+SELECT last_name , ROUND(MONTHS_BETWEEN(SYSDATE , hire_date)) "Luni lucrate"
+FROM employees
+ORDER BY MONTHS_BETWEEN(SYSDATE , hire_date);
+
+/*exercitiul 13*/
+SELECT last_name, hire_date, TO_CHAR(hire_date, 'd') "zi"
+FROM EMPLOYEES
+ORDER BY MOD(TO_CHAR(hire_date+6, 'd'), 7);
+
+14. Să se afişeze numele angajaţilor şi comisionul. Dacă un angajat nu câştigă comision, să
+se scrie “Fara comision”. Etichetaţi coloana “Comision”.
+
+SELECT last_name, NVL(TO_CHAR(commission_pct), 'Fara comision') "Comision"
+FROM employees;
+
+--var 2
+SELECT last_name, NVL2(TO_CHAR(commission_pct),TO_CHAR(commission_pct), 'Fara comision') "Comision"
+FROM employees;
+
+--var 3
+SELECT last_name, DECODE(TO_CHAR(commission_pct), NULL, 'Fara comision', commission_pct) "Comision"
+FROM employees;
+
+
+15. Să se listeze numele, salariul şi comisionul tuturor angajaţilor al căror venit lunar
+depăşeşte 10000$.
+
+
+SELECT  last_name, salary, commission_pct 
+FROM employees
+WHERE salary*(1+NVL(commission_pct,0))>10000;
+
+
+*/ex 16*/
+
+16. Sa se afişeze numele, codul job-ului, salariul şi o coloană care să arate salariul după
+mărire. Se presupune că pentru IT_PROG are loc o mărire de 20%, pentru SA_REP
+creşterea este de 25%, iar pentru SA_MAN are loc o mărire de 35%. Pentru ceilalţi
+angajaţi nu se acordă mărire. Să se denumească coloana "Salariu renegociat".
+
+SELECT last_name, job_id, salary, DECODE(UPPER(job_id), 'IT_PROG', salary*1.2, 'SA_REP', salary*1.25, 'SA_MAN', salary*1.35, salary) "Salariu renegogiat" 
+FROM employees;
+
+SELECT last_name, job_id, salary,
+CASE UPPER(job_id) 
+WHEN  'IT_PROG' THEN salary*1.2
+WHEN 'SA_REP' THEN  salary*1.25
+WHEN  'SA_MAN' THEN salary*1.35
+ELSE salary
+END  "Salariu renegogiat" 
+FROM employees;
+
+/* ex17 */
+
+17. Să se afişeze numele salariatului, codul şi numele departamentului pentru toţi angajaţii.
+Obs: Numele sau alias-urile tabelelor sunt obligatorii în dreptul coloanelor care au acelaşi
+nume în mai multe tabele. Altfel, nu sunt necesare dar este recomandată utilizarea lor pentru
+o mai bună claritate a cererii.
+
+--var standard
+
+SELECT last_name, department_id, department_name 
+FROM employees 
+JOIN departments USING(department_id);
+
+--var cu clauza on
+
+SELECT last_name, e.department_id, department_name
+FROM employees e
+JOIN departments d ON(e.department_id = d.department_id);
+
+
+--var non-standard
+
+SELECT last_name, e.department_id, department_name
+FROM employees e, departments d
+WHERE e.department_id = d.department_id;
+
+/*ex 18*/
+18. Să se listeze titlurile job-urile care există în departamentul 30.
+
+SELECT job_title 
+FROM jobs 
+JOIN employees USING (job_id)
+WHERE department_id=30;
+
+19. Să se afişeze numele angajatului, numele departamentului şi locatia pentru toţi angajaţii
+care câştigă comision.
+
+SELECT last_name, department_name, city
+FROM employees 
+JOIN departments USING(department_id)
+JOIN locations USING(location_id)
+WHERE commission_pct
+ IS NOT NULL;
+
+/*20. Să se afişeze numele salariatului şi numele departamentului pentru toţi salariaţii care au litera A inclusă în nume.
+*/
+SELECT last_name , department_name 
+FROM employees e 
+JOIN departments d ON(e.department_id = d.department_id AND UPPER(TRIM(last_name)) LIKE '%A%');ang
+
+/* ex 21 */
+Să se afişeze numele, job-ul, codul şi numele departamentului pentru toţi angajaţii care
+lucrează în Oxford.
+
+
+SELECT last_name , job_id , department_id, department_name 
+FROM employees 
+JOIN departments USING (department_id)
+JOIN locations USING(location_id)
+WHERE INITCAP(city) LIKE '%Oxford%';
+
+22. Să se afişeze codul angajatului şi numele acestuia, împreună cu numele şi codul şefului
+său direct. Se vor eticheta coloanele Ang#, Angajat, Mgr#, Manager.
+
+SELECT ang.employee_id AS "Ang#", ang.last_name AS "Angajat", sef.employee_id AS "Mgr#" , sef.last_name AS "Manager"
+FROM employees ang
+JOIN employees sef ON (ang.manager_id=sef.employee_id);
+ 
+23. Să se modifice cererea precedenta pentru a afişa toţi salariaţii, inclusiv cei care nu au şef.
+
+SELECT ang.employee_id AS "Ang#", ang.last_name AS "Angajat", sef.employee_id AS "Mgr#" , sef.last_name AS "Manager"
+FROM employees ang
+LEFT JOIN employees sef ON (ang.manager_id=sef.employee_id);
+
+24. Creaţi o cerere care să afişeze numele angajatului, codul departamentului şi toţi salariaţii 
+care lucrează în acelaşi departament cu el. Se vor eticheta coloanele corespunzător. 
+
+SELECT ang.last_name, ang.department_id, coleg.last_name
+FROM employees ang
+JOIN employees coleg ON(ang.department_id=coleg.department_id AND ang.employee_id < coleg.employee_id)
+ORDER BY 2;
+
+26. Să se afişeze numele şi data angajării pentru salariaţii care au fost angajaţi după Gates.
+
+SELECT e.last_name, e.hire_date, g.last_name, g.hire_date
+FROM employees e
+JOIN employees g ON(e.hire_date > g.hire_date AND INITCAP(g.last_name) LIKE '%Gates%');
+

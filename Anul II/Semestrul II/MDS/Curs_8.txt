@@ -1,0 +1,40 @@
+-proces de creare automata a componentelor software
+-aplicatiile pot fi foarte simple, minimale
+
+-apache ant
+-gradle
+
+target = rezultat obtinut in urma rularii
+albastru = dependentele acestui target(de ce avem nevoie)
+comanda(rosu) = g++
+
+in makefile avem 4 target uri:
+clean: sterge binar calculator
+run: obtine binarul compilator
+compile: compileaza si se obtine targetul calculator
+all:compile run(are 2 dependinte)
+
+
+
+Rulare:
+calculator george$ make run
+--eroare nu exista ./calcualtor
+
+calculator geroge$ make compile
+calculator george$ make run
+
+calculator george$ make all(intai rulare apoi compilare)
+
+vezi fisierul:
+compilator geore$ vi Makefile
+
+
+make fara un parametru all executa primul target din lista
+
+
+apache ant: scriem in xml
+apache marvel: q43 mqi multe plug-in uri
+
+
+
+

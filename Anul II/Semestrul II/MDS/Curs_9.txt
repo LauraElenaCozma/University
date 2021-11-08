@@ -1,0 +1,35 @@
+Testare de acceptanta: se face pe user stories, vrem sa validam ca ceea ce voia clientul este utilizat
+
+Testare unitara: testam fiecare bucatica de cod
+
+Testarea de integrare: testam mai multe unitati sau clase
+
+Testarea sistemului: se testeaza aplicatia ca si intreg
+
+Testele de regresie: utilizate la retestare, cand facem o noua versiune sa rulam din nou toate testele
+
+Testare la stres: sa ne asiguram ca atunci cand crapa sistemul nu face lucruri ireversivile(sa stearga bd)
+
+GUI testing: testare la nivel de interfata(cu scripturi sau framework-uri)
+
+
+JUNIT: Testare unitara(a unei functii etc)
+
+- vrem sa vedem cum se comporta o metoda
+- trebuie sa initializam o clasa
+- apelam metoda care trebuie sa o testam
+- oracolul spune daca rezultatul e corest sau nu
+
+- atunci cand modificam ceva in aplicatie vrem sa rulam din nou aceste teste
+
+1. INITIALIZAREA TESTULUI
+2. EXECUTAREA METODEI
+3. REZULTATUL
+
+!! METODELE ERAU STATICE SE ACEEA APELAM EX1.FINDMIN
+
+assertTrue = verifica daca rezultatul e ceea ce ne asteptam noi(adica 1, el e minimul)
+
+
+RULARE:
+javac Ex1Test.java

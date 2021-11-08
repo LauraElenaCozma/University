@@ -1,0 +1,30 @@
+Euristica 1
+
+Initial: [inc(d,0),inc(d,0),inc(d,0),inc(d,0),inc(d,0)]
+
+Incuietori(stare scop): [inc(d,0),inc(d,0),inc(d,0),inc(d,0),inc(d,0)]
+
+S-au realizat 0 operatii.
+--- Timpul total de rulare este de 0.0010342597961425781 secunde ---
+
+
+Euristica 2
+
+Initial: [inc(d,0),inc(d,0),inc(d,0),inc(d,0),inc(d,0)]
+
+Incuietori(stare scop): [inc(d,0),inc(d,0),inc(d,0),inc(d,0),inc(d,0)]
+
+S-au realizat 0 operatii.
+--- Timpul total de rulare este de 0.0 secunde ---
+
+
+Euristica 3
+
+Initial: [inc(d,0),inc(d,0),inc(d,0),inc(d,0),inc(d,0)]
+
+Incuietori(stare scop): [inc(d,0),inc(d,0),inc(d,0),inc(d,0),inc(d,0)]
+
+S-au realizat 0 operatii.
+--- Timpul total de rulare este de 0.0 secunde ---
+
+

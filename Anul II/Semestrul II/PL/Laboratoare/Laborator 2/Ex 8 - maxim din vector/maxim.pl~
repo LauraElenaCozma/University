@@ -1,0 +1,5 @@
+
+max([X],X).
+max([H|L],M) :- max(L, M),H < M.
+max([H|L],M) :- max(L, H),H >= M.
+

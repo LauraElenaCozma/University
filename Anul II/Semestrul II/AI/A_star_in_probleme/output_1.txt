@@ -1,0 +1,18 @@
+Euristica 1
+
+Lacatul nu se poate deschide cu ajutorul cheilor primite.
+--- Timpul total de rulare este de 0.0 secunde ---
+
+
+Euristica 2
+
+Lacatul nu se poate deschide cu ajutorul cheilor primite.
+--- Timpul total de rulare este de 0.0 secunde ---
+
+
+Euristica 3
+
+Lacatul nu se poate deschide cu ajutorul cheilor primite.
+--- Timpul total de rulare este de 0.0011608600616455078 secunde ---
+
+

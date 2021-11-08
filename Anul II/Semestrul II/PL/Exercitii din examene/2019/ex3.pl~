@@ -1,0 +1,28 @@
+
+isvar(X) :- member(X,[a,b,c,d,e,f]).
+
+/*Scrieti un predicat simplifica(E,ES) astfel incat E este o expresie data,
+iar ES este expresia in care sunt simplificate operatiile cu zero.*/
+
+simplifica(zero, zero).
+simplifica(X, X) :- isvar(X).
+simplifica(plus(E1,E2), Es) :- E2 = zero, simplifica(E1, Es),!.
+simplifica(plus(E1,E2), Es) :- E1 = zero, simplifica(E2, Es),!.
+simplifica(plus(E1,E2), plus(Es1, Es2)) :- simplifica(E1, Es1), simplifica(E2, Es2),!.
+
+
+simplifica(ori(_,E2), zero) :- E2 = zero,!.
+simplifica(ori(E1,_), zero) :- E1 = zero,!.
+simplifica(ori(E1,E2), ori(Es1, Es2)) :- simplifica(E1, Es1), simplifica(E2, Es2),!.
+
+/*Scriet ¸i un predicat valoare(Mem,Expr, Rez) astfel ˆincˆat:
+- Mem este o lista de termeni de tipul vi(a,3) care au ca prim argument o variabila,
+iar al doilea argument este valoarea variabilei respective;
+- daca Expr este o expresie data, Rez va contine valoarea expresiei in care valorile variabilelor sunt date de Mem, iar valoarea lui zero este 0.*/
+evaluare(const, const, val, val).
+evaluare(X, const, val, X) :- isvar(X).
+evaluare(plus(E1,E2), const, val, plus(Es1, Es2)) :- evaluare(E1, const, val, Es1), evaluare(E2, const, val, Es2).
+evaluare(ori(E1,E2), const, val, ori(Es1, Es2)) :- evaluare(E1, const, val, Es1), evaluare(E2, const, val, Es2).
+
+valoare([],Expr,Expr).
+valoare([vi(const, val)|L], Expr, Rez1) :-  valoare(L, Expr, Rez).%%, evaluare(Rez, const, val, Rez1).

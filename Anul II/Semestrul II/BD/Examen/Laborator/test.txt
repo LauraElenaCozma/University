@@ -1,0 +1,61 @@
+SELECT * FROM magazin;
+SELECT * FROM stoc;
+SELECT * FROM produs;
+SELECT id_produs
+FROM produs
+WHERE lower(denumire) = 'nexus 7';
+/*Să se obțină magazinul care are în stock cea mai ieftină tabletă Nexus 7. (7,5p)*/
+SELECT id_magazin, denumire
+FROM magazin m
+JOIN stoc s ON(m.id_magazin = s.cod_magazin)
+WHERE s.cod_produs = (SELECT id_produs
+FROM produs
+WHERE lower(denumire) = 'nexus 7')
+AND s.pret = (SELECT MIN(pret)
+FROM stoc
+WHERE cod_produs = (SELECT id_produs
+FROM produs
+WHERE lower(denumire) = 'nexus 7'));
+
+
+/*Să se creeze tabelul client_pnu(id, nume, data_nastere, email) cu informații generale despre
+clienți (unde sufixul de forma _pnu, 'p' este inițiala prenumelui, iar 'nu' sunt primele 2 litere
+ale numelui de familie). Adăugați constrângerea de cheie primară și o altă constrângere la
+alegere. Inserați înregistrări cu date introduse de la tastatură.*/
+CREATE TABLE client_lco
+                (
+                id number(4) PRIMARY KEY,
+                nume VARCHAR2(20) NOT NULL,
+                data_nastere date default sysdate,
+                email VARCHAR2(20)
+                );
+SELECT * FROM client_lco;
+
+INSERT INTO client_lco (id, nume, data_nastere, email)
+VALUES (&p_id, '&p_nume',TO_DATE('&p_data','DD/MM/YYYY'),'&p_email');
+
+INSERT INTO client_lco (id, nume, email)
+VALUES (&p_id, '&p_nume','&p_email');
+
+
+/*4. Să se afișeze denumirea categoriei și denumirea produselor pentru care este cunoscută
+firma care asigură service. (5p)*/
+
+SELECT c.denumire, p.denumire
+FROM categorie c
+JOIN produs p ON (c.id_categorie = p.cod_categorie);
+
+/*Selecteaza toate magazinele care au cel putin aceiasi producatori ca si produsele care sunt in stoc ale magazinului 3.*/
+SELECT DISTINCT s2.cod_magazin
+FROM stoc s2
+WHERE NOT EXISTS 
+(SELECT cod_producator 
+FROM stoc s
+JOIN produs p ON (p.id_produs = s.cod_produs)
+WHERE cod_magazin = 3
+MINUS 
+SELECT cod_producator 
+FROM stoc s
+JOIN produs p ON (p.id_produs = s.cod_produs)
+WHERE s.cod_magazin = s2.cod_magazin)
+AND s2.cod_magazin <> 3;
