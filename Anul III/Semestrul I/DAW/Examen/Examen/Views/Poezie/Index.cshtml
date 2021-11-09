@@ -1,0 +1,42 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+@foreach (var poezie in @ViewBag.Poezii)
+{
+    <div class="panel panel-default">
+        <div class="panel-body">
+            @Html.Label("Titlu", "Titlu:")
+            <br />
+            <p>@poezie.Titlu</p>
+
+            @Html.Label("Autor", "Autor:")
+            <br />
+            <p>@poezie.Autor</p>
+            @Html.Label("NrStrofe", "Nr strofe:")
+            <br />
+            <p>@poezie.NrStrofe</p>
+            @Html.Label("Volum", "Volum:")
+            <br />
+            <p>@poezie.Volum.Denumire</p>
+            @using (Html.BeginForm(actionName: "Edit", controllerName: "Poezie", method: FormMethod.Get, routeValues: new { id = poezie.IdPoezie }))
+            {
+                <button class="btn btn-primary col-lg-1" style="margin-right:5px" type="submit">Editeaza</button>
+            }
+            @using (Html.BeginForm(actionName: "Delete", controllerName: "Poezie", method: FormMethod.Post, routeValues: new { id = poezie.IdPoezie }))
+            {
+                @Html.HttpMethodOverride(HttpVerbs.Delete)
+                <button class="btn btn-primary col-lg-1" style="margin-right:5px" type="submit">Delete</button>
+            }
+        </div>
+    </div>
+}
+
+@using (Html.BeginForm(actionName: "New", controllerName: "Poezie", method: FormMethod.Get))
+{
+    <button class="btn btn-primary">Adauga poezie</button>
+}
+

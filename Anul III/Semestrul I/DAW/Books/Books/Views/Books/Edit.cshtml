@@ -1,0 +1,60 @@
+﻿@model Books.ViewModels.BookAndBookTypesViewModel
+@{
+    ViewBag.Title = "Edit";
+}
+
+<h2>Edit</h2>
+@*
+    <form method="post" action="/Books/Update">
+        @Html.Label("Title", "Title:")
+        <br />
+        <input type="text" name="Title" class="input" value="@Model.Title" />
+        <br />
+        @Html.Label("Author", "Author:")
+        <br />
+        <input type="text" name="Author" class="input" value="@Model.Author" />
+        <br />
+        <input type="hidden" name="BookId" value="@Model.BookId" />
+
+        <button type="submit" class="btn btn-primary">Add</button>
+    </form>
+*@
+
+@using (Html.BeginForm(actionName: "Edit", controllerName: "Books"))
+{
+    //La edit metoda e de tip put
+    @Html.HttpMethodOverride(HttpVerbs.Put)
+    @Html.HiddenFor(b => b.Book.BookId)
+
+    @Html.Label("Title", "Title:")
+    <br />
+    @Html.EditorFor(b => b.Book.Title, new { htmlAttributes = new { @class = "form-control" } })
+    @Html.ValidationMessageFor(b => b.Book.Title, "", new { @class = "text-danger" })
+    <br />
+    @Html.Label("Author", "Author:")
+    <br />
+    @Html.EditorFor(b => b.Book.Author, new { htmlAttributes = new { @class = "form-control" } })
+    @Html.ValidationMessageFor(b => b.Book.Author, "", new { @class = "text-danger" })
+    <br />
+    @Html.Label("Summary", "Summary:")
+    <br />
+    @Html.TextAreaFor(b => b.Book.Summary, new { @class = "form-control", @rows = "10" })
+    @Html.ValidationMessageFor(b => b.Book.Summary, "", new { @class = "text-danger" })
+    <br />
+    @Html.Label("NoOfPages", "Number of pages:")
+    <br />
+    @*@type ii va adauga sageti pentru a selecta numarul dorit*@
+    @Html.EditorFor(b => b.Book.NoOfPages, new { htmlAttributes = new { @class = "form-control", @type = "number" } })
+    @Html.ValidationMessageFor(b => b.Book.NoOfPages, "", new { @class = "text-danger" })
+    <br />
+
+    @Html.Label("Book type", "Book type:")
+    <br />
+    @Html.DropDownListFor(b => b.Book.BookTypeId, new SelectList(Model.BookTypes, "BookTypeId", "Name"), "Choose a book type", new { @class = "form-control" })
+    @Html.ValidationMessageFor(b => b.Book.BookTypeId, "", new { @class = "text-danger" })
+    <br />
+    @Html.DropDownListFor(b => b.Book.PublisherId, new SelectList(Model.Publishers, "PublisherId", "Name"), "Choose a publisher", new { @class = "form-control" })
+    @Html.ValidationMessageFor(b => b.Book.PublisherId, "", new { @class = "text-danger" })
+    <br />
+    <button class="btn btn-primary" type="submit">Update</button>
+}

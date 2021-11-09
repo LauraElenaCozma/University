@@ -1,0 +1,40 @@
+﻿@model Examen.Models.Poezie
+@{
+    ViewBag.Title = "Edit";
+}
+
+<h2>Edit</h2>
+
+@using (Html.BeginForm(actionName: "Edit", controllerName: "Poezie", method: FormMethod.Post))
+{
+    @Html.HttpMethodOverride(HttpVerbs.Put)
+    @Html.HiddenFor(p => p.IdPoezie)
+
+    <br />
+    @Html.Label("Titlu", "Titlu:")
+    <br />
+    @Html.EditorFor(p => p.Titlu, new { htmlAttributes = new { @class = "form-control" } })
+    @Html.ValidationMessageFor(p => p.Titlu, "", new { @class = "text-danger" })
+    <br />
+    @Html.Label("Autor", "Autor:")
+    <br />
+    @Html.EditorFor(p => p.Autor, new { htmlAttributes = new { @class = "form-control" } })
+    @Html.ValidationMessageFor(p => p.Autor, "", new { @class = "text-danger" })
+    <br />
+    @Html.Label("NrStrofe", "Nr strofe:")
+    <br />
+    @Html.EditorFor(p => p.NrStrofe, new { htmlAttributes = new { @class = "form-control" } })
+    @Html.ValidationMessageFor(p => p.NrStrofe, "", new { @class = "text-danger" })
+    <br />
+    @Html.Label("IdVolum", "Volum:")
+    <br />
+    @Html.DropDownListFor(p => p.IdVolum, new SelectList(Model.ListaVolume, "Value", "Text"), "Alege un volum", new { @class = "form-control" })
+    @Html.ValidationMessageFor(p => p.IdVolum, "", new { @class = "text-danger" })
+    <br />
+    <br />
+    <button class="btn btn-primary" type="submit">Update</button>
+    <br />
+    <br />
+
+}
+

@@ -1,0 +1,44 @@
+﻿@model Sport.Models.Sportiv
+@{
+    ViewBag.Title = "New";
+}
+
+<h2>Add new Book</h2>
+
+
+@using (Html.BeginForm(actionName: "New", controllerName: "Sportiv", method: (FormMethod.Post)))
+{
+    @Html.Label("Nume", "Nume:")
+    <br />
+    @Html.TextBoxFor(s => s.Nume, null, new { placeholder = "Type in numele sportivului", @class = "form-control" })
+    @Html.ValidationMessageFor(s => s.Nume, "", new { @class = "text-danger" })
+    <br />
+    @Html.Label("Prenume", "Prenume:")
+    <br />
+    @Html.TextBoxFor(s => s.Prenume, null, new { placeholder = "Type in prenumele sportivului", @class = "form-control" })
+    @Html.ValidationMessageFor(s => s.Prenume, "", new { @class = "text-danger" })
+    <br />
+    @Html.Label("DataNasterii", "Data nasterii: ")
+    <br />
+    @Html.TextBoxFor(s => s.DataNasterii, null, new
+               {
+                   @class = "form-control",
+                   @type = "datetime-local"
+               })
+    <br />
+    @Html.ValidationMessageFor(s => s.DataNasterii, "", new { @class = "text-danger" })
+    <br />
+    @Html.Label("Tara", "Tara:")
+    <br />
+    @Html.TextBoxFor(s => s.Tara, null, new { placeholder = "Type in tara sportivului", @class = "form-control" })
+    @Html.ValidationMessageFor(s => s.Tara, "", new { @class = "text-danger" })
+    <br />
+    @Html.Label("IDProba", "Proba:")
+    <br />
+    @Html.DropDownListFor(s => s.IDProba, new SelectList(Model.ListaProbe, "Value", "Text"), "Alege o proba", new { @class = "form-control" })
+    @Html.ValidationMessageFor(s => s.IDProba, "", new { @class = "text-danger" })
+    <br />
+    <br />
+    <button class="btn btn-primary" type="submit">Create</button>
+}
+

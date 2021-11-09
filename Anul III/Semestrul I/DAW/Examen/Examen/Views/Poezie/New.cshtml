@@ -1,0 +1,34 @@
+﻿@model Examen.Models.Poezie
+@{
+    ViewBag.Title = "New";
+}
+
+<h2>New</h2>
+
+@using (Html.BeginForm(actionName: "New", controllerName: "Poezie", method: (FormMethod.Post)))
+{
+    @Html.Label("Titlu", "Titlu:")
+    <br />
+    @Html.TextBoxFor(p => p.Titlu, null, new { placeholder = "Type in numele poeziei", @class = "form-control" })
+    @Html.ValidationMessageFor(p => p.Titlu, "", new { @class = "text-danger" })
+    <br />
+    @Html.Label("Autor", "Autor:")
+    <br />
+    @Html.TextBoxFor(p => p.Autor, null, new { placeholder = "Type in autorul poeziei", @class = "form-control" })
+    @Html.ValidationMessageFor(p => p.Autor, "", new { @class = "text-danger" })
+    <br />
+    <br />
+    @Html.Label("NrStrofe", "Nr Strofe:")
+    <br />
+    @Html.TextBoxFor(p => p.NrStrofe, null, new { placeholder = "Type in nr strofe ale poeziei", @class = "form-control" })
+    @Html.ValidationMessageFor(p => p.NrStrofe , "", new { @class = "text-danger" })
+    <br />
+    <br />
+    @Html.Label("IdVolum", "Proba:")
+    <br />
+    @Html.DropDownListFor(p => p.IdVolum, new SelectList(Model.ListaVolume, "Value", "Text"), "Alege un volum", new { @class = "form-control" })
+    @Html.ValidationMessageFor(p => p.IdVolum, "", new { @class = "text-danger" })
+    <br />
+    <br />
+    <button class="btn btn-primary" type="submit">Create</button>
+}
