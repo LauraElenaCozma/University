@@ -1,0 +1,8 @@
+# depslib dependency file v1.0
+1557524862 source:d:\total salvari\oop\proiect 3 - problema 10\main.cpp
+	<iostream>
+	<cstddef>
+	<cstring>
+	<fstream>
+	<vector>
+

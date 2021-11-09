@@ -1,0 +1,8 @@
+# depslib dependency file v1.0
+1559029508 source:c:\users\user\desktop\colocviu 2019\main.cpp
+	<iostream>
+	<sstream>
+	<fstream>
+	<stdexcept>
+	<vector>
+

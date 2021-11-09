@@ -1,0 +1,6 @@
+# depslib dependency file v1.0
+1549116674 source:c:\users\user\desktop\programare generica\verificare daca 2 vectori sunt egali\main.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+

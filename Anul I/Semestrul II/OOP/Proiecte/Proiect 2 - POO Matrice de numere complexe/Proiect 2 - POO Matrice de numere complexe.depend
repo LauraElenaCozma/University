@@ -1,0 +1,73 @@
+# depslib dependency file v1.0
+1555269376 source:k:\proiect 2 - poo matrice de numere complexe\src\complex.cpp
+	"Complex.h"
+
+1555269970 k:\proiect 2 - poo matrice de numere complexe\include\complex.h
+	<iostream>
+
+1555270020 source:k:\proiect 2 - poo matrice de numere complexe\main.cpp
+	<iostream>
+	"Complex.h"
+	"Matrice.h"
+	"Matrice_oarecare.h"
+	"Matrice_patratica.h"
+	<fstream>
+	<typeinfo>
+
+1555266760 k:\proiect 2 - poo matrice de numere complexe\include\matrice.h
+	"Complex.h"
+	<iostream>
+
+1555269376 k:\proiect 2 - poo matrice de numere complexe\include\matrice_oarecare.h
+	"Matrice.h"
+
+1555269970 k:\proiect 2 - poo matrice de numere complexe\include\matrice_patratica.h
+	"Matrice.h"
+
+1555269970 source:k:\proiect 2 - poo matrice de numere complexe\src\matrice.cpp
+	"Matrice.h"
+	<iostream>
+
+1555270020 source:k:\proiect 2 - poo matrice de numere complexe\src\matrice_oarecare.cpp
+	"Matrice_oarecare.h"
+	"Matrice.h"
+
+1555269970 source:k:\proiect 2 - poo matrice de numere complexe\src\matrice_patratica.cpp
+	"Matrice_patratica.h"
+
+1555265776 source:f:\proiect 2 - poo matrice de numere complexe\src\complex.cpp
+	"Complex.h"
+
+1555266370 f:\proiect 2 - poo matrice de numere complexe\include\complex.h
+	<iostream>
+
+1555266370 source:f:\proiect 2 - poo matrice de numere complexe\src\matrice.cpp
+	"Matrice.h"
+	<iostream>
+
+1555263160 f:\proiect 2 - poo matrice de numere complexe\include\matrice.h
+	"Complex.h"
+	<iostream>
+
+1555328548 source:f:\proiect 2 - poo matrice de numere complexe\src\matrice_oarecare.cpp
+	"Matrice_oarecare.h"
+	"Matrice.h"
+
+1555265776 f:\proiect 2 - poo matrice de numere complexe\include\matrice_oarecare.h
+	"Matrice.h"
+
+1555327496 source:f:\proiect 2 - poo matrice de numere complexe\src\matrice_patratica.cpp
+	"Matrice_patratica.h"
+
+1555266370 f:\proiect 2 - poo matrice de numere complexe\include\matrice_patratica.h
+	"Matrice.h"
+
+1555327124 source:f:\proiect 2 - poo matrice de numere complexe\main.cpp
+	<iostream>
+	"Complex.h"
+	"Matrice.h"
+	"Matrice_oarecare.h"
+	"Matrice_patratica.h"
+	<fstream>
+	<typeinfo>
+

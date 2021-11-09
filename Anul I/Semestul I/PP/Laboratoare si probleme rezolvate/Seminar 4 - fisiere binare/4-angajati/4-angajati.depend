@@ -1,0 +1,6 @@
+# depslib dependency file v1.0
+1544374676 source:c:\users\laura\desktop\pp-seminar 4 fisiere binare\4-angajati\main.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+

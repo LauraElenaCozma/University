@@ -1,0 +1,6 @@
+# depslib dependency file v1.0
+1543751346 source:c:\users\laura\desktop\laborator asd 9\sortare a n siruri de caractere\main.cpp
+	<iostream>
+	<fstream>
+	<string.h>
+

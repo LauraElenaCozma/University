@@ -1,0 +1,6 @@
+# depslib dependency file v1.0
+1549029190 source:c:\users\user\desktop\functii cu numar variabil de parametri\maximul a 3 numere intregi\main.c
+	<stdio.h>
+	<stdlib.h>
+	<stdarg.h>
+

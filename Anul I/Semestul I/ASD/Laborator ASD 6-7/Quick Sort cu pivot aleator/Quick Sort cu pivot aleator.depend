@@ -1,0 +1,7 @@
+# depslib dependency file v1.0
+1542736399 source:c:\users\laura\desktop\quick sort cu pivot aleator\main.cpp
+	<iostream>
+	<fstream>
+	<cstdlib>
+	<time.h>
+

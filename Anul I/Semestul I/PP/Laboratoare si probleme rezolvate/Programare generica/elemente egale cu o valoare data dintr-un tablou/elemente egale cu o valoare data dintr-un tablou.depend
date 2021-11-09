@@ -1,0 +1,5 @@
+# depslib dependency file v1.0
+1549120361 source:c:\users\user\desktop\programare generica\elemente egale cu o valoare data dintr-un tablou\main.c
+	<stdio.h>
+	<stdlib.h>
+

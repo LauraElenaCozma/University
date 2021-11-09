@@ -1,0 +1,5 @@
+# depslib dependency file v1.0
+1544529844 source:c:\users\laura\desktop\test pp2 csa-2 poezie\main.c
+	<stdio.h>
+	<stdlib.h>
+

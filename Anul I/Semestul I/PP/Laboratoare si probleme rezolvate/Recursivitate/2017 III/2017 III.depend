@@ -1,0 +1,6 @@
+# depslib dependency file v1.0
+1549142661 source:c:\users\user\desktop\recursivitate\2017 iii\main.c
+	<stdio.h>
+	<stdlib.h>
+	<stdarg.h>
+

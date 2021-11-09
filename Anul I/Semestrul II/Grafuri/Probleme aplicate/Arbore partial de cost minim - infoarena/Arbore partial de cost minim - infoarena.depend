@@ -1,0 +1,8 @@
+# depslib dependency file v1.0
+1557396069 source:d:\grafuri\arbore partial de cost minim - infoarena\main.cpp
+	<iostream>
+	<queue>
+	<vector>
+	<list>
+	<fstream>
+

@@ -1,0 +1,10 @@
+# depslib dependency file v1.0
+1554241910 source:d:\grafuri\retea2 infoarena\main.cpp
+	<iostream>
+	<fstream>
+	<vector>
+	<list>
+	<algorithm>
+	<cmath>
+	<iomanip>
+

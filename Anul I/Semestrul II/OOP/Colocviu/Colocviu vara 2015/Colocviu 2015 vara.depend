@@ -1,0 +1,7 @@
+# depslib dependency file v1.0
+1557597138 source:d:\total salvari\oop\colocviu 2015 vara\main.cpp
+	<iostream>
+	<string>
+	<vector>
+	<fstream>
+

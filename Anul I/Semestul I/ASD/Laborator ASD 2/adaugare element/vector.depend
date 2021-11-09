@@ -1,0 +1,9 @@
+# depslib dependency file v1.0
+1540415371 source:c:\users\laura\desktop\laborator 2\vector\adaugare element\main.c
+	<stdio.h>
+	<stdlib.h>
+
+1540415605 source:c:\users\laura\desktop\laborator 2\adaugare element\main.c
+	<stdio.h>
+	<stdlib.h>
+

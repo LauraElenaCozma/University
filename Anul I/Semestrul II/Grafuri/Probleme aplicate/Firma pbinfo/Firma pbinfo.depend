@@ -1,0 +1,6 @@
+# depslib dependency file v1.0
+1558527990 source:d:\firma pbinfo\main.cpp
+	<iostream>
+	<fstream>
+	<climits>
+

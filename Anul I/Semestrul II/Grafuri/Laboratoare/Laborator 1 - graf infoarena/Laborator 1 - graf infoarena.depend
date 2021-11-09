@@ -1,0 +1,7 @@
+# depslib dependency file v1.0
+1558292686 source:d:\grafuri\laborator 1 - graf infoarena\main.cpp
+	<iostream>
+	<fstream>
+	<queue>
+	<vector>
+

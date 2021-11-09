@@ -1,0 +1,8 @@
+# depslib dependency file v1.0
+1557398756 source:d:\grafuri\prim o(n^2)\main.cpp
+	<iostream>
+	<climits>
+	<fstream>
+	<list>
+	<vector>
+

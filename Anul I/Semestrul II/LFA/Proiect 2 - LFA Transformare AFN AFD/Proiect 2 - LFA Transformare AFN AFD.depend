@@ -1,0 +1,15 @@
+# depslib dependency file v1.0
+1553417502 source:c:\users\user\desktop\proiect 2 - lfa transformare afn afd\main.cpp
+	<iostream>
+	<cstring>
+	<fstream>
+	<cstdlib>
+	<algorithm>
+
+1553417504 source:f:\proiect 2 - lfa transformare afn afd\main.cpp
+	<iostream>
+	<cstring>
+	<fstream>
+	<cstdlib>
+	<algorithm>
+

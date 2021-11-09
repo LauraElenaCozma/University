@@ -1,0 +1,6 @@
+# depslib dependency file v1.0
+1558273543 source:d:\grafuri\bellman ford\main.cpp
+	<iostream>
+	<fstream>
+	<vector>
+

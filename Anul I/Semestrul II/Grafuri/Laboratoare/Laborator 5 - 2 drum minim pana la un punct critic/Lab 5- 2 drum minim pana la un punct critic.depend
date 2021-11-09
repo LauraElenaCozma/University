@@ -1,0 +1,9 @@
+# depslib dependency file v1.0
+1555444956 source:c:\users\user\desktop\lab 5- 2 drum minim pana la un punct critic\main.cpp
+	<iostream>
+	<climits>
+	<fstream>
+	<list>
+	<vector>
+	<set>
+

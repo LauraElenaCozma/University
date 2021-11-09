@@ -1,0 +1,7 @@
+# depslib dependency file v1.0
+1558007060 source:d:\grafuri\colocviu grafuri 2018\main.cpp
+	<iostream>
+	<fstream>
+	<vector>
+	<list>
+

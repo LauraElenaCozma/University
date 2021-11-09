@@ -1,0 +1,6 @@
+Roman 23
+Florenta 299
+Constangeles 299
+Iasi 22
+Buc 22
+Mano 299

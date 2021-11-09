@@ -1,0 +1,6 @@
+# depslib dependency file v1.0
+1549055536 source:c:\users\user\desktop\functii cu numar variabil de parametri\creare sir din mai multe caractere date\main.c
+	<stdio.h>
+	<stdlib.h>
+	<stdarg.h>
+

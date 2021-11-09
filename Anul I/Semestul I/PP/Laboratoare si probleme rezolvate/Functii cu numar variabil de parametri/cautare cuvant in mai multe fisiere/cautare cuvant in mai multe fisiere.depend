@@ -1,0 +1,9 @@
+# depslib dependency file v1.0
+1549097340 source:c:\users\user\desktop\functii cu numar variabil de parametri\cautare cuvant in mai multe fisiere\iesire.out.c
+
+1549098683 source:c:\users\user\desktop\functii cu numar variabil de parametri\cautare cuvant in mai multe fisiere\main.c
+	<stdio.h>
+	<stdlib.h>
+	<stdarg.h>
+	<string.h>
+

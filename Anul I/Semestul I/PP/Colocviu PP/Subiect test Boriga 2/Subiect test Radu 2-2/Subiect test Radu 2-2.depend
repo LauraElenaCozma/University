@@ -1,0 +1,6 @@
+# depslib dependency file v1.0
+1544478640 source:c:\users\laura\desktop\subiect test radu 2-2\main.c
+	<stdio.h>
+	<stdlib.h>
+	<limits.h>
+

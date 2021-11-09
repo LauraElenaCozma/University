@@ -1,0 +1,6 @@
+# depslib dependency file v1.0
+1544033680 source:c:\users\laura\desktop\asd\laborator asd 8\depou cu k linii\main.cpp
+	<iostream>
+	<fstream>
+	<climits>
+

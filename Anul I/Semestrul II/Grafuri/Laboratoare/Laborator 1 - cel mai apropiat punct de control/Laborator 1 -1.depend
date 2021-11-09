@@ -1,0 +1,7 @@
+# depslib dependency file v1.0
+1558278572 source:d:\grafuri\laborator 1 -1\main.cpp
+	<iostream>
+	<fstream>
+	<vector>
+	<queue>
+

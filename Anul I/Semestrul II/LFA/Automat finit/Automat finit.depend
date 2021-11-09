@@ -1,0 +1,5 @@
+# depslib dependency file v1.0
+1551735143 source:d:\automat finit\main.cpp
+	<iostream>
+	<fstream>
+

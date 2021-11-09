@@ -1,0 +1,6 @@
+# depslib dependency file v1.0
+1544310477 source:c:\users\laura\desktop\pp-seminar 4 fisiere binare\3-propusa matrice\main.c
+	<stdio.h>
+	<stdlib.h>
+	<math.h>
+

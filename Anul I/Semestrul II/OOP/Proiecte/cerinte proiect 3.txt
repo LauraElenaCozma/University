@@ -1,0 +1,79 @@
+PR 1.
+implementati clasa template vector (sa mearga pentru toate tipurile de date) pornind de la:
+
+template<class T>
+class Vector
+{
+private:
+	T * array; 
+};
+
+trebuie sa mai adaugati: 
+-> constructor simplu 
+-> constructor cu parametri (ex: sa creeze un vector de i elemente cu valoarea x)
+-> destructor
+-> constructor de copiere
+-> operator =
+
+operatii de implementat pe un vector 
+-> push_back (adauga un element la finalul vectorului), daca se depaseste dimensiunea vectorului se realoca array la o dimensiune dubla
+-> pop_back (sterge elementul de la finalul vectorului)
+-> insert (adauga un element pe o pozitie), daca se depaseste dimensiunea vectorului se realoca array la o dimensiune dubla
+-> remove (sterge un element)
+
+operatori de implementat pe un vector:
+-> operator []  -> sa puteti scrie 
+		Vector<int> v(5, 10);
+		v[3] = 4;
+-> operator de conversie la bool, sa pot scrie 
+		if (v) -> adica daca v are elemente
+-> operator de conversie la int, sa returneze size-ul vectorului
+
+-> sa se implementeze pentru clasa vector iteratori care sa supraincarce
+	-> operator ++ prefixat si postfixat
+	-> operator * (*it) si -> (it->)
+	-> operator == si !=
+	
+	
+-> aruncati si tratati exceptii 
+
+PR 2. 
+implementati clasa template lista (sa mearga pentru toate tipurile de date) pornind de la:
+// lista dublu inlantuita
+
+template<class T>
+class Lista
+{
+private:
+
+	Nod<T> * prim; // trebuie facut si clasa nod
+	Nod<T> * ultim;
+};
+
+trebuie sa mai adaugati: 
+-> constructor simplu 
+-> constructor cu parametri (ex: sa creeze o lista de i elemente cu valoarea x)
+-> destructor
+-> constructor de copiere
+-> operator =
+
+operatii de implementat pe o lista 
+-> push_front (adauga la inceput)
+-> push_back (adauga un element la finalul listei)
+-> pop_back (sterge ultimul element)
+-> pop_front (sterge primul element)
+-> insert (adauga un element pe o pozitie)
+-> remove (sterge un element)
+
+operatori de implementat pe o lista:
+-> operator []  -> intoarce valoarea de la pozitia i ex: l[i];
+-> operator de conversie la bool, sa pot scrie 
+		if (l) -> adica daca v are elemente
+-> operator de conversie la int, sa returneze size-ul listei
+
+-> sa se implementeze pentru clasa lista iteratori care sa supraincarce
+	-> operator ++ prefixat si postfixat
+	-> operator * (*it) si -> (it->)
+	-> operator == si !=
+
+-> aruncati si tratati exceptii 

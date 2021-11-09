@@ -1,0 +1,8 @@
+# depslib dependency file v1.0
+1558463816 source:d:\grafuri\costruirea unui arbore cu secventa gradelor data\main.cpp
+	<iostream>
+	<fstream>
+	<queue>
+	<algorithm>
+	<list>
+

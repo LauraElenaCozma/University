@@ -1,0 +1,8 @@
+# depslib dependency file v1.0
+1557396418 source:d:\grafuri\prim\main.cpp
+	<iostream>
+	<fstream>
+	<queue>
+	<list>
+	<vector>
+

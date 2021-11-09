@@ -1,0 +1,6 @@
+Vaduva Cosmina 5 6 8 6 5 9 0 6 8 8 7 7 medie=375.000000
+Cojocaru Miruna 5 0 8 10 5 8 7 6 0 0 8 5 medie=310.000000
+Ardelean Mihai 5 0 8 10 6 5 7 8 8 7 9 10 medie=415.000000
+Popescu Ioan 6 0 6 8 0 7 8 0 9 9 7 8 medie=340.000000
+Ionescu Mircea 0 0 10 6 6 6 7 5 5 8 5 6 medie=320.000000
+

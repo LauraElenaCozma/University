@@ -1,0 +1,52 @@
+#include <stdio.h>
+#include <stdlib.h>
+int prelucrare(FILE * f)
+{
+    f=fopen("f.in","r");
+
+    if(f==NULL)
+        return -1;
+
+    char c1,c2;
+    c1=fgetc(f);
+    if(c1!=EOF)//fisierul nu e vid
+    {
+        while((c2=fgetc(f))!=EOF)
+        {
+            if(c1=='/' && c2=='/')
+            {
+                c2=fgetc(f);
+                while(c2!='\n' && c2!=EOF) //cat timp nu am ajuns la final de rand sau la sfarsit de fisier
+                    c2=fgetc(f);
+            }
+            else if(c1=='/' && c2=='*')
+            {
+               /* while(c2!='/')
+                {
+                    c2=fgetc(f);
+                    c1=c2;
+                }
+                //in acest moment pe c1 se va afla ultimul / si la urmatorul pas va fi afisat. de aceea mai trebuie sa mai citim un caracter
+                c2=fgetc(f);
+                c1=c2;   O varianta mai scurta */
+                do
+                {
+                    c1=c2;
+                    c2=fgetc(f);
+                }
+                while(c1!='/');
+            }
+                 else
+                     printf("%c",c1);
+            c1=c2;
+        }
+    }
+
+    fclose(f);
+}
+int main()
+{
+    FILE *f;
+    prelucrare(f);
+    return 0;
+}

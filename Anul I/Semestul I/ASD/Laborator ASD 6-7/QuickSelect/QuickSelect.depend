@@ -1,0 +1,5 @@
+# depslib dependency file v1.0
+1542740341 source:c:\users\laura\desktop\quickselect\main.cpp
+	<iostream>
+	<fstream>
+

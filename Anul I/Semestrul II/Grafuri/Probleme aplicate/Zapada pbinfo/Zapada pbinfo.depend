@@ -1,0 +1,7 @@
+# depslib dependency file v1.0
+1558715177 source:d:\grafuri\zapada pbinfo\main.cpp
+	<iostream>
+	<fstream>
+	<vector>
+	<algorithm>
+

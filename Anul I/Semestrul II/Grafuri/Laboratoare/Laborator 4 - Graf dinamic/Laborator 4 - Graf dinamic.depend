@@ -1,0 +1,8 @@
+# depslib dependency file v1.0
+1557402788 source:d:\grafuri\laborator 4 - graf dinamic\main.cpp
+	<iostream>
+	<queue>
+	<vector>
+	<list>
+	<fstream>
+

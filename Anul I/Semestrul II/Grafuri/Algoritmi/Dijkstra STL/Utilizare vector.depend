@@ -1,0 +1,8 @@
+# depslib dependency file v1.0
+1553846892 source:d:\stl\utilizare vector\main.cpp
+	<iostream>
+	<vector>
+	<queue>
+	<fstream>
+	<climits>
+

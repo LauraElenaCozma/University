@@ -1,0 +1,8 @@
+# depslib dependency file v1.0
+1555514521 source:c:\users\user\desktop\lab 5-1 drum critic\main.cpp
+	<iostream>
+	<fstream>
+	<vector>
+	<list>
+	<climits>
+

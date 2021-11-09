@@ -1,0 +1,8 @@
+# depslib dependency file v1.0
+1557427807 source:d:\total salvari\oop\colocviu vara 2017\main.cpp
+	<iostream>
+	<string>
+	<cmath>
+	<vector>
+	<fstream>
+
