@@ -1,9 +1,0 @@
-# depslib dependency file v1.0
-1617640942 source:c:\users\cozma\documents\laura\anul iii\tc dragulici\bottomup\main.cpp
-	<iostream>
-	<fstream>
-	<map>
-	<vector>
-	<string>
-	<sstream>
-
